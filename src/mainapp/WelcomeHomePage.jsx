@@ -1,27 +1,63 @@
 import React, { Component } from 'react';
-import AliceCarousel from 'react-alice-carousel';
-import "react-alice-carousel/lib/alice-carousel.css";
-import image1 from './slider_images/breakfast.jpg'
-import image2 from './slider_images/burgers.jpg'
-import image3 from './slider_images/hamburger.jpg'
-import image4 from './slider_images/platter.jpg'
-import image5 from './slider_images/sandwich.jpg'
+import images from '../images'
 import './CookYStories.css'
+import Grid from '@material-ui/core/Grid';
+import {Paper} from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles';
+import Carousel from 'react-material-ui-carousel'
 
 class WelcomeHomePage extends Component {
     render() {
+        var items = [
+            {
+                img: images.image1
+            },
+            {
+                img: images.image2
+            },
+            {
+                img: images.image3
+            },
+            {
+                img: images.image4
+            }
+            // {
+            //     img: images.image5
+            // }
+        ]
         return (
             <div>
-                <AliceCarousel autoPlay dotsDisabled={true} autoPlayInterval="2000">
-                    <img src={image1} className="sliderimg"/>
-                    <img src={image2} className="sliderimg"/>
-                    <img src={image3} className="sliderimg"/>
-                    <img src={image4} className="sliderimg"/>
-                    <img src={image5} className="sliderimg"/>
-                </AliceCarousel>
+                
+                <div className="row">
+                    {/* <Grid item xs = {6}> */}
+                    <div className="column">
+                        <Carousel className="welcomeSlider" width="100%" autoPlay={true} interval={2000} animation="slide" navButtonsAlwaysVisible={true} fullHeightHover={true}>
+                            {
+                                items.map( (item, i) => <Item key={i} item={item}/>)
+                            }
+                        </Carousel>
+                    </div>
+                       
+                    {/* </Grid> */}
+                    {/* <Grid className="moto" item xs = {6}> */}
+                    <div className="column">
+                        <h2> Welcome to CookYStories!! </h2>
+                        <h4> Cook your delicious stories and share with us and make our mouth watery :D..</h4>
+
+                    </div>
+                    {/* </Grid> */}
+                </div>
             </div>
         );
     }
+}
+
+function Item(props) {
+    return (
+        <Paper>
+            <img className="d-block w-100"  src={props.item.img} alt=""/>
+        </Paper>
+    )
 }
 
 export default WelcomeHomePage;

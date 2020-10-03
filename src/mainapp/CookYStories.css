@@ -4,8 +4,11 @@
 }
 
 .footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
+    left: 0;
+    justify-content: center;
+    padding: 5px;
     width: 100%;
     height: 40px;
     background-color: #222222;
@@ -15,19 +18,48 @@
     margin-top: -15px;
   }
 
-  .sliderimg{
+  /* .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  } */
+
+  .welcomePage {
     height: 100%;
+    align-items: center; 
+    align-content: center; 
+    /* /* justify-content: center;   */
+    text-align: center; 
+    /* vertical-align: center; */
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 40px;
+    flex-flow: column;
+  }
+  .welcomeSlider {
+    width: 80%;
+  }
+  .slideImage {
+    object-fit: cover;
   }
 
-  .alice-carousel__dots {
+  .column {
+    left:0;
+    float: left;
+    align-content: center; 
+    text-align: center; 
+    width: 50%;
+    height:80vh;
+  }
+  .row::after {
+    /* display: table; */
+    display: inline-block;
+    vertical-align: bottom;
     position: relative;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 40px;
-    flex-direction: column;
+    top: 100px;
+    display: flex;
+    flex-direction: row;
+    height: 80%;
+  }
+  .moto {
+    padding-left: 40px;
+    padding-right: 40px;
   }
