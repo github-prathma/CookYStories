@@ -5,7 +5,7 @@ class FooterComponent extends Component {
     render() {
         return (
             <footer className="footer">
-                All rights reserved @CookYStories
+                <p className="footerText">All rights reserved @CookYStories</p>
             </footer>
         );
     }

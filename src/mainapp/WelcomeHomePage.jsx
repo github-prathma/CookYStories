@@ -31,7 +31,7 @@ class WelcomeHomePage extends Component {
                 <div className="row">
                     {/* <Grid item xs = {6}> */}
                     <div className="leftColumn">
-                        <Carousel className="welcomeSlider" width="100%" autoPlay={true} interval={2000} animation="slide" navButtonsAlwaysVisible={true} fullHeightHover={true}>
+                        <Carousel className="welcomeSlider" width="100%" autoPlay={true} interval={3500} animation="slide" navButtonsAlwaysVisible={true} fullHeightHover={true}>
                             {
                                 items.map( (item, i) => <Item key={i} item={item}/>)
                             }

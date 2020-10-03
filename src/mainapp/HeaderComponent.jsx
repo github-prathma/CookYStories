@@ -12,9 +12,6 @@ class HeaderComponent extends Component {
                             <img src={logo}/>
                         </a>
                     </div>
-                    <ul className="navbar-nav">
-                        <li>CookYStories</li>
-                    </ul>
                     <ul className="navbar-nav navbar-collapse justify-content-end">
                         {/* TODO if else for login / logout */}
                         <li>Login</li> 
