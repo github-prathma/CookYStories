@@ -26,10 +26,8 @@ class WelcomeHomePage extends Component {
             // }
         ]
         return (
-            <div>
-                
+            
                 <div className="row">
-                    {/* <Grid item xs = {6}> */}
                     <div className="leftColumn">
                         <Carousel className="welcomeSlider" width="100%" autoPlay={true} interval={2000} animation="slide" navButtonsAlwaysVisible={true} fullHeightHover={true}>
                             {
@@ -37,17 +35,14 @@ class WelcomeHomePage extends Component {
                             }
                         </Carousel>
                     </div>
-                       
-                    {/* </Grid> */}
-                    {/* <Grid className="moto" item xs = {6}> */}
+                     
                     <div className="rightColumn">
                         <h2> Welcome to CookYStories!! </h2>
-                        <h4> Cook your delicious stories and share with us and make our mouth watery :D..</h4>
+                        <h4 className="subtitle"> Cook your delicious stories and share with us..</h4>
 
                     </div>
-                    {/* </Grid> */}
                 </div>
-            </div>
+  
         );
     }
 }
