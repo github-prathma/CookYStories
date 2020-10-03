@@ -1,28 +1,23 @@
 
 .bg-header {
   background-color: #afd0cc;
+  overflow: hidden;
 }
 
 .footer {
     position: fixed;
     bottom: 0;
-    left: 0;
     justify-content: center;
-    padding: 5px;
     width: 100%;
     height: 40px;
     background-color: #222222;
+    overflow: hidden;
   }
 
   .navbar-brand {
     margin-top: -15px;
   }
 
-  /* .navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-  } */
 
   .welcomePage {
     height: 100%;
@@ -34,30 +29,37 @@
     display: flex;
     flex-flow: column;
   }
-  .welcomeSlider {
-    width: 80%;
-  }
+  
   .slideImage {
-    object-fit: cover;
+    object-fit: contain;
   }
 
-  .column {
-    left:0;
-    float: left;
+  .leftColumn {
+    /* left:0; */
+    /* float: left; */
     align-content: center; 
     text-align: center; 
-    width: 50%;
-    height:80vh;
+    width: 60%;
+    display: table-cell;
+    /* background-color: #444555; */
   }
-  .row::after {
-    /* display: table; */
-    display: inline-block;
-    vertical-align: bottom;
-    position: relative;
-    top: 100px;
-    display: flex;
-    flex-direction: row;
-    height: 80%;
+
+  .rightColumn {
+    /* left:0; */
+    /* float: right; */
+    /* align-content: center;  */
+    text-align: center; 
+    vertical-align: middle;
+    /* width: 40%; */
+    display: table-cell;
+    /* background-color: #444444; */
+  }
+  .row {
+    display: table;
+    vertical-align: middle;
+    height: 100%;
+    /* overflow: hidden; */
+    
   }
   .moto {
     padding-left: 40px;

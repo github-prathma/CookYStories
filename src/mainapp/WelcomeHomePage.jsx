@@ -30,7 +30,7 @@ class WelcomeHomePage extends Component {
                 
                 <div className="row">
                     {/* <Grid item xs = {6}> */}
-                    <div className="column">
+                    <div className="leftColumn">
                         <Carousel className="welcomeSlider" width="100%" autoPlay={true} interval={2000} animation="slide" navButtonsAlwaysVisible={true} fullHeightHover={true}>
                             {
                                 items.map( (item, i) => <Item key={i} item={item}/>)
@@ -40,7 +40,7 @@ class WelcomeHomePage extends Component {
                        
                     {/* </Grid> */}
                     {/* <Grid className="moto" item xs = {6}> */}
-                    <div className="column">
+                    <div className="rightColumn">
                         <h2> Welcome to CookYStories!! </h2>
                         <h4> Cook your delicious stories and share with us and make our mouth watery :D..</h4>
 
