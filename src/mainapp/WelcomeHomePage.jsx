@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import images from '../images'
-import './CookYStories.css'
+import '../css/CookStories.css'
 import Grid from '@material-ui/core/Grid';
 import {Paper} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';

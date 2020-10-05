@@ -1,11 +1,11 @@
-import './CookYStories.css'
+import '../css/CookStories.css'
 import React, { Component } from 'react';
 
 class FooterComponent extends Component {
     render() {
         return (
-            <footer className="footer">
-                <p className="footerText">All rights reserved @CookYStories</p>
+            <footer className="footer bg-light">
+                <div className="muted-text">All rights reserved @CookYStories</div>
             </footer>
         );
     }
