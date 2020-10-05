@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import images from '../images'
-import './CookYStories.css'
+import '../css/CookStories.css'
 import Grid from '@material-ui/core/Grid';
 import {Paper} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
@@ -29,7 +29,7 @@ class WelcomeHomePage extends Component {
             
                 <div className="row">
                     <div className="leftColumn">
-                        <Carousel className="welcomeSlider" width="100%" autoPlay={true} interval={2000} animation="slide" navButtonsAlwaysVisible={true} fullHeightHover={true}>
+                        <Carousel className="welcomeSlider" width="100%" autoPlay={true} interval={3500} animation="slide" navButtonsAlwaysVisible={true} fullHeightHover={true}>
                             {
                                 items.map( (item, i) => <Item key={i} item={item}/>)
                             }

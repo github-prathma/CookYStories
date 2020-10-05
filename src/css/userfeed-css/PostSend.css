@@ -1,0 +1,61 @@
+.postSend{
+  display: flex;
+  margin-top: 30px;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
+  width: 100%;
+}
+
+.postSend_top{
+  display: flex;
+  border-bottom: 1px solid #eff2f5;
+  padding: 15px;
+}
+
+.postSend_top > form {
+  flex: 1;
+  display: flex;
+}
+
+.postSend_top > form > input {
+  outline-width: 0;
+  border: none;
+  padding: 5px 20px;
+  margin: 0 10px;
+  border-radius: 999px;
+  background-color: #eff2f5;
+}
+
+.postSend_top > form > button {
+  display: none;
+}
+
+.postSend_input{
+  flex: 1;
+}
+
+.postSend_bottom{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.postSend_option {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  color: gray;
+  margin: 5px;
+}
+
+.postSend_option > h3 {
+  font-size: medium;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.postSend_option:hover{
+  background-color: #eff2f5;
+  border-radius: 20px;
+}

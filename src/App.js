@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
-import './bootstrap.css'
+import './css/App.css';
+import './css/bootstrap.css'
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
 import CookYStories from './mainapp/CookYStories'
 
