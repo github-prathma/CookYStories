@@ -1,6 +1,5 @@
-
 .body {
-  margin : 0px;
+  margin: 0px;
   background-color: #faf9f1;
 }
 .bg-header {
@@ -11,67 +10,65 @@
   width: 100vw;
 }
 .footer {
-    position: fixed;
-    bottom: 0;
-    justify-content: center;
-    width: 100vw;
-    height: 85px;
-    background-color: #222222;
-    overflow: hidden;
-  }
+  position: fixed;
+  bottom: 0;
+  justify-content: center;
+  width: 100vw;
+  height: 85px;
+  background-color: white;
+  overflow: hidden;
+}
 
-  .navbar-brand {
-    margin-top: -15px;
-  }
+.navbar-brand {
+  margin-top: -15px;
+}
 
+.welcomePage {
+  height: 100%;
+  align-items: center;
+  align-content: center;
+  /* /* justify-content: center;   */
+  text-align: center;
+  /* vertical-align: center; */
+  display: flex;
+  flex-flow: column;
+}
 
-  .welcomePage {
-    height: 100%;
-    align-items: center; 
-    align-content: center; 
-    /* /* justify-content: center;   */
-    text-align: center; 
-    /* vertical-align: center; */
-    display: flex;
-    flex-flow: column;
-  }
-  
-  .slideImage {
-    object-fit: contain;
-  }
+.slideImage {
+  object-fit: contain;
+}
 
-  .leftColumn {
-    left:0;
-    /* float: left; */
-    align-content: center; 
-    text-align: center; 
-    width: 60%;
-    display: table-cell;
-    /* background-color: #444555; */
-  }
+.leftColumn {
+  left: 0;
+  /* float: left; */
+  align-content: center;
+  text-align: center;
+  width: 60%;
+  display: table-cell;
+  /* background-color: #444555; */
+}
 
-  .rightColumn {
-    left:0;
-    text-align: center; 
-    vertical-align: middle;
-    width: 40%;
-    display: table-cell;
-    background-color: #faf9f1;
-    justify-content: end;
-  }
+.rightColumn {
+  left: 0;
+  text-align: center;
+  vertical-align: middle;
+  width: 40%;
+  display: table-cell;
+  background-color: #faf9f1;
+  justify-content: end;
+}
 
-  .row {
-    display: table;
-    vertical-align: middle;
-    height: 100%;
-    border-spacing: 0;
-    width: 100vw;
-    background-color: #faf9f1;
+.row {
+  display: table;
+  vertical-align: middle;
+  height: 100%;
+  border-spacing: 0;
+  width: 100vw;
+  background-color: #faf9f1;
 
-    /* overflow: hidden; */
-    
-  }
-  /* .moto {
+  /* overflow: hidden; */
+}
+/* .moto {
     padding-left: 40px;
     padding-right: 40px;
   } */
