@@ -6,6 +6,7 @@ import FooterComponent from "./FooterComponent";
 import HeaderComponent from "./HeaderComponent";
 import WelcomeHomePage from "./WelcomeHomePage";
 import SignupPage from "./SignupPage";
+import LoginPage from "./LoginPage";
 import Feed from "../userFeed/Feed";
 
 class CookYStories extends Component {
@@ -15,11 +16,10 @@ class CookYStories extends Component {
         <>
           <HeaderComponent />
           <Switch>
-            {/* home */}
-            {/* feed */}
-            {/* explore */}
+            home feed explore
             {/* <WelcomeHomePage /> */}
             <SignupPage />
+            {/* <LoginPage /> */}
             <Route path="/feed" exact component={Feed} />
           </Switch>
           <FooterComponent />

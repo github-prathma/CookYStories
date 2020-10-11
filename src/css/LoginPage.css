@@ -1,0 +1,23 @@
+.paper {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form > {
+  width: 100%;
+  margin-top: 24px;
+  align-items: center;
+}
+
+.paper > .form > .MuiGrid-root > .MuiGrid-root > .MuiButton-contained {
+  margin: 8px 0px 8px;
+  background-color: #afd0cc;
+  /* background-color: white; */
+  border-radius: 8px;
+}
+
+.tab {
+  margin-left: 1.5em;
+}

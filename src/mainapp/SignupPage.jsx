@@ -11,29 +11,8 @@ import {
   Container,
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-
-// const styles = (theme) => ({
-
-//   paper: {
-//     marginTop: theme.spacing(3),
-//     display: "flex",
-//     flexDirection: "column",
-//     alignItems: "center",
-//   },
-//   avatar: {
-//     margin: theme.spacing(1),
-//     backgroundColor: "#afd0cc",
-//   },
-//   form: {
-//     width: "100%", // Fix IE 11 issue.
-//     marginTop: theme.spacing(3),
-//     color: "#afd0cc",
-//   },
-//   submit: {
-//     margin: theme.spacing(3, 0, 2),
-//     backgroundColor: "#afd0cc",
-//   },
-// });
+import "../css/SignupPage.css";
+import LoginPage from "./LoginPage";
 
 export default class SignUp extends Component {
   constructor(props) {
@@ -51,39 +30,8 @@ export default class SignUp extends Component {
     };
   }
 
-  getPaperStyles() {
-    return {
-      marginTop: "24px",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-    };
-  }
-
-  getAvatarStyles() {
-    return {
-      margin: "8px",
-      backgroundColor: "#afd0cc",
-    };
-  }
-
-  getFormStyles() {
-    return {
-      width: "100%", // Fix IE 11 issue.
-      marginTop: "24px",
-      color: "#afd0cc",
-    };
-  }
-
-  getSubmitStyles() {
-    return {
-      margin: "24px 0px 16px",
-      backgroundColor: "#afd0cc",
-    };
-  }
-
   validateEmail(e) {
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(e);
   }
 
@@ -128,8 +76,8 @@ export default class SignUp extends Component {
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <div style={this.getPaperStyles()}>
-          <Avatar style={this.getAvatarStyles()}>
+        <div className="paper">
+          <Avatar className="a">
             <LockOutlinedIcon />
           </Avatar>
 
@@ -137,10 +85,7 @@ export default class SignUp extends Component {
             Sign up to see recipes from your friends
           </Typography>
 
-          <form
-            style={this.getFormStyles()}
-            onSubmit={this._onSubmit.bind(this)}
-          >
+          <form className="form" onSubmit={this._onSubmit.bind(this)}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -219,26 +164,19 @@ export default class SignUp extends Component {
                   autoComplete="current-password"
                 />
               </Grid>
-              {/* <Grid item xs={12}>
-                  <FormControlLabel
-                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                    label="I want to receive inspiration, marketing promotions and updates via email."
-                  />
-                </Grid> */}
             </Grid>
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              style={this.getSubmitStyles()}
+              className="submit"
             >
               Sign Up
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
-                </Link>
+                Already have an account?
+                <Link href={<LoginPage />}> Login</Link>
               </Grid>
             </Grid>
           </form>
