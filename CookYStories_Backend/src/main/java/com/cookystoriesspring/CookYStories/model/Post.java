@@ -13,8 +13,7 @@ import java.util.Objects;
 public class Post {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String postId;
+    private String id;
     private String description;
     private Date createdAt;
     private User byUser;
@@ -27,8 +26,7 @@ public class Post {
     public Post() {
     }
 
-    public Post(String postId, String description, Date createdAt, User byUser, List<String> imagesUrl, Integer numLikes, Integer numComments, String shareUrl, List<Comment> comments) {
-        this.postId = postId;
+    public Post(String description, Date createdAt, User byUser, List<String> imagesUrl, Integer numLikes, Integer numComments, String shareUrl, List<Comment> comments) {
         this.description = description;
         this.createdAt = createdAt;
         this.byUser = byUser;
@@ -39,12 +37,12 @@ public class Post {
         this.comments = comments;
     }
 
-    public String getPostId() {
-        return postId;
+    public String getId() {
+        return id;
     }
 
-    public void setPostId(String postId) {
-        this.postId = postId;
+    public void setId(String postId) {
+        this.id = id;
     }
 
     public String getDescription() {
@@ -116,18 +114,18 @@ public class Post {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Post post = (Post) o;
-        return postId.equals(post.postId);
+        return id.equals(post.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(postId);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "Post{" +
-                "postId='" + postId + '\'' +
+                "id='" + id + '\'' +
                 ", description='" + description + '\'' +
                 ", createdAt=" + createdAt +
                 ", byUser=" + byUser +

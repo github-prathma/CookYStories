@@ -5,28 +5,29 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.Objects;
+import java.util.Optional;
 
 @Document(collection = "Users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String userId;
+    private String id;
+
     private String username;
     private String firstName;
     private String lastName;
-    private String bioDescription;
+    private Optional<String> bioDescription;
     private String password;
     private String email;
-    private String city;
-    private String country;
+    private Optional<String> city;
+    private Optional<String> country;
 
     public User() {
     }
 
-    public User(String userId, String username, String firstName, String lastName, String bioDescription, String password, String email, String city, String country) {
-        this.userId = userId;
+    public User(String username, String firstName, String lastName, Optional<String> bioDescription, String password, String email, Optional<String> city, Optional<String> country) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -37,12 +38,13 @@ public class User {
         this.country = country;
     }
 
-    public String getUserId() {
-        return userId;
+
+    public String getId() {
+        return id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -69,11 +71,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getBioDescription() {
+    public Optional<String> getBioDescription() {
         return bioDescription;
     }
 
-    public void setBioDescription(String bioDescription) {
+    public void setBioDescription(Optional<String> bioDescription) {
         this.bioDescription = bioDescription;
     }
 
@@ -93,19 +95,19 @@ public class User {
         this.email = email;
     }
 
-    public String getCity() {
+    public Optional<String> getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(Optional<String> city) {
         this.city = city;
     }
 
-    public String getCountry() {
+    public Optional<String> getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(Optional<String> country) {
         this.country = country;
     }
 
@@ -114,18 +116,18 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return userId.equals(user.userId);
+        return (id.equals(user.id));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "userId='" + userId + '\'' +
+                "id='" + id + '\'' +
                 ", username='" + username + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

@@ -12,8 +12,8 @@ import java.util.Objects;
 public class Comment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String commentId;
+    private String id;
+    private String postId;
     private String commentText;
     private User byUser;
     private Date createdAt;
@@ -22,20 +22,28 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(String id, String commentText, User byUser, Date createdAt, Integer numLikes) {
-        this.commentId = commentId;
+    public Comment(String postId, String commentText, User byUser, Date createdAt, Integer numLikes) {
+        this.postId = postId;
         this.commentText = commentText;
         this.byUser = byUser;
         this.createdAt = createdAt;
         this.numLikes = numLikes;
     }
 
-    public String getCommentId() {
-        return commentId;
+    public String getId() {
+        return id;
     }
 
-    public void setCommentId(String commentId) {
-        this.commentId = commentId;
+    public void setId(String commentId) {
+        this.id = id;
+    }
+
+    public String getPostId() {
+        return postId;
+    }
+
+    public void setPostId(String postId) {
+        this.postId = postId;
     }
 
     public String getCommentText() {
@@ -75,18 +83,19 @@ public class Comment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Comment comment = (Comment) o;
-        return commentId.equals(comment.commentId);
+        return id.equals(comment.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(commentId);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "Comment{" +
-                "commentId='" + commentId + '\'' +
+                "id='" + id + '\'' +
+                ", postId='" + postId + '\'' +
                 ", commentText='" + commentText + '\'' +
                 ", byUser=" + byUser +
                 ", createdAt=" + createdAt +

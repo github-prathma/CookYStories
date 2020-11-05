@@ -3,15 +3,19 @@ package com.cookystoriesspring.CookYStories.model;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Id;
 import java.util.List;
 import java.util.Objects;
 
 @Document(collection = "Users")
 public class UserProfile {
-    private String userId;
+    @Id
+    private String id;
+
+    private String username;
     private User basicInfo;
     private Integer numFollowers;
-    private Integer numFOllowing;
+    private Integer numFollowing;
     private Integer numPosts;
     private List<Post> posts;
     private List<Post> likedPosts;
@@ -24,11 +28,11 @@ public class UserProfile {
     public UserProfile() {
     }
 
-    public UserProfile(String userId, User basicInfo, Integer numFollowers, Integer numFOllowing, Integer numPosts, List<Post> posts, List<Post> likedPosts, List<Comment> likedComments, List<User> followers, List<User> following, String storyId, String profileImageUrl) {
-        this.userId = userId;
+    public UserProfile(String username, User basicInfo, Integer numFollowers, Integer numFollowing, Integer numPosts, List<Post> posts, List<Post> likedPosts, List<Comment> likedComments, List<User> followers, List<User> following, String storyId, String profileImageUrl) {
+        this.username = username;
         this.basicInfo = basicInfo;
         this.numFollowers = numFollowers;
-        this.numFOllowing = numFOllowing;
+        this.numFollowing = numFollowing;
         this.numPosts = numPosts;
         this.posts = posts;
         this.likedPosts = likedPosts;
@@ -39,12 +43,20 @@ public class UserProfile {
         this.profileImageUrl = profileImageUrl;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getId() {
+        return id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public User getBasicInfo() {
@@ -63,12 +75,12 @@ public class UserProfile {
         this.numFollowers = numFollowers;
     }
 
-    public Integer getNumFOllowing() {
-        return numFOllowing;
+    public Integer getNumFollowing() {
+        return numFollowing;
     }
 
-    public void setNumFOllowing(Integer numFOllowing) {
-        this.numFOllowing = numFOllowing;
+    public void setNumFollowing(Integer numFollowing) {
+        this.numFollowing = numFollowing;
     }
 
     public Integer getNumPosts() {
@@ -140,21 +152,22 @@ public class UserProfile {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserProfile that = (UserProfile) o;
-        return userId.equals(that.userId);
+        return id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "UserProfile{" +
-                "userId='" + userId + '\'' +
+                "id='" + id + '\'' +
+                ", username=" + username +
                 ", basicInfo=" + basicInfo +
                 ", numFollowers=" + numFollowers +
-                ", numFOllowing=" + numFOllowing +
+                ", numFOllowing=" + numFollowing +
                 ", numPosts=" + numPosts +
                 ", posts=" + posts +
                 ", likedPosts=" + likedPosts +

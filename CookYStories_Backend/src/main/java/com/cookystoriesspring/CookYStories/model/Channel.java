@@ -11,8 +11,7 @@ import java.util.Objects;
 public class Channel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String channelId;
+    private String id;
     private String sourceUrl;
     private String videoUrl;
     private String sourceName;
@@ -20,19 +19,18 @@ public class Channel {
     public Channel() {
     }
 
-    public Channel(String channelId, String sourceUrl, String videoUrl, String sourceName) {
-        this.channelId = channelId;
+    public Channel(String sourceUrl, String videoUrl, String sourceName) {
         this.sourceUrl = sourceUrl;
         this.videoUrl = videoUrl;
         this.sourceName = sourceName;
     }
 
-    public String getChannelId() {
-        return channelId;
+    public String getId() {
+        return id;
     }
 
-    public void setChannelId(String channelId) {
-        this.channelId = channelId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getSourceUrl() {
@@ -64,18 +62,18 @@ public class Channel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Channel channel = (Channel) o;
-        return channelId.equals(channel.channelId);
+        return id.equals(channel.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(channelId);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "Channel{" +
-                "channelId='" + channelId + '\'' +
+                "id='" + id + '\'' +
                 ", sourceUrl='" + sourceUrl + '\'' +
                 ", videoUrl='" + videoUrl + '\'' +
                 ", sourceName='" + sourceName + '\'' +

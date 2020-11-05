@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class ExploreContent {
 
-    private String contentId;
+    private String id;
     private String title;
     private String description;
     private String sourceUrl;
@@ -13,20 +13,19 @@ public class ExploreContent {
     public ExploreContent() {
     }
 
-    public ExploreContent(String contentId, String title, String description, String sourceUrl, String sourceName) {
-        this.contentId = contentId;
+    public ExploreContent(String title, String description, String sourceUrl, String sourceName) {
         this.title = title;
         this.description = description;
         this.sourceUrl = sourceUrl;
         this.sourceName = sourceName;
     }
 
-    public String getContentId() {
-        return contentId;
+    public String getId() {
+        return id;
     }
 
-    public void setContentId(String contentId) {
-        this.contentId = contentId;
+    public void setId(String contentId) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -66,18 +65,18 @@ public class ExploreContent {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ExploreContent that = (ExploreContent) o;
-        return contentId.equals(that.contentId);
+        return id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(contentId);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "ExploreContent{" +
-                "contentId='" + contentId + '\'' +
+                "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", sourceUrl='" + sourceUrl + '\'' +

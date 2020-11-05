@@ -12,8 +12,7 @@ import java.util.Objects;
 public class Story {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String storyId;
+    private String id;
     private String imageUrl;
     private User byUser;
     private Date createdAt;
@@ -21,19 +20,18 @@ public class Story {
     public Story() {
     }
 
-    public Story(String storyId, String imageUrl, User byUser, Date createdAt) {
-        this.storyId = storyId;
+    public Story(String imageUrl, User byUser, Date createdAt) {
         this.imageUrl = imageUrl;
         this.byUser = byUser;
         this.createdAt = createdAt;
     }
 
-    public String getStoryId() {
-        return storyId;
+    public String getId() {
+        return id;
     }
 
-    public void setStoryId(String storyId) {
-        this.storyId = storyId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getImageUrl() {
@@ -65,18 +63,18 @@ public class Story {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Story story = (Story) o;
-        return storyId.equals(story.storyId);
+        return id.equals(story.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(storyId);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "Story{" +
-                "storyId='" + storyId + '\'' +
+                "id='" + id + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", byUser=" + byUser +
                 ", createdAt=" + createdAt +
