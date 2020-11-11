@@ -161,11 +161,11 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.graphql-java/graphql-java -->
-		<dependency>
-			<groupId>com.graphql-java</groupId>
-			<artifactId>graphql-java</artifactId>
-			<version>2020-11-02T04-33-43-dd5d4d8</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.graphql-java</groupId>-->
+<!--			<artifactId>graphql-java</artifactId>-->
+<!--			<version>2020-11-02T04-33-43-dd5d4d8</version>-->
+<!--		</dependency>-->
 
 		<!-- https://mvnrepository.com/artifact/com.graphql-java/graphql-java-tools -->
 		<dependency>

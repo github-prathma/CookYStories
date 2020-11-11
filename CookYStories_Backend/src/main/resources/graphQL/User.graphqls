@@ -1,0 +1,32 @@
+
+type User {
+    id: String!
+    username: String!
+    firstName:String!
+    lastName: String!
+    bioDescription:String
+    password:String!
+    email: String!
+    city:String
+    country:String
+}
+
+type Query {
+    getUser(username:String) : User
+}
+
+input UserInput{
+    username: String!
+    firstName:String!
+    lastName: String!
+    password:String!
+    email: String!
+    city:String
+    country:String
+    bioDescription:String
+}
+
+type Mutation {
+    addUser(input:UserInput): Boolean!
+    updateUser(input:UserInput):User
+}

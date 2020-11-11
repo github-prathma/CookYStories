@@ -1,0 +1,26 @@
+type Post{
+    id:String!
+    description:String!
+    createdAt:String!
+    byUser: User!
+    imagesUrl: [String]
+    numLikes: Int
+    numComments: Int
+    shareUrl: String
+    comments:[Comment!]
+}
+
+input PostInput{
+    description:String!
+    byUser: UserInput!
+    imagesUrl: [String]
+    shareUrl: String
+}
+
+#extend type Query {
+#    getPost(id:String):Post!
+#}
+#
+#extend type Mutation {
+#    addPost(input:PostInput):Boolean
+#}

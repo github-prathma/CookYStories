@@ -1,0 +1,22 @@
+type Comment {
+    id:String!
+    postId:String!
+    commentText:String!
+    byUser: User!
+    createdAt:String!
+    numLikes:Int
+}
+
+input CommentInput {
+    postId:String!
+    commentText:String!
+    byUser: UserInput!
+}
+
+#extend type Query {
+#    getComment(id:String): Comment
+#}
+#
+#extend type Mutation{
+#    addComment(input:CommentInput):Boolean
+#}

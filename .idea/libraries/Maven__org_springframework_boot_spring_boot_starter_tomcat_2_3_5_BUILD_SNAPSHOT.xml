@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.springframework.boot:spring-boot-starter-tomcat:2.3.5.BUILD-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-tomcat/2.3.5.BUILD-SNAPSHOT/spring-boot-starter-tomcat-2.3.5.BUILD-20201029.170015-84.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-tomcat/2.3.5.BUILD-SNAPSHOT/spring-boot-starter-tomcat-2.3.5.BUILD-20201029.170015-84-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-tomcat/2.3.5.BUILD-SNAPSHOT/spring-boot-starter-tomcat-2.3.5.BUILD-20201029.170015-84-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
