@@ -6,19 +6,26 @@ type UserProfile{
     numFollowing:Int
     numPosts:Int
     posts:[Post]
-    likedPosts:[Post]
-    likedComments:[Comment]
     followers:[User]
     following:[User]
     storyId:String
     profileImageUrl:String
 }
 
-extend type Query {
+type Query {
     getUserProfile(username:String):UserProfile
+    getFollowers(username:String!):[User]!
+    getFollowing(username:String!):[User]!
+    getPosts(username:String!):[Post]!
 }
 
-extend type Mutation {
+type Mutation {
     addUserProfile(username:String):Boolean!
+    updateProfileImage(input:ProfileInput):UserProfile
+}
+
+input ProfileInput {
+    username:String
+    profileImageUrl:String
 }
 
