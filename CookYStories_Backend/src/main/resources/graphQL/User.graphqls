@@ -11,7 +11,7 @@ type User {
     country:String
 }
 
-type Query {
+extend type Query {
     getUser(username:String) : User
 
 }
@@ -27,7 +27,7 @@ input UserInput{
     bioDescription:String
 }
 
-type Mutation {
+extend type Mutation {
     addUser(input:UserInput): Boolean!
     updateUser(input:UserInput):User
 

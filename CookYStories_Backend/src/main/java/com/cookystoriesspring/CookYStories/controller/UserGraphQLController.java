@@ -1,5 +1,6 @@
 package com.cookystoriesspring.CookYStories.controller;
 
+import com.cookystoriesspring.CookYStories.model.Post;
 import com.cookystoriesspring.CookYStories.model.User;
 import com.cookystoriesspring.CookYStories.model.UserProfile;
 import com.cookystoriesspring.CookYStories.repository.UserProfileRepository;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 @Component
@@ -36,4 +38,21 @@ public class UserGraphQLController implements GraphQLQueryResolver {
         logger.info("Fetching Profile for User: "+username);
         return userProfileRepository.findByUsername(username);
     }
+
+    public List<User> getFollowers(String username) {
+        UserProfile user = userProfileRepository.findByUsername(username);
+        return user.getFollowers();
+    }
+
+    public List<User> getFollowing(String username) {
+        UserProfile user = userProfileRepository.findByUsername(username);
+        return user.getFollowing();
+    }
+
+    public List<Post> getPosts(String username) {
+        UserProfile user = userProfileRepository.findByUsername(username);
+        return user.getPosts();
+    }
+
+
 }

@@ -18,8 +18,6 @@ public class UserProfile {
     private Integer numFollowing;
     private Integer numPosts;
     private List<Post> posts;
-    private List<Post> likedPosts;
-    private List<Comment> likedComments;
     private List<User> followers;
     private List<User> following;
     private String storyId;
@@ -35,8 +33,6 @@ public class UserProfile {
         this.numFollowing = numFollowing;
         this.numPosts = numPosts;
         this.posts = posts;
-        this.likedPosts = likedPosts;
-        this.likedComments = likedComments;
         this.followers = followers;
         this.following = following;
         this.storyId = storyId;
@@ -99,22 +95,6 @@ public class UserProfile {
         this.posts = posts;
     }
 
-    public List<Post> getLikedPosts() {
-        return likedPosts;
-    }
-
-    public void setLikedPosts(List<Post> likedPosts) {
-        this.likedPosts = likedPosts;
-    }
-
-    public List<Comment> getLikedComments() {
-        return likedComments;
-    }
-
-    public void setLikedComments(List<Comment> likedComments) {
-        this.likedComments = likedComments;
-    }
-
     public List<User> getFollowers() {
         return followers;
     }
@@ -170,8 +150,6 @@ public class UserProfile {
                 ", numFOllowing=" + numFollowing +
                 ", numPosts=" + numPosts +
                 ", posts=" + posts +
-                ", likedPosts=" + likedPosts +
-                ", likedComments=" + likedComments +
                 ", followers=" + followers +
                 ", following=" + following +
                 ", storyId='" + storyId + '\'' +

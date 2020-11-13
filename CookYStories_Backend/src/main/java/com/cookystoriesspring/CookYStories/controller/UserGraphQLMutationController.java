@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.transaction.Transactional;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class UserGraphQLMutationController implements GraphQLMutationResolver {
@@ -41,8 +42,6 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
         userProfile.setBasicInfo(fetchedUser);
         userProfile.setFollowers(new ArrayList<>());
         userProfile.setFollowing(new ArrayList<>());
-        userProfile.setLikedComments(new ArrayList<>());
-        userProfile.setLikedPosts(new ArrayList<>());
         userProfile.setNumFollowers(0);
         userProfile.setNumFollowing(0);
         userProfile.setNumPosts(0);
@@ -74,8 +73,6 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
         userProfile.setBasicInfo(user);
         userProfile.setFollowers(new ArrayList<>());
         userProfile.setFollowing(new ArrayList<>());
-        userProfile.setLikedComments(new ArrayList<>());
-        userProfile.setLikedPosts(new ArrayList<>());
         userProfile.setNumFollowers(0);
         userProfile.setNumFollowing(0);
         userProfile.setNumPosts(0);
@@ -88,4 +85,6 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
         ResponseEntity obj = ResponseEntity.created(uri).build();
         return obj.getStatusCode().equals("200");
     }
+
+
 }
