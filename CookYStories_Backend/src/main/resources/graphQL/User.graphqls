@@ -13,6 +13,7 @@ type User {
 
 type Query {
     getUser(username:String) : User
+
 }
 
 input UserInput{
@@ -29,4 +30,6 @@ input UserInput{
 type Mutation {
     addUser(input:UserInput): Boolean!
     updateUser(input:UserInput):User
+
+
 }

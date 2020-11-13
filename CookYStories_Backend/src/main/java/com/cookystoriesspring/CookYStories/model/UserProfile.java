@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.util.List;
 import java.util.Objects;
 
-@Document(collection = "Users")
+@Document(collection = "UserProfiles")
 public class UserProfile {
     @Id
     private String id;

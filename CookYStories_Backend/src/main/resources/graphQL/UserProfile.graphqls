@@ -1,0 +1,28 @@
+type UserProfile{
+    id:String!
+    username:String!
+    basicInfo:User!
+    numFollowers:Int
+    numFollowing:Int
+    numPosts:Int
+    posts:[Post]
+    likedPosts:[Post]
+    likedComments:[Comment]
+    followers:[User]
+    following:[User]
+    storyId:String
+    profileImageUrl:String
+}
+
+#input UserProfileInput {
+#
+#}
+
+extend type Query {
+    getUserProfile(username:String):UserProfile
+}
+
+extend type Mutation {
+    addUserProfile(username:String):Boolean!
+}
+

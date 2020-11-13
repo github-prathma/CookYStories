@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Service
 public interface UserRepository extends MongoRepository<User, String> {
