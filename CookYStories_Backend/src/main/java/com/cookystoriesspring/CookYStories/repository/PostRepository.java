@@ -7,5 +7,5 @@ import java.util.List;
 
 @Service
 public interface PostRepository extends MongoRepository<Post, String> {
-
+    Post findPostById(String id);
 }

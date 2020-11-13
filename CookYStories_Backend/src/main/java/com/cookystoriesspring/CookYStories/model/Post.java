@@ -17,24 +17,26 @@ public class Post {
     private String description;
     private Date createdAt;
     private User byUser;
-    private List<String> imagesUrl;
+    private List<Media> media;
     private Integer numLikes;
     private Integer numComments;
     private String shareUrl;
     private List<Comment> comments;
+    private List<User> likedByUsers;
 
     public Post() {
     }
 
-    public Post(String description, Date createdAt, User byUser, List<String> imagesUrl, Integer numLikes, Integer numComments, String shareUrl, List<Comment> comments) {
+    public Post(String description, Date createdAt, User byUser, List<Media> media, Integer numLikes, Integer numComments, String shareUrl, List<Comment> comments, List<User> likedByUsers) {
         this.description = description;
         this.createdAt = createdAt;
         this.byUser = byUser;
-        this.imagesUrl = imagesUrl;
+        this.media = media;
         this.numLikes = numLikes;
         this.numComments = numComments;
         this.shareUrl = shareUrl;
         this.comments = comments;
+        this.likedByUsers = likedByUsers;
     }
 
     public String getId() {
@@ -69,12 +71,12 @@ public class Post {
         this.byUser = byUser;
     }
 
-    public List<String> getImagesUrl() {
-        return imagesUrl;
+    public List<Media> getMedia() {
+        return media;
     }
 
-    public void setImagesUrl(List<String> imagesUrl) {
-        this.imagesUrl = imagesUrl;
+    public void setMedia(List<Media> media) {
+        this.media = media;
     }
 
     public Integer getNumLikes() {
@@ -109,6 +111,14 @@ public class Post {
         this.comments = comments;
     }
 
+    public List<User> getLikedByUsers() {
+        return likedByUsers;
+    }
+
+    public void setLikedByUsers(List<User> likedByUsers) {
+        this.likedByUsers = likedByUsers;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -127,13 +137,14 @@ public class Post {
         return "Post{" +
                 "id='" + id + '\'' +
                 ", description='" + description + '\'' +
-                ", createdAt=" + createdAt +
-                ", byUser=" + byUser +
-                ", imagesUrl=" + imagesUrl +
-                ", numLikes=" + numLikes +
-                ", numComments=" + numComments +
+                ", createdAt=" + createdAt + '\'' +
+                ", byUser=" + byUser + '\'' +
+                ", media=" + media + '\'' +
+                ", numLikes=" + numLikes + '\'' +
+                ", numComments=" + numComments + '\'' +
                 ", shareUrl='" + shareUrl + '\'' +
-                ", comments=" + comments +
+                ", comments=" + comments + '\'' +
+                ", likedByUsers=" + likedByUsers + '\'' +
                 '}';
     }
 }

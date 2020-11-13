@@ -16,8 +16,7 @@ import javax.transaction.Transactional;
 
 
 @Component
-public class UserGraphQLController implements GraphQLQueryResolver {
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+public class UserGraphQLQueryController implements GraphQLQueryResolver {
 
     @Autowired
     private UserRepository userRepository;
@@ -25,15 +24,11 @@ public class UserGraphQLController implements GraphQLQueryResolver {
     @Autowired
     private UserProfileRepository userProfileRepository;
 
-    @GetMapping("/users/{username}")
-    public User getUser(@PathVariable("username") String username) {
-        logger.info("Fetching user: "+username);
+    public User getUser(String username) {
         return userRepository.findByUsername(username);
     }
 
-    @GetMapping("/userprofiles/{username}")
-    public UserProfile getUserProfile(@PathVariable("username") String username) {
-        logger.info("Fetching Profile for User: "+username);
+    public UserProfile getUserProfile(String username) {
         return userProfileRepository.findByUsername(username);
     }
 }

@@ -14,10 +14,6 @@ type UserProfile{
     profileImageUrl:String
 }
 
-#input UserProfileInput {
-#
-#}
-
 extend type Query {
     getUserProfile(username:String):UserProfile
 }

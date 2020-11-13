@@ -5,13 +5,14 @@ type Comment {
     byUser: User!
     createdAt:String!
     numLikes:Int
+    likedByUsers: [User!]
 }
 
-input CommentInput {
-    postId:String!
-    commentText:String!
-    byUser: UserInput!
-}
+#input CommentInput {
+#    postId:String!
+#    commentText:String!
+#   byUser: User!
+#}
 
 #extend type Query {
 #    getComment(id:String): Comment
@@ -19,4 +20,6 @@ input CommentInput {
 #
 #extend type Mutation{
 #    addComment(input:CommentInput):Boolean
+#    editComment
+#    deleteComment
 #}

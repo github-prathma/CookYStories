@@ -22,7 +22,6 @@ import java.util.ArrayList;
 
 @Component
 public class UserGraphQLMutationController implements GraphQLMutationResolver {
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -34,8 +33,8 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
     @Transactional
     public Boolean addUser(User user) {
         User newUser = userRepository.insert(user);
-        logger.info("New User: {} {} {}", newUser.getUsername(), newUser.getFirstName(), newUser.getLastName());
-        logger.info("Searching for user: "+user.getUsername());
+//        logger.info("New User: {} {} {}", newUser.getUsername(), newUser.getFirstName(), newUser.getLastName());
+//        logger.info("Searching for user: "+user.getUsername());
         User fetchedUser = userRepository.findByUsername(user.getUsername());
         UserProfile userProfile = new UserProfile();
         userProfile.setBasicInfo(fetchedUser);
@@ -68,7 +67,6 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
 
     @Transactional
     public Boolean addUserProfile(String username) {
-        logger.info("Searching for user: "+username);
         User user = userRepository.findByUsername(username);
         UserProfile userProfile = new UserProfile();
         userProfile.setBasicInfo(user);

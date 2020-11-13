@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Document(collection = "Comments")
@@ -18,16 +19,27 @@ public class Comment {
     private User byUser;
     private Date createdAt;
     private Integer numLikes;
+    private List<User> likedByUsers;
 
     public Comment() {
     }
 
-    public Comment(String postId, String commentText, User byUser, Date createdAt, Integer numLikes) {
+    public List<User> getLikedByUsers() {
+        return likedByUsers;
+    }
+
+    public void setLikedByUsers(List<User> likedByUsers) {
+        this.likedByUsers = likedByUsers;
+    }
+
+    public Comment(String id, String postId, String commentText, User byUser, Date createdAt, Integer numLikes, List<User> likedByUsers) {
+        this.id = id;
         this.postId = postId;
         this.commentText = commentText;
         this.byUser = byUser;
         this.createdAt = createdAt;
         this.numLikes = numLikes;
+        this.likedByUsers = likedByUsers;
     }
 
     public String getId() {

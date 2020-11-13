@@ -10,29 +10,6 @@ public class UserInput {
     public String country;
     private String bioDescription;
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getBioDescription() {
-        return bioDescription;
-    }
-
-    public void setBioDescription(String bioDescription) {
-        this.bioDescription = bioDescription;
-    }
 
     public UserInput(String username, String firstName, String lastName, String password, String email, String city, String country, String bioDescription) {
         this.username = username;
@@ -87,4 +64,29 @@ public class UserInput {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getBioDescription() {
+        return bioDescription;
+    }
+
+    public void setBioDescription(String bioDescription) {
+        this.bioDescription = bioDescription;
+    }
+
 }
