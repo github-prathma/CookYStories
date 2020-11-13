@@ -2,24 +2,20 @@ package com.cookystoriesspring.CookYStories.controller;
 
 import com.cookystoriesspring.CookYStories.model.User;
 import com.cookystoriesspring.CookYStories.model.UserProfile;
-import com.cookystoriesspring.CookYStories.model.inputs.UserInput;
+import com.cookystoriesspring.CookYStories.model.inputs.ProfileInput;
 import com.cookystoriesspring.CookYStories.repository.UserProfileRepository;
 import com.cookystoriesspring.CookYStories.repository.UserRepository;
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
-import okhttp3.internal.tls.OkHostnameVerifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.transaction.Transactional;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class UserGraphQLMutationController implements GraphQLMutationResolver {
@@ -34,10 +30,21 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
 
     @Transactional
     public Boolean addUser(User user) {
-        User newUser = userRepository.insert(user);
+        User createdUser = new User();
+        createdUser.setFirstName(user.getFirstName());
+        createdUser.setLastName(user.getLastName());
+        createdUser.setEmail(user.getEmail());
+        createdUser.setPassword(user.getPassword());
+        createdUser.setUsername(user.getUsername());
+        if(user.getBioDescription()!=null) { createdUser.setBioDescription(user.getBioDescription()); } else {createdUser.setBioDescription("");}
+        if(user.getCity()!=null) { createdUser.setCity(user.getCity()); } else {createdUser.setCity("");}
+        if(user.getCountry()!=null) {createdUser.setCountry(user.getCountry());} else {createdUser.setCountry("");}
+        User newUser = userRepository.insert(createdUser);
+
         logger.info("New User: {} {} {}", newUser.getUsername(), newUser.getFirstName(), newUser.getLastName());
         logger.info("Searching for user: "+user.getUsername());
-        User fetchedUser = userRepository.findByUsername(user.getUsername());
+        User fetchedUser = userRepository.findByUsername(createdUser.getUsername());
+
         UserProfile userProfile = new UserProfile();
         userProfile.setBasicInfo(fetchedUser);
         userProfile.setFollowers(new ArrayList<>());
@@ -58,10 +65,13 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
     @Transactional
     public User updateUser(User user) {
         User fetchedUser = userRepository.findByUsername(user.getUsername());
+
         fetchedUser.setBioDescription(user.getBioDescription());
         fetchedUser.setFirstName(user.getFirstName());
         fetchedUser.setLastName(user.getLastName());
-
+        fetchedUser.setCity(user.getCity());
+        fetchedUser.setCountry(user.getCountry());
+        fetchedUser.setUsername(user.getUsername());
         return userRepository.save(fetchedUser);
     }
 
@@ -86,5 +96,15 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
         return obj.getStatusCode().equals("200");
     }
 
+    public Boolean removeUser(String username) {
+        userProfileRepository.delete(userProfileRepository.findByUsername(username));
+        userRepository.delete(userRepository.findByUsername(username));
+        return true;
+    }
 
+    public UserProfile updateProfileImage(ProfileInput profileInput) {
+        UserProfile user = userProfileRepository.findByUsername(profileInput.getUsername());
+        user.setProfileImageUrl(profileInput.getProfileImageUrl());
+        return userProfileRepository.save(user);
+    }
 }

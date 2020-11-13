@@ -21,5 +21,11 @@ type Query {
 
 type Mutation {
     addUserProfile(username:String):Boolean!
+    updateProfileImage(input:ProfileInput):UserProfile
+}
+
+input ProfileInput {
+    username:String
+    profileImageUrl:String
 }
 

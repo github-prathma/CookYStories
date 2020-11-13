@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -18,16 +19,18 @@ public class User {
     private String username;
     private String firstName;
     private String lastName;
-    private Optional<String> bioDescription;
+    private String bioDescription;
     private String password;
     private String email;
-    private Optional<String> city;
-    private Optional<String> country;
+    private String city;
+    private String country;
+    private Date createdAt;
 
     public User() {
     }
 
-    public User(String username, String firstName, String lastName, Optional<String> bioDescription, String password, String email, Optional<String> city, Optional<String> country) {
+    public User(String id, String username, String firstName, String lastName, String bioDescription, String password, String email, String city, String country, Date createdAt) {
+        this.id = id;
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -36,8 +39,8 @@ public class User {
         this.email = email;
         this.city = city;
         this.country = country;
+        this.createdAt = createdAt;
     }
-
 
     public String getId() {
         return id;
@@ -71,11 +74,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Optional<String> getBioDescription() {
+    public String getBioDescription() {
         return bioDescription;
     }
 
-    public void setBioDescription(Optional<String> bioDescription) {
+    public void setBioDescription(String bioDescription) {
         this.bioDescription = bioDescription;
     }
 
@@ -95,20 +98,28 @@ public class User {
         this.email = email;
     }
 
-    public Optional<String> getCity() {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(Optional<String> city) {
+    public void setCity(String city) {
         this.city = city;
     }
 
-    public Optional<String> getCountry() {
+    public String getCountry() {
         return country;
     }
 
-    public void setCountry(Optional<String> country) {
+    public void setCountry(String country) {
         this.country = country;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override

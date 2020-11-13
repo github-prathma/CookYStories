@@ -12,4 +12,6 @@ public interface UserRepository extends MongoRepository<User, String> {
     @Transactional
     @Query("{ 'username' : ?0 }")
     public User findByUsername(String username);
+
+    public Boolean deleteUserByUsername(String username);
 }
