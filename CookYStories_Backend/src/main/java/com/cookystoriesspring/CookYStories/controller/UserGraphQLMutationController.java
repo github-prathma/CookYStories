@@ -2,6 +2,7 @@ package com.cookystoriesspring.CookYStories.controller;
 
 import com.cookystoriesspring.CookYStories.model.User;
 import com.cookystoriesspring.CookYStories.model.UserProfile;
+import com.cookystoriesspring.CookYStories.model.inputs.FollowerRelationship;
 import com.cookystoriesspring.CookYStories.model.inputs.ProfileInput;
 import com.cookystoriesspring.CookYStories.repository.UserProfileRepository;
 import com.cookystoriesspring.CookYStories.repository.UserRepository;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.transaction.Transactional;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Date;
 
 @Component
 public class UserGraphQLMutationController implements GraphQLMutationResolver {
@@ -39,6 +41,7 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
         if(user.getBioDescription()!=null) { createdUser.setBioDescription(user.getBioDescription()); } else {createdUser.setBioDescription("");}
         if(user.getCity()!=null) { createdUser.setCity(user.getCity()); } else {createdUser.setCity("");}
         if(user.getCountry()!=null) {createdUser.setCountry(user.getCountry());} else {createdUser.setCountry("");}
+        createdUser.setCreatedAt(new Date());
         User newUser = userRepository.insert(createdUser);
 
         logger.info("New User: {} {} {}", newUser.getUsername(), newUser.getFirstName(), newUser.getLastName());
@@ -71,7 +74,9 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
         fetchedUser.setLastName(user.getLastName());
         fetchedUser.setCity(user.getCity());
         fetchedUser.setCountry(user.getCountry());
-        fetchedUser.setUsername(user.getUsername());
+        if(userRepository.findByUsername(user.getUsername())!=null) {
+            fetchedUser.setUsername(user.getUsername());
+        }
         return userRepository.save(fetchedUser);
     }
 
@@ -106,5 +111,29 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
         UserProfile user = userProfileRepository.findByUsername(profileInput.getUsername());
         user.setProfileImageUrl(profileInput.getProfileImageUrl());
         return userProfileRepository.save(user);
+    }
+
+    public UserProfile followUser(FollowerRelationship followerRelationship) {
+        User toUser = userRepository.findByUsername(followerRelationship.getToFollowUser());
+        User byUser = userRepository.findByUsername(followerRelationship.getLoggedInUser());
+        if(toUser!=null) {
+            UserProfile toUserProfile = userProfileRepository.findByUsername(followerRelationship.getToFollowUser());
+            UserProfile byUserProfile = userProfileRepository.findByUsername(followerRelationship.getLoggedInUser());
+            if(byUserProfile.getFollowing().contains(toUser)) {
+                byUserProfile.getFollowing().remove(toUser);
+                toUserProfile.getFollowers().remove(byUser);
+                byUserProfile.setNumFollowing(byUserProfile.getNumFollowing()-1);
+                toUserProfile.setNumFollowers(toUserProfile.getNumFollowers()-1);
+            } else {
+                byUserProfile.getFollowing().add(toUser);
+                toUserProfile.getFollowers().add(byUser);
+                byUserProfile.setNumFollowing(byUserProfile.getNumFollowing()+1);
+                toUserProfile.setNumFollowers(toUserProfile.getNumFollowers()+1);
+
+            }
+            userProfileRepository.save(toUserProfile);
+            userProfileRepository.save(byUserProfile);
+        }
+        return userProfileRepository.findByUsername(followerRelationship.getLoggedInUser());
     }
 }

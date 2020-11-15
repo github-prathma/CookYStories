@@ -22,6 +22,12 @@ type Query {
 type Mutation {
     addUserProfile(username:String):Boolean!
     updateProfileImage(input:ProfileInput):UserProfile
+    followUser(input:FollowerRelationship):UserProfile
+}
+
+input FollowerRelationship {
+    loggedInUser:String!
+    toFollowUser:String!
 }
 
 input ProfileInput {
