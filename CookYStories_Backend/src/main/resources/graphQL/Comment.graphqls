@@ -8,18 +8,20 @@ type Comment {
     likedByUsers: [User!]
 }
 
-#input CommentInput {
-#    postId:String!
-#    commentText:String!
-#   byUser: User!
-#}
+input CommentInput {
+    id: String
+    description: String!
+    byUsername: String
+    postId: String
 
-#extend type Query {
-#    getComment(id:String): Comment
-#}
-#
-#extend type Mutation{
-#    addComment(input:CommentInput):Boolean
-#    editComment
-#    deleteComment
-#}
+}
+
+extend type Query {
+    getComments(postId: String): [Comment]
+}
+
+extend type Mutation{
+    addComment(input: CommentInput): Boolean!
+    updateComment(input: CommentInput): Comment!
+    deleteComment(commentId: String): Boolean!
+}
