@@ -1,6 +1,6 @@
 import { Avatar } from '@material-ui/core'
 import React, {Component} from 'react'
-import '../css/userfeed-css/Post.css'
+import '../css/Post.css'
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import ShareIcon from '@material-ui/icons/Share';

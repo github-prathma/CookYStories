@@ -1,6 +1,6 @@
 import { Avatar } from '@material-ui/core'
 import React, {Component} from 'react'
-import '../css/userfeed-css/Story.css'
+import '../css/Story.css'
 
 export default class Story extends Component {
     render() {
