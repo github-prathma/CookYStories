@@ -24,6 +24,18 @@ type Mutation {
     addUserProfile(username:String):Boolean!
     updateProfileImage(input:ProfileInput):UserProfile
     followUser(input:FollowerRelationship):UserProfile
+    reportUser(input:ReportUserInput):String
+    reportPost(input:ReportPostInput):String
+}
+
+input ReportUserInput{
+    username:String!
+    reportedBy:String!
+}
+
+input ReportPostInput{
+    postId: String!
+    reportedBy: String!
 }
 
 input FollowerRelationship {
