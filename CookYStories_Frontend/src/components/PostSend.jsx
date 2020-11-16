@@ -1,5 +1,5 @@
 import { Avatar } from '@material-ui/core'
-import React, { useState } from 'react'
+import React from 'react'
 import {Component} from 'react'
 import rushang from '../Images/rushang.PNG'
 import '../css/PostSend.css'

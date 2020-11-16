@@ -1,0 +1,13 @@
+type Media{
+    id:String!
+    type:String!
+#    imagesBinary:GraphQLByte
+}
+
+extend type Query {
+
+}
+
+extend type Mutation {
+
+}

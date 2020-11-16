@@ -1,0 +1,41 @@
+.profileStates{
+  display: flex;
+  justify-content: space-around;
+  border-top: 0.5px solid grey;
+  padding-top: 1px;
+}
+.statsData{
+  display: flex;
+  cursor: pointer;
+  padding-top: 5px;
+}
+.statsData > h5 {
+  margin-left: 5px;
+}
+.statsData:hover{
+  background-color: #eff2f5;
+  border-radius: 10px;
+  border-bottom: none;
+}
+.statsData > .MuiSvgIcon-root {
+  color: gray;
+}
+.statsData:hover > .MuiSvgIcon-root {
+  color: #ffb2a4;
+  cursor: pointer;
+}
+.statsData--active > .MuiSvgIcon-root{
+  color: #ffb2a4;
+}
+.statsData--active {
+  border-bottom: 4px solid #ffb2a4;
+}
+.gallery{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.item{
+  margin: 20px 5px;
+  width: 30%;
+}

@@ -1,0 +1,36 @@
+type Post{
+    id:String!
+    description:String!
+    createdAt:String!
+    byUser: User!
+    media: [Media]
+    numLikes: Int
+    numComments: Int
+    shareUrl: String
+    comments:[Comment!]
+    likedByUsers: [User!]
+}
+
+input PostInput{
+    id:String
+    description:String!
+    media: [String]
+    byUsername: String!
+}
+
+extend type Query {
+    getPost(id:String): Post
+}
+
+extend type Mutation {
+    addPost(input:PostInput):Boolean!
+    updatePost(input: PostInput): Post
+    likeUnlikePost(input: LikedPostInput): Boolean
+    deletePost(id: String): Boolean
+}
+
+input LikedPostInput {
+    id:String!
+    isLiked: Boolean!
+    byUsername: String!
+}
