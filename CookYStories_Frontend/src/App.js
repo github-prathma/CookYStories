@@ -7,6 +7,7 @@ import HeaderComponent from "./components/HeaderComponent"
 import FooterComponent from "./components/FooterComponent"
 import Feed from "./pages/Feed";
 
+
 class App extends Component {
   render() {
     return (
