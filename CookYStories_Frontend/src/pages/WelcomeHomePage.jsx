@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import images from '../images'
 import '../css/CookStories.css'
 import Grid from '@material-ui/core/Grid';
-import {Paper} from '@material-ui/core'
+import {Paper, Switch} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import Carousel from 'react-material-ui-carousel'
+import Login from '../components/Login'
+import Signup from '../components/Signup'
 
 class WelcomeHomePage extends Component {
     render() {
@@ -21,9 +23,7 @@ class WelcomeHomePage extends Component {
             {
                 img: images.image4
             }
-            // {
-            //     img: images.image5
-            // }
+            
         ]
         return (
             
@@ -42,7 +42,8 @@ class WelcomeHomePage extends Component {
 
                     </div>
                 </div>
-  
+
+                
         );
     }
 }

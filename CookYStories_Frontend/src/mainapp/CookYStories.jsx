@@ -17,11 +17,11 @@ class CookYStories extends Component {
           <HeaderComponent />
           <Switch>
             home feed explore
-            {/* <WelcomeHomePage /> */}
-            <SignupPage />
+            <WelcomeHomePage />
+            {/* <SignupPage /> */}
             {/* <LoginPage /> */}
             <Route path="/feed" exact component={Feed} />
-          </Switch>
+          </Switch> 
           <FooterComponent />
         </>
       </Router>

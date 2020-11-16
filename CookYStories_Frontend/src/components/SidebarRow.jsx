@@ -1,6 +1,7 @@
 import { Avatar } from '@material-ui/core'
 import React, {Component} from 'react'
-import '../css/userfeed-css/SidebarRow.css'
+import '../css/SidebarRow.css'
+import src from '../Images/rushang.PNG'
 
 export default class SidebarRow extends Component {
     render() {
