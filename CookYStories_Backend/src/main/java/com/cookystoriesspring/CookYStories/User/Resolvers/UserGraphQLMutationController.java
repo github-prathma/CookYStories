@@ -8,6 +8,10 @@ import com.cookystoriesspring.CookYStories.User.Models.GraphQLInputs.ProfileInpu
 import com.cookystoriesspring.CookYStories.User.MongoRepositories.UserProfileRepository;
 import com.cookystoriesspring.CookYStories.User.MongoRepositories.UserRepository;
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.event.EventRecodingLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -17,9 +21,13 @@ import javax.transaction.Transactional;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Component
+@Slf4j
 public class UserGraphQLMutationController implements GraphQLMutationResolver {
+
+    Logger log = LoggerFactory.getLogger(UserGraphQLMutationController.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -109,26 +117,80 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
     }
 
     public UserProfile followUser(FollowerRelationship followerRelationship) {
-        User toUser = userRepository.findByUsername(followerRelationship.getToFollowUser());
-        User byUser = userRepository.findByUsername(followerRelationship.getLoggedInUser());
-        if(toUser!=null) {
-            UserProfile toUserProfile = userProfileRepository.findByUsername(followerRelationship.getToFollowUser());
-            UserProfile byUserProfile = userProfileRepository.findByUsername(followerRelationship.getLoggedInUser());
-            if(byUserProfile.getFollowing().contains(toUser)) {
-                byUserProfile.getFollowing().remove(toUser);
-                toUserProfile.getFollowers().remove(byUser);
-                byUserProfile.setNumFollowing(byUserProfile.getNumFollowing()-1);
-                toUserProfile.setNumFollowers(toUserProfile.getNumFollowers()-1);
-            } else {
-                byUserProfile.getFollowing().add(toUser);
-                toUserProfile.getFollowers().add(byUser);
-                byUserProfile.setNumFollowing(byUserProfile.getNumFollowing()+1);
-                toUserProfile.setNumFollowers(toUserProfile.getNumFollowers()+1);
+        log.info("to follow: " + followerRelationship.getIsFollow());
 
+        UserProfile loggedInUser = userProfileRepository.findByUsername(followerRelationship.getLoggedInUser());
+        UserProfile toUser = userProfileRepository.findByUsername(followerRelationship.getToFollowUser());
+
+        if (!followerRelationship.getIsFollow()) {
+            // unfollow
+
+            List<User> toUserFollowers = toUser.getFollowers();
+            List<User> loggedInUserFollowings = loggedInUser.getFollowing();
+
+            if(toUserFollowers.contains(loggedInUser.getBasicInfo()) && loggedInUserFollowings.contains(toUser.getBasicInfo())) {
+                toUserFollowers.remove(loggedInUser.getBasicInfo());
+                toUser.setNumFollowers(toUser.getNumFollowers()-1);
+                loggedInUserFollowings.remove(toUser.getBasicInfo());
+                loggedInUser.setNumFollowing(loggedInUser.getNumFollowing()-1);
+
+                toUser.setFollowers(toUserFollowers);
+                loggedInUser.setFollowing(loggedInUserFollowings);
+
+                userProfileRepository.save(toUser);
+                userProfileRepository.save(loggedInUser);
+
+                toUser.setIsFollowed(false);
+            } else {
+                if(toUserFollowers.contains(loggedInUser.getBasicInfo()) && loggedInUserFollowings.contains(toUser.getBasicInfo())) {
+                    toUser.setIsFollowed(false);
+
+                } else {
+                    toUser.setIsFollowed(true);
+
+                }
             }
-            userProfileRepository.save(toUserProfile);
-            userProfileRepository.save(byUserProfile);
+        } else {
+            // Follow
+
+
+            List<User> toUserFollowers = new ArrayList<>();
+            List<User> loggedInUserFollowings = new ArrayList<>();
+
+            if (toUser.getFollowers() != null) {
+                toUserFollowers = new ArrayList<>(List.copyOf(toUser.getFollowers()));
+            }
+
+            if (loggedInUser.getFollowing() != null) {
+                loggedInUserFollowings = new ArrayList<>(List.copyOf(loggedInUser.getFollowing()));
+            }
+
+            if(!toUserFollowers.contains(loggedInUser.getBasicInfo()) && !loggedInUserFollowings.contains(toUser.getBasicInfo())) {
+                log.info("Following User "+toUser.getUsername()+" by User "+loggedInUser.getUsername());
+
+                toUserFollowers.add(loggedInUser.getBasicInfo());
+                toUser.setNumFollowers(toUser.getNumFollowers()+1);
+                loggedInUserFollowings.add(toUser.getBasicInfo());
+                loggedInUser.setNumFollowing(loggedInUser.getNumFollowing()+1);
+
+                toUser.setFollowers(toUserFollowers);
+                loggedInUser.setFollowing(loggedInUserFollowings);
+
+                userProfileRepository.save(toUser);
+                userProfileRepository.save(loggedInUser);
+
+                toUser.setIsFollowed(true);
+            } else {
+
+                if (!toUserFollowers.contains(loggedInUser.getBasicInfo()) && !loggedInUserFollowings.contains(toUser.getBasicInfo())) {
+                    toUser.setIsFollowed(true);
+                } else {
+                    toUser.setIsFollowed(false);
+                }
+            }
+
         }
-        return userProfileRepository.findByUsername(followerRelationship.getLoggedInUser());
+
+        return toUser;
     }
 }

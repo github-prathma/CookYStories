@@ -10,10 +10,11 @@ type UserProfile{
     following:[User]
     storyId:String
     profileImageUrl:String
+    isFollowed:Boolean
 }
 
 type Query {
-    getUserProfile(username:String):UserProfile
+    getUserProfile(input:FollowerRelationship):UserProfile
     getFollowers(username:String!):[User]!
     getFollowing(username:String!):[User]!
     getPosts(username:String!):[Post]!
@@ -28,6 +29,7 @@ type Mutation {
 input FollowerRelationship {
     loggedInUser:String!
     toFollowUser:String!
+    isFollow:Boolean
 }
 
 input ProfileInput {

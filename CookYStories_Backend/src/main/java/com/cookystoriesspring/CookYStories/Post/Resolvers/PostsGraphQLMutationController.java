@@ -11,6 +11,7 @@ import com.cookystoriesspring.CookYStories.User.MongoRepositories.UserProfileRep
 import com.cookystoriesspring.CookYStories.User.MongoRepositories.UserRepository;
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

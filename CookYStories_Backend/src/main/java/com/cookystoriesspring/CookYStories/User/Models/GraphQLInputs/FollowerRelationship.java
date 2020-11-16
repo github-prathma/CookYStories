@@ -3,6 +3,16 @@ package com.cookystoriesspring.CookYStories.User.Models.GraphQLInputs;
 public class FollowerRelationship {
     private String loggedInUser;
     private String toFollowUser;
+    private Boolean isFollow;
+
+    public FollowerRelationship() {
+    }
+
+    public FollowerRelationship(String loggedInUser, String toFollowUser, Boolean isFollow) {
+        this.loggedInUser = loggedInUser;
+        this.toFollowUser = toFollowUser;
+        this.isFollow = isFollow;
+    }
 
     public String getLoggedInUser() {
         return loggedInUser;
@@ -20,11 +30,11 @@ public class FollowerRelationship {
         this.toFollowUser = toFollowUser;
     }
 
-    public FollowerRelationship() {
+    public Boolean getIsFollow() {
+        return isFollow;
     }
 
-    public FollowerRelationship(String loggedInUser, String toFollowUser) {
-        this.loggedInUser = loggedInUser;
-        this.toFollowUser = toFollowUser;
+    public void setIsFollow(Boolean isFollow) {
+        this.isFollow = isFollow;
     }
 }

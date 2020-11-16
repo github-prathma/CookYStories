@@ -23,11 +23,15 @@ public class UserProfile {
     private List<User> following;
     private String storyId;
     private String profileImageUrl;
+    private Boolean isFollowed;
+
+
 
     public UserProfile() {
     }
 
-    public UserProfile(String username, User basicInfo, Integer numFollowers, Integer numFollowing, Integer numPosts, List<Post> posts, List<Post> likedPosts, List<Comment> likedComments, List<User> followers, List<User> following, String storyId, String profileImageUrl) {
+    public UserProfile(String id, String username, User basicInfo, Integer numFollowers, Integer numFollowing, Integer numPosts, List<Post> posts, List<User> followers, List<User> following, String storyId, String profileImageUrl, boolean isFollowed) {
+        this.id = id;
         this.username = username;
         this.basicInfo = basicInfo;
         this.numFollowers = numFollowers;
@@ -38,6 +42,15 @@ public class UserProfile {
         this.following = following;
         this.storyId = storyId;
         this.profileImageUrl = profileImageUrl;
+        this.isFollowed = isFollowed;
+    }
+
+    public Boolean getIsFollowed() {
+        return isFollowed;
+    }
+
+    public void setIsFollowed(Boolean followed) {
+        isFollowed = followed;
     }
 
     public String getId() {
@@ -155,6 +168,7 @@ public class UserProfile {
                 ", following=" + following +
                 ", storyId='" + storyId + '\'' +
                 ", profileImageUrl='" + profileImageUrl + '\'' +
+                ", isFollowed=" + isFollowed.toString() +
                 '}';
     }
 }
