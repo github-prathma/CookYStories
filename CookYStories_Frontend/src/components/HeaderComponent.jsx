@@ -1,4 +1,4 @@
-import logo from './CookYLogo.png'
+import logo from '../CookYLogo.png'
 import '../css/CookStories.css'
 import React, { Component } from 'react';
 import { Avatar, IconButton } from '@material-ui/core'
@@ -29,7 +29,7 @@ class HeaderComponent extends Component {
         <img src={logo} alt='Logo' /> 
         <div className="header_input">
           <SearchIcon />
-          <input placeholder='Search CookStory'
+          <input placeholder='Search CookYStory'
             type='text' />
         </div>
 
@@ -44,11 +44,11 @@ class HeaderComponent extends Component {
         </div>
 
       </div>
-      <div className="header_right">
+      <div className="header_right">{!(sessionStorage.logged === null) &&
         <div className="header_info">
           <Avatar src={rushang}/>
           <h4>rushang2413</h4>
-        </div>
+        </div>}
 
         <IconButton>
           <AddIcon />

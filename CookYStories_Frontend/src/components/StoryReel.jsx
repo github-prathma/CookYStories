@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import Story from './Story'
-import '../css/userfeed-css/StoryReel.css'
+import '../css/StoryReel.css'
 import rushang from '../Images/rushang.PNG'
 import prathma from '../Images/Prathma.PNG'
 import chintu from '../Images/Chintu.PNG'
