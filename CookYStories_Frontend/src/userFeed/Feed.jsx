@@ -5,13 +5,14 @@ import PostSend from './PostSend'
 import StoryReel from './StoryReel'
 import rushang from '../Images/rushang.PNG'
 
+
 export default class Feed extends Component {
     render() {
         return (
             <div className="feed">
                 <StoryReel />
                 <PostSend />
-
+                
                 <Post 
                     profilePic={rushang}
                     message='This is Message'
