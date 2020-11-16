@@ -5,7 +5,7 @@ public class LikedPostInput {
     //post id
     private String id;
 
-    private Boolean isLiked;
+    private Boolean isLike;
 
     //by username
     private String byUsername;
@@ -14,9 +14,9 @@ public class LikedPostInput {
 
     }
 
-    public LikedPostInput(String id, Boolean isLiked, String byUsername) {
+    public LikedPostInput(String id, Boolean isLike, String byUsername) {
         this.id = id;
-        this.isLiked = isLiked;
+        this.isLike = isLike;
         this.byUsername = byUsername;
     }
 
@@ -28,12 +28,12 @@ public class LikedPostInput {
         this.id = id;
     }
 
-    public Boolean getIsLiked() {
-        return isLiked;
+    public Boolean getIsLike() {
+        return isLike;
     }
 
-    public void setIsLiked(Boolean liked) {
-        isLiked = liked;
+    public void setIsLike(Boolean liked) {
+        isLike = liked;
     }
 
     public String getByUsername() {
