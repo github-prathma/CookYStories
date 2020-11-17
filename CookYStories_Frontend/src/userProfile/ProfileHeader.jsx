@@ -4,8 +4,6 @@ import CreateIcon from '@material-ui/icons/Create';
 import SaveIcon from '@material-ui/icons/Save';
 import '../css/userprofile-css/ProfileHeader.css'
 import EditProfile from './EditProfile'
-import PropTypes from 'prop-types';
-import { Avatar } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
 export default class ProfileHeader extends Component {
@@ -41,14 +39,8 @@ export default class ProfileHeader extends Component {
   }
 
   handleSubmit(e) {
-    const { first_name, last_name, user_name, city, country, bio } = this.state;
+    // const { first_name, last_name, user_name, city, country, bio } = this.state;
     this.setState({ name: this.state.modalInputName });
-    console.log("First Name: " + first_name);
-    console.log("Last Name: " + last_name);
-    console.log("User Name: " + user_name);
-    console.log("City: " + city);
-    console.log("Country: " + country);
-    console.log("Bio: " + bio);
     this.modalClose();
   }
 
@@ -66,7 +58,7 @@ export default class ProfileHeader extends Component {
     return (      
       <div className='userProfile'>
         <div className='profileImage'>
-          <img src={rushang} />
+          <img src={rushang} alt="Img"/>
         </div>
         <div className='profileBio'>
           <h4>Rushang Shah
@@ -75,7 +67,7 @@ export default class ProfileHeader extends Component {
             <EditProfile show={this.state.modal} handleClose={e => this.modalClose(e)}>
               <form className="form-group">
               <div className='EditImage'>
-          <img src={rushang} />
+               <img src={rushang} alt="img"/>
                 </div>
                 <ul>
                 <div className="form-group">

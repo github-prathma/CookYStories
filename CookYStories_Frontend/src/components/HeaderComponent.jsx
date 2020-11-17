@@ -9,19 +9,50 @@ import SearchIcon from '@material-ui/icons/Search'
 import HomeIcon from '@material-ui/icons/Home'
 import FlagIcon from '@material-ui/icons/Flag'
 import AddIcon from '@material-ui/icons/Add'
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import '../css/Header.css'
 //import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
 //import { useHistory } from 'react-router-dom'
 import { withRouter } from 'react-router';
+import { AddPost } from './AddPost';
 
 
 class HeaderComponent extends Component {
+  constructor() {
+    super()
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.modalOpen = this.modalOpen.bind(this);
+    this.modalClose = this.modalClose.bind(this);
+    
+    this.state = {
+      modal: false,
+      description: "",
+      modalInputDescription: ""
+    };
+  }
 
-    // constructor(props) {
-    //     this.state = {
-    //         renderFeed : false
-    //     }
-    // }
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
+  handleSubmit(e) {
+    this.setState({ description: this.state.modalInputDescription });
+    this.modalClose();
+  }
+
+  modalOpen() {
+    this.setState({ modal: true });
+  }
+
+  modalClose() {
+    this.setState({
+      modal: false
+    });
+  }
+
     render() {
         return (
             <div className="header">
@@ -51,7 +82,27 @@ class HeaderComponent extends Component {
         </div>
 
         <IconButton>
-          <AddIcon />
+                <AddIcon onClick={e => this.modalOpen(e)} />
+                <AddPost show={this.state.modal} handleClose={e => this.modalClose(e)}>
+                <form className="form-group">
+              <div className='EditImage'>
+               <AddAPhotoIcon />
+                </div>
+                <ul>
+                <div className="form-group">
+                  <label >How to Cook!</label>
+                  <textarea
+                    type="text"
+                    value={this.state.description}
+                    name="description"
+                    onChange={e => this.handleChange(e)}
+                    className="form-control"
+                    placeholder="Enter your way to cook!"
+                    style={{ display: 'flex' }} />             
+                      </div>
+                    </ul>
+                    </form>
+                </AddPost>
         </IconButton>
         <IconButton>
           <NotificationActiveIcon />

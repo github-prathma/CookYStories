@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import SignupPage from "./Signup";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import EmailSharpIcon from "@material-ui/icons/EmailSharp";
 
@@ -14,7 +13,6 @@ import {
 } from "@material-ui/core";
 
 import "../css/Login.css";
-import { red } from "@material-ui/core/colors";
 
 export default class Login extends Component {
   constructor(props) {

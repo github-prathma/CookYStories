@@ -18,7 +18,7 @@ export default class Follow extends Component {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className="image">
-            <img src={chintu} alt="image"/>
+            <img src={chintu} alt="img"/>
             </ButtonBase>            
            </Grid> 
            <Grid item xs={12} sm container>
@@ -39,7 +39,7 @@ export default class Follow extends Component {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className="image">
-            <img src={prathma} alt="image"/>
+            <img src={prathma} alt="img"/>
             </ButtonBase>            
            </Grid> 
            <Grid item xs={12} sm container>
@@ -60,7 +60,7 @@ export default class Follow extends Component {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className="image">
-            <img src={pratik} alt="image"/>
+            <img src={pratik} alt="img"/>
             </ButtonBase>            
            </Grid> 
            <Grid item xs={12} sm container>

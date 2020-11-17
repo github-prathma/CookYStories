@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import chintu from '../../Images/Chintu.PNG'
 import prathma from '../../Images/Prathma.PNG'
-import pratik from '../../Images/Pratik.PNG'
 import '../../css/userprofile-css/Following.css'
 import { Grid } from '@material-ui/core'
 import Paper from '@material-ui/core/Paper';
@@ -16,7 +15,7 @@ export default class Following extends Component {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className="image">
-            <img src={chintu} alt="image"/>
+            <img src={chintu} alt="img"/>
             </ButtonBase>            
            </Grid> 
            <Grid item xs={12} sm container>
@@ -37,7 +36,7 @@ export default class Following extends Component {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className="image">
-            <img src={prathma} alt="image"/>
+            <img src={prathma} alt="img"/>
             </ButtonBase>            
            </Grid> 
            <Grid item xs={12} sm container>

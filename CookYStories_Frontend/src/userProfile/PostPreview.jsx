@@ -4,7 +4,7 @@ import ViewComfyRoundedIcon from '@material-ui/icons/ViewComfyRounded';
 import TurnedInRoundedIcon from '@material-ui/icons/TurnedInRounded';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
-import Gallery from './Gallery'
+import Gallery from './userStats/Gallery'
 import Follow from './userStats/Follow';
 import Following from './userStats/Following'
 
