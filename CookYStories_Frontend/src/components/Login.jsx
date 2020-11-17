@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import EmailSharpIcon from "@material-ui/icons/EmailSharp";
+import AuthenticationService from '../backend/AuthenticationService'
 
 import {
   Button,
@@ -13,14 +14,15 @@ import {
 } from "@material-ui/core";
 
 import "../css/Login.css";
+import { red } from "@material-ui/core/colors";
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: "rushang2413",
-      password: "pass@123",
+      username: "",
+      password: "",
     };
   }
 
@@ -40,6 +42,7 @@ export default class Login extends Component {
                   label="Username"
                   name="email"
                   autoComplete="email"
+                  onChange={this.usernameTyped}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -52,6 +55,7 @@ export default class Login extends Component {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  onChange={this.passwordTyped}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -60,6 +64,7 @@ export default class Login extends Component {
                   className="submit"
                   variant="contained"
                   fullWidth
+                  onClick={this.logInClicked}
                 >
                   Log in
                 </Button>
@@ -103,5 +108,27 @@ export default class Login extends Component {
 
   signupLinkClicked = () => {
     this.props.history.push('/signup');
+  }
+
+
+  usernameTyped = (event) => {
+    this.setState({username: event.target.value});
+  }
+
+  passwordTyped = (event) => {
+    this.setState({password: event.target.value});
+  }
+
+  logInClicked = (event) => {
+    // todo api call 
+    
+    if (this.state.username === "rushang2413" && this.state.password === "pass@123"){
+      AuthenticationService.registerSuccessLogin(this.state.username, this.state.password);
+      this.props.history.push(`/feed/${this.state.username}`);
+    }
+    else{
+      alert("Wrong credentials. Try Again")
+    }
+    
   }
 }

@@ -8,7 +8,7 @@ import Sidebar from '../components/Sidebar'
 import {GET_FEED} from '../backend/PostApis.js'
 import { Query } from 'react-apollo'
 import { Grid } from '@material-ui/core'
-
+import AuthenticationService from "../backend/AuthenticationService"
 
 function LoadFeed(props) {
     
@@ -66,7 +66,7 @@ export default class Feed extends Component {
         this.state =
             {
                 //all posts
-                username: 'maitreyastark',
+                username: props.match.params.name,
                 posts: []
             }
         

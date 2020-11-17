@@ -29,11 +29,11 @@ class HeaderComponent extends Component {
       modal: false,
       description: "",
       modalInputDescription: "",
-      isLoggedIn: false,
       username: "",
       isLoginClicked: false
     };
   }
+
 
   handleChange(e) {
     this.setState({
@@ -57,7 +57,7 @@ class HeaderComponent extends Component {
   }
 
   render() {
-      const isLoggedIn = this.state.isLoggedIn;
+      const isLoggedIn = AuthenticationService.isLoggedIn();
 
         return (
             <div className="header">
@@ -134,8 +134,8 @@ class HeaderComponent extends Component {
 
     loginClicked = (event) => {
       this.setState({
-        isLoginClicked : true
-      });
+        isLoginClicked:true
+      })
       this.props.history.push('/login');
       
     }
