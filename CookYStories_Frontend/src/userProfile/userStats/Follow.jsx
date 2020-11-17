@@ -24,10 +24,10 @@ export default class Follow extends Component {
            <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography variant="body2" gutterBottom>
+                <Typography variant="h6" gutterBottom>
                   Chintamani Satavlekar
                 </Typography>
-                <Typography variant="body2" color="textSecondary">
+                <Typography variant="body1" color="textSecondary">
                   Syracuse, USA
                 </Typography>
                 </Grid>
