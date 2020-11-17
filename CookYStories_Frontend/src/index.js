@@ -8,8 +8,18 @@ import {ApolloProvider} from "react-apollo"
 
 const client = new ApolloClient ({
   link: new HttpLink({
-    uri: "http://192.168.1.246:8080"
+    uri: "http://192.168.1.246:8080/graphql"
   }),
+  request: (operation) => {
+    const token = sessionStorage.getItem('token')
+    operation.setContext(
+      {
+        headers: {
+          authorization: token ? `Bearer ${token}` : ''
+        }
+      }
+    )
+  },
   cache: new InMemoryCache()
 })
 

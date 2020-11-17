@@ -10,8 +10,8 @@ import HomeIcon from '@material-ui/icons/Home'
 import FlagIcon from '@material-ui/icons/Flag'
 import AddIcon from '@material-ui/icons/Add'
 import '../css/Header.css'
-import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
-import { useHistory } from 'react-router-dom'
+//import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
+//import { useHistory } from 'react-router-dom'
 import { withRouter } from 'react-router';
 
 
@@ -44,11 +44,11 @@ class HeaderComponent extends Component {
         </div>
 
       </div>
-      <div className="header_right">{!(sessionStorage.logged === null) &&
+      <div className="header_right">{}
         <div className="header_info">
           <Avatar src={rushang}/>
           <h4>rushang2413</h4>
-        </div>}
+        </div>
 
         <IconButton>
           <AddIcon />
