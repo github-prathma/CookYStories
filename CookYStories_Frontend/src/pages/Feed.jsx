@@ -19,6 +19,21 @@ function LoadFeed(props) {
 
         {
             ({loading, error, data}) => {
+
+                if (loading) {
+                    return (
+                        <span>loading....</span>
+                    )
+                }
+
+                if (error) {
+                    return (
+                        <span>error....</span>
+                    )
+                }
+                console.log(data)
+                const posts = data.loadFeed
+                
                 return (
                     // console.log("hi testing api")
 
@@ -28,7 +43,7 @@ function LoadFeed(props) {
                     <div id="page-wrap">
                         <PostSend />
                         {
-                            this.state.posts.map (
+                            posts.map (
                                 post => <Post
                                 profilePic={rushang}
                                 message={post.description}
@@ -40,19 +55,6 @@ function LoadFeed(props) {
 
                         }
                     
-                    {/* <Post 
-                        profilePic={rushang}
-                        message='This is Message'
-                        timestamp='This is for TimeStamp'
-                        username='rushang2413'
-                        image='https://www.cookwithmanali.com/wp-content/uploads/2018/04/Vada-Pav-500x375.jpg'
-                    />
-                    <Post 
-                        profilePic={rushang}
-                        message='This is Message'
-                        timestamp='This is for TimeStamp'
-                        username='rushang2413'
-                    /> */}
                     </div>  
                     </div>              
                 )
@@ -60,19 +62,6 @@ function LoadFeed(props) {
         }
     </Query>
 
-    // const {loading, error, data} = useQuery(GET_FEED, {
-    //     variables: {
-    //         username: props.username
-    //     },
-    // })
-
-    // if (loading) {
-    //     return <span>Loading....</span>
-    // }
-
-    // return (
-    //     console.log(data)
-    // )
     )
 }
 
@@ -112,39 +101,7 @@ export default class Feed extends Component {
             <div>
                 <LoadFeed username={this.state.username}/>
             </div>
-            {/* <div className="feed" id="feed-page">
-                <StoryReel />
-                 <Sidebar /> 
-                <div id="page-wrap">
-                    <PostSend />
-                    {
-                        this.state.posts.map (
-                            post => <Post
-                            profilePic={rushang}
-                            message={post.description}
-                            timestamp={post.createdAt}
-                            username={post.byUser.username}
-                            image='https://www.cookwithmanali.com/wp-content/uploads/2018/04/Vada-Pav-500x375.jpg'
-                            />
-                        )
 
-                    }
-                    
-                     <Post 
-                        profilePic={rushang}
-                        message='This is Message'
-                        timestamp='This is for TimeStamp'
-                        username='rushang2413'
-                        image='https://www.cookwithmanali.com/wp-content/uploads/2018/04/Vada-Pav-500x375.jpg'
-                    />
-                    <Post 
-                        profilePic={rushang}
-                        message='This is Message'
-                        timestamp='This is for TimeStamp'
-                        username='rushang2413'
-                    /> 
-                </div>
-            </div>    */}
             </div>
 
         )
