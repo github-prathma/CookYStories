@@ -1,14 +1,16 @@
 import logo from '../CookYLogo.png'
 import '../css/CookStories.css'
 import React, { Component } from 'react';
-import { Avatar, Button, IconButton } from '@material-ui/core'
+import { Avatar, Button, IconButton, Grid, Typography } from '@material-ui/core'
 import NotificationActiveIcon from '@material-ui/icons/NotificationsActive'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import rushang from '../Images/rushang.PNG'
+import addimage from '../Images/Addimage.png'
 import SearchIcon from '@material-ui/icons/Search'
 import HomeIcon from '@material-ui/icons/Home'
 import FlagIcon from '@material-ui/icons/Flag'
 import AddIcon from '@material-ui/icons/Add'
+import SaveIcon from '@material-ui/icons/Save';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import '../css/Header.css'
@@ -86,24 +88,33 @@ class HeaderComponent extends Component {
                       <h4>rushang2413</h4>
                     </div>}
 
-                    {!isLoggedIn && !this.state.isLoginClicked && <div className="account">
+              {/* {!isLoggedIn && !this.state.isLoginClicked && <div className="account"> 
                     <Button fullWidth variant="contained" onClick={this.loginClicked}>
                         <AccountCircleIcon />
                         <span className="tab">Sign In / Create Account </span>
                       </Button>
-                    </div>}
+                    </div>} */}
                     
-                    {isLoggedIn && <div>
+              {/* {isLoggedIn && */}
+                <div className="addPost">
                       <IconButton>
                               <AddIcon onClick={e => this.modalOpen(e)} />
                               <AddPost show={this.state.modal} handleClose={e => this.modalClose(e)}>
-                              <form className="form-group">
+                    <form className="form-group">
+                      <Grid container spacing={2}>
+                        <Grid item>
                             <div className='EditImage'>
-                            <AddAPhotoIcon />
-                              </div>
-                              <ul>
+                            <img src={addimage} className="addIcon" />
+                          </div>
+                        </Grid>
+                        <Grid item xs={12} sm container>
+                        <Grid item xs container direction="column" spacing={2}>
+                        <Grid item xs>
                               <div className="form-group">
-                                <label >How to Cook!</label>
+                                <Typography variant="h6">How to Cook!</Typography>
+                                <br />
+                              </div>
+                              <div className="form-group">
                                 <textarea
                                   type="text"
                                   value={this.state.description}
@@ -111,10 +122,25 @@ class HeaderComponent extends Component {
                                   onChange={e => this.handleChange(e)}
                                   className="form-control"
                                   placeholder="Enter your way to cook!"
-                                  style={{ display: 'flex' }} />             
-                                    </div>
-                                  </ul>
-                                  </form>
+                                  style={{height: '200px'}}
+                                />       
+                              </div>
+                            </Grid>
+                          </Grid>
+                          </Grid>
+                        </Grid>
+                    </form>
+                    <form>
+                              <div className="button">
+                              <Button
+                                variant="contained"
+                                color="primary"                  
+                                startIcon={<SaveIcon />}
+                                onClick={e => this.handleSubmit(e)} >
+                                      Post
+                              </Button>
+                                </div>
+                                </form>
                               </AddPost>
                       </IconButton>
                       <IconButton>
@@ -124,7 +150,7 @@ class HeaderComponent extends Component {
                         <ExpandMoreIcon />
                       </IconButton>
                       </div>
-                  }
+                  {/* } */}
 
                 </div>
 
