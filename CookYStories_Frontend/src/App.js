@@ -11,7 +11,10 @@ import Feed from "./pages/Feed";
 import UserProfile from "./userProfile/UserProfile"
 import AuthenticatedRoute from './AuthenticatedRoute'
 
+
 class App extends Component {
+  
+ 
   render() {
     return (
       <Router>
@@ -19,7 +22,7 @@ class App extends Component {
           <HeaderComponent />
           <Switch>
             <Route path="/" exact component={WelcomeHomePage} />
-            <AuthenticatedRoute path="/feed" exact component={Feed} />
+            <AuthenticatedRoute path="/feed/:name" exact component={Feed} />
             <AuthenticatedRoute path="/user" exact component={UserProfile} />
             <Route path="/signup" exact component={Signup} />
             <Route path="/login" exact component={Login} />

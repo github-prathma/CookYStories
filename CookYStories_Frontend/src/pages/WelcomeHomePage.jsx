@@ -5,6 +5,8 @@ import {Paper} from '@material-ui/core'
 import Carousel from 'react-material-ui-carousel'
 
 class WelcomeHomePage extends Component {
+
+
     render() {
         var items = [
             {
