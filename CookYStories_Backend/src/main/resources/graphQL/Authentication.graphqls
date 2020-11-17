@@ -1,0 +1,16 @@
+input AuthenticationModel{
+    username:String
+    password:String
+    email:String
+    token:String
+}
+
+extend type Mutation {
+    login(auth:AuthenticationModel):SignInPayload
+    logout(username:String):Boolean
+}
+
+type SignInPayload{
+    user:String
+    token:String
+}

@@ -13,5 +13,9 @@ public interface UserRepository extends MongoRepository<User, String> {
     @Query("{ 'username' : ?0 }")
     public User findByUsername(String username);
 
+    @Transactional
+    @Query("{ 'email' : ?0 }")
+    public User findByEmail(String email);
+
     public Boolean deleteUserByUsername(String username);
 }

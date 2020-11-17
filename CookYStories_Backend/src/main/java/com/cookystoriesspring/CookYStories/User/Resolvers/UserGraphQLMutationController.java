@@ -37,7 +37,14 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
 
 
     @Transactional
-    public Boolean addUser(User user) {
+    public Boolean signUpUser(User user) {
+
+        User fetchedByUsername = userRepository.findByUsername(user.getUsername());
+        User fetchedByEmail = userRepository.findByEmail(user.getEmail());
+
+        if(fetchedByEmail!=null || fetchedByUsername!=null) {
+            return false;
+        }
         User createdUser = new User();
         createdUser.setFirstName(user.getFirstName());
         createdUser.setLastName(user.getLastName());
@@ -64,9 +71,8 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
         userProfile.setUsername(user.getUsername());
 
         UserProfile savedUserProfile = userProfileRepository.insert(userProfile);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{username}").buildAndExpand(newUser.getUsername()).toUri();
-        ResponseEntity obj = ResponseEntity.created(uri).build();
-        return obj.hasBody();
+
+        return true;
     }
 
     @Transactional
@@ -84,32 +90,13 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
         return userRepository.save(fetchedUser);
     }
 
-    @Transactional
-    public Boolean addUserProfile(String username) {
-        User user = userRepository.findByUsername(username);
-        UserProfile userProfile = new UserProfile();
-        userProfile.setBasicInfo(user);
-        userProfile.setFollowers(new ArrayList<>());
-        userProfile.setFollowing(new ArrayList<>());
-        userProfile.setNumFollowers(0);
-        userProfile.setNumFollowing(0);
-        userProfile.setNumPosts(0);
-        userProfile.setPosts(new ArrayList<>());
-        userProfile.setProfileImageUrl("");
-        userProfile.setUsername(username);
-
-        UserProfile savedUserProfile = userProfileRepository.insert(userProfile);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/users/{username}").buildAndExpand(savedUserProfile.getUsername()).toUri();
-        ResponseEntity obj = ResponseEntity.created(uri).build();
-        return obj.getStatusCode().equals("200");
-    }
-
     public Boolean removeUser(String username) {
         userProfileRepository.delete(userProfileRepository.findByUsername(username));
         userRepository.delete(userRepository.findByUsername(username));
         return true;
     }
 
+    @Transactional
     public UserProfile updateProfileImage(ProfileInput profileInput) {
         UserProfile user = userProfileRepository.findByUsername(profileInput.getUsername());
         user.setProfileImageUrl(profileInput.getProfileImageUrl());

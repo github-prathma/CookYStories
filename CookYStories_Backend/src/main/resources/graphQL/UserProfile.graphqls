@@ -21,7 +21,6 @@ type Query {
 }
 
 type Mutation {
-    addUserProfile(username:String):Boolean!
     updateProfileImage(input:ProfileInput):UserProfile
     followUser(input:FollowerRelationship):UserProfile
     reportUser(input:ReportUserInput):String

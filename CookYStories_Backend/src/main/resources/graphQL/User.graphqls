@@ -28,7 +28,7 @@ input UserInput{
 }
 
 extend type Mutation {
-    addUser(input:UserInput): Boolean!
+    signUpUser(input:UserInput): Boolean!
     updateUser(input:UserInput):User
     removeUser(username:String!):Boolean!
 
