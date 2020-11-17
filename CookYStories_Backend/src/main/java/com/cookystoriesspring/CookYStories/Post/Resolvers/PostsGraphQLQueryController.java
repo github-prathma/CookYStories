@@ -8,11 +8,13 @@ import com.cookystoriesspring.CookYStories.User.MongoRepositories.UserProfileRep
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@CrossOrigin(origins = "http://localhost:3000")
 public class PostsGraphQLQueryController implements GraphQLQueryResolver {
 
     @Autowired
