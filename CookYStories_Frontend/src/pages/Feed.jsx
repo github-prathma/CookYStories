@@ -8,6 +8,7 @@ import Sidebar from '../components/Sidebar'
 import {GET_FEED} from '../backend/PostApis.js'
 // import { useQuery } from 'react-apollo-hooks'
 import { Query } from 'react-apollo'
+import { Grid } from '@material-ui/core'
 
 
 function LoadFeed(props) {
@@ -93,21 +94,20 @@ export default class Feed extends Component {
     render() {
 
         return (
-            <div>
-            <div className="main">
-                <Sidebar />
-                <div className="story-reel">
-                <StoryReel />
+            <div className="outer-container">
+                <div className="main">
+                    <div className="col-sm-2">
+                        <Sidebar />
+                    </div>
+                    <div className="col-sm">
+                        <StoryReel />   
+                    </div>
+                    
                 </div>
-                
-                
-            </div>
 
-
-            <div>
-                <LoadFeed username={this.state.username}/>
-            </div>
-
+                <div>
+                    <LoadFeed username={this.state.username}/>
+                </div>
             </div>
 
         )

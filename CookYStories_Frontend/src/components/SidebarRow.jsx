@@ -1,4 +1,4 @@
-import { Avatar, Icon } from '@material-ui/core'
+import { Avatar, Grid, Icon } from '@material-ui/core'
 import React, {Component} from 'react'
 import '../css/SidebarRow.css'
 import src from '../Images/rushang.PNG'
@@ -13,8 +13,6 @@ export default class SidebarRow extends Component {
             <div className='sidebarRow'>
                 {this.props.statusImage}
                 <h6>{this.props.title}</h6>
-                
-                
             </div>
         )
     }
