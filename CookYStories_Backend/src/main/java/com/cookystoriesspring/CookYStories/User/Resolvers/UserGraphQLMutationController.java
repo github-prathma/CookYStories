@@ -1,6 +1,11 @@
 package com.cookystoriesspring.CookYStories.User.Resolvers;
 
 
+import com.cookystoriesspring.CookYStories.Post.Models.Comment;
+import com.cookystoriesspring.CookYStories.Post.Models.GraphQLInputs.PostInput;
+import com.cookystoriesspring.CookYStories.Post.Models.Post;
+import com.cookystoriesspring.CookYStories.Post.MongoRepositories.CommentRepository;
+import com.cookystoriesspring.CookYStories.Post.MongoRepositories.PostRepository;
 import com.cookystoriesspring.CookYStories.User.Models.GraphQLInputs.FollowerRelationship;
 import com.cookystoriesspring.CookYStories.User.Models.User;
 import com.cookystoriesspring.CookYStories.User.Models.UserProfile;
@@ -34,6 +39,12 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
 
     @Autowired
     UserProfileRepository userProfileRepository;
+
+    @Autowired
+    PostRepository postRepository;
+
+    @Autowired
+    CommentRepository commentRepository;
 
 
     @Transactional
@@ -84,10 +95,78 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
         fetchedUser.setLastName(user.getLastName());
         fetchedUser.setCity(user.getCity());
         fetchedUser.setCountry(user.getCountry());
-        if(userRepository.findByUsername(user.getUsername())!=null) {
-            fetchedUser.setUsername(user.getUsername());
+        fetchedUser.setPassword(user.getPassword());
+
+        User updatedUser = userRepository.save(fetchedUser);
+
+        UserProfile fetchedUserProfile = userProfileRepository.findByUsername(user.getUsername());
+        fetchedUserProfile.setUsername(updatedUser.getUsername());
+        fetchedUserProfile.setBasicInfo(updatedUser);
+
+        List<Post> posts = new ArrayList<>();
+
+        if (fetchedUserProfile.getPosts() == null || fetchedUserProfile.getPosts().size() == 0) {
+
+        } else {
+            posts = new ArrayList<>(List.copyOf(fetchedUserProfile.getPosts()));
         }
-        return userRepository.save(fetchedUser);
+
+        for (Post post: posts) {
+            post.setByUser(updatedUser);
+            Post dbPost = postRepository.findPostById(post.getId());
+            dbPost.setByUser(updatedUser);
+            postRepository.save(dbPost);
+        }
+        fetchedUserProfile.setPosts(posts);
+        userProfileRepository.save(fetchedUserProfile);
+
+//        List<Comment> commentsByUser = new ArrayList<>();
+
+        List<Comment> allComments = new ArrayList<>();
+
+//        if (commentRepository.findByByUser_Username(updatedUser.getUsername()) == null || commentRepository.findByByUser_Username(updatedUser.getUsername()).size() == 0) {
+//
+//        } else {
+//            commentsByUser = new ArrayList<>(List.copyOf(commentRepository.findByByUser_Username(updatedUser.getUsername())));
+//        }
+
+        if (commentRepository.findAll() == null || commentRepository.findAll().size() == 0) {
+
+        } else {
+            allComments = new ArrayList<>(List.copyOf(commentRepository.findAll()));
+        }
+
+
+        for(Comment comment: allComments) {
+            if (!comment.getByUser().equals(updatedUser)) {
+                continue;
+            }
+            log.debug("Comment updated "+comment.getCommentText());
+            comment.setByUser(updatedUser);
+            commentRepository.save(comment);
+
+            Post postForComment = postRepository.findPostById(comment.getPostId());
+            List<Comment> comments = new ArrayList<>(postForComment.getComments());
+            int index = comments.indexOf(comment);
+            comments.set(index, comment);
+            postForComment.setComments(comments);
+            Post updatedPost = postRepository.save(postForComment);
+
+
+            UserProfile commentShownInUserProfile = userProfileRepository.findByUsername(postForComment.getByUser().getUsername());
+            List<Post> allPosts = new ArrayList<>(List.copyOf(commentShownInUserProfile.getPosts()));
+            int postIndex = allPosts.indexOf(postForComment);
+            allPosts.set(postIndex, updatedPost);
+            log.info("AllPosts post at Index = "+ allPosts.get(postIndex).toString());
+            commentShownInUserProfile.setPosts(allPosts);
+            log.info("Final Comment"+commentShownInUserProfile.getPosts().toString());
+            userProfileRepository.save(commentShownInUserProfile);
+        }
+
+
+
+        return updatedUser;
+
     }
 
     public Boolean removeUser(String username) {
