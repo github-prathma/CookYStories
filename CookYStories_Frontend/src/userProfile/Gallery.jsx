@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import burger from '../mainapp/slider_images/burgers.jpg'
-import breakfast from '../mainapp/slider_images/breakfast.jpg'
-import hamburger from '../mainapp/slider_images/hamburger.jpg'
-import platter from '../mainapp/slider_images/platter.jpg'
-import sandwich from '../mainapp/slider_images/sandwich.jpg'
+import burger from '../slider_images/burgers.jpg'
+import breakfast from '../slider_images/breakfast.jpg'
+import hamburger from '../slider_images/hamburger.jpg'
+import platter from '../slider_images/platter.jpg'
+import sandwich from '../slider_images/sandwich.jpg'
 import '../css/userprofile-css/Gallery.css'
 
 export default class Gallery extends Component {
