@@ -36,10 +36,9 @@ function LoadFeed(props) {
                 
                 return (
 
-                    <div className="feed" id="feed-page">
-                    <StoryReel />
-                    {/* <Sidebar /> */}
-                    <div id="page-wrap">
+                    <div className="feed">
+                    
+                    <div>
                         <PostSend />
                         {
                             posts.map (

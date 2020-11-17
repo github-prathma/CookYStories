@@ -12,6 +12,7 @@
 
 .main > .story-reel {
   padding: 50px;
+  justify-content: center;
 }
 
 /* .pratik {
