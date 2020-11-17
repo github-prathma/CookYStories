@@ -1,6 +1,7 @@
 package com.cookystoriesspring.CookYStories.User.Resolvers;
 
 import com.cookystoriesspring.CookYStories.Post.Models.Post;
+import com.cookystoriesspring.CookYStories.User.Models.GraphQLInputs.FollowerRelationship;
 import com.cookystoriesspring.CookYStories.User.Models.User;
 import com.cookystoriesspring.CookYStories.User.Models.UserProfile;
 import com.cookystoriesspring.CookYStories.User.MongoRepositories.UserProfileRepository;
@@ -25,8 +26,22 @@ public class UserGraphQLQueryController implements GraphQLQueryResolver {
         return userRepository.findByUsername(username);
     }
 
-    public UserProfile getUserProfile(String username) {
-        return userProfileRepository.findByUsername(username);
+    public UserProfile getUserProfile(FollowerRelationship followerRelationship) {
+        UserProfile toUserProfile =  userProfileRepository.findByUsername(followerRelationship.getToFollowUser());
+        UserProfile loggedinUser = userProfileRepository.findByUsername(followerRelationship.getLoggedInUser());
+        boolean followerFound = false;
+        for(User follower: toUserProfile.getFollowers()) {
+            if(follower.getUsername().equals(loggedinUser.getUsername())){
+                followerFound = true;
+                toUserProfile.setIsFollowed(true);
+                break;
+            }
+        }
+
+        if(!followerFound) {
+            toUserProfile.setIsFollowed(false);
+        }
+        return toUserProfile;
     }
 
     public List<User> getFollowers(String username) {

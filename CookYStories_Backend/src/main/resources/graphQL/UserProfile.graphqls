@@ -10,10 +10,11 @@ type UserProfile{
     following:[User]
     storyId:String
     profileImageUrl:String
+    isFollowed:Boolean
 }
 
 type Query {
-    getUserProfile(username:String):UserProfile
+    getUserProfile(input:FollowerRelationship):UserProfile
     getFollowers(username:String!):[User]!
     getFollowing(username:String!):[User]!
     getPosts(username:String!):[Post]!
@@ -22,6 +23,25 @@ type Query {
 type Mutation {
     addUserProfile(username:String):Boolean!
     updateProfileImage(input:ProfileInput):UserProfile
+    followUser(input:FollowerRelationship):UserProfile
+    reportUser(input:ReportUserInput):String
+    reportPost(input:ReportPostInput):String
+}
+
+input ReportUserInput{
+    username:String!
+    reportedBy:String!
+}
+
+input ReportPostInput{
+    postId: String!
+    reportedBy: String!
+}
+
+input FollowerRelationship {
+    loggedInUser:String!
+    toFollowUser:String!
+    isFollow:Boolean
 }
 
 input ProfileInput {

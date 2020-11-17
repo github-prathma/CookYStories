@@ -11,6 +11,7 @@ import com.cookystoriesspring.CookYStories.User.MongoRepositories.UserProfileRep
 import com.cookystoriesspring.CookYStories.User.MongoRepositories.UserRepository;
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -36,19 +37,23 @@ public class PostsGraphQLMutationController implements GraphQLMutationResolver {
 
         UserProfile byUserProfile = userProfileRepository.findByUsername(postInput.getByUsername());
         log.info(byUserProfile.getUsername());
-//
+
         List<Post> posts = byUserProfile.getPosts();
         User byUser = userRepository.findByUsername(postInput.getByUsername());
 
         log.info(byUser.getFirstName());
 
-        byUserProfile.setBasicInfo(byUser);
+//        byUserProfile.setBasicInfo(byUser);
+        byUserProfile.setNumPosts(byUserProfile.getNumPosts()+1);
 
         post.setByUser(byUser);
 
         post.setNumComments(0);
         post.setNumLikes(0);
         post.setCreatedAt(new Date());
+        post.setLikedByUsers(new ArrayList<>());
+        post.setComments(new ArrayList<>());
+
         if (postInput.getMedia() != null) {
             List<String> media = postInput.getMedia();
             List<Media> postsMedia = new ArrayList<>();
@@ -58,14 +63,17 @@ public class PostsGraphQLMutationController implements GraphQLMutationResolver {
                 postsMedia.add(md);
             }
             post.setMedia(postsMedia);
+        } else {
+            post.setMedia(new ArrayList<>());
         }
 
         post.setDescription(postInput.getDescription());
         post.setShareUrl("");
 
-        posts.add(post);
+        Post savedPost = postRepository.insert(post);
+        posts.add(savedPost);
+        byUserProfile.setPosts(posts);
         userProfileRepository.save(byUserProfile);
-        postRepository.insert(post);
 
         return true;
     }
@@ -87,13 +95,27 @@ public class PostsGraphQLMutationController implements GraphQLMutationResolver {
 
     public Boolean likeUnlikePost(LikedPostInput post) {
         Post oldPost = postRepository.findPostById(post.getId());
-        String byusername = post.getByUsername();
-        List<User> likedByUsers = oldPost.getLikedByUsers();
+        log.info(oldPost.toString());
+        String likedBy = post.getByUsername();
+        String postedBy = oldPost.getByUser().getUsername();
 
-        if (post.getIsLiked() == true) {
+        List<User> likedByUsers = new ArrayList<>();
+
+        if (oldPost.getLikedByUsers() == null || oldPost.getLikedByUsers().size() == 0) {
+            likedByUsers = new ArrayList<>();
+        } else {
+            likedByUsers = new ArrayList<>(List.copyOf(oldPost.getLikedByUsers()));
+        }
+
+
+        User postUser = userRepository.findByUsername(postedBy);
+        UserProfile userProfile = userProfileRepository.findByUsername(postedBy);
+
+        if (post.getIsLike() == true) {
+            //like post
             boolean userFound = false;
             for (User user: likedByUsers) {
-                if (user.getUsername() == byusername) {
+                if (user.getUsername().equals(likedBy)) {
                     userFound = true;
                     break;
                 }
@@ -101,12 +123,24 @@ public class PostsGraphQLMutationController implements GraphQLMutationResolver {
 
             if (userFound == false) {
                 oldPost.setNumLikes(oldPost.getNumLikes()+1);
-                likedByUsers.add(userRepository.findByUsername(byusername));
+                likedByUsers.add(userRepository.findByUsername(likedBy));
+
+                oldPost.setLikedByUsers(likedByUsers);
+
+                List<Post> allPosts = userProfile.getPosts();
+
+                if (allPosts.contains(oldPost)) {
+                    int index = allPosts.indexOf(oldPost);
+                    log.info(String.valueOf(index));
+                    allPosts.set(index, oldPost);
+                }
+
+                userProfile.setPosts(allPosts);
             }
         } else {
             boolean userFound = false;
             for (User user: likedByUsers) {
-                if (user.getUsername() == byusername) {
+                if (user.getUsername().equals(likedBy)) {
                     userFound = true;
                     break;
                 }
@@ -114,12 +148,25 @@ public class PostsGraphQLMutationController implements GraphQLMutationResolver {
 
             if (userFound == true) {
                 oldPost.setNumLikes(oldPost.getNumLikes() - 1);
-                likedByUsers.remove(userRepository.findByUsername(byusername));
+                likedByUsers.remove(userRepository.findByUsername(likedBy));
+                oldPost.setLikedByUsers(likedByUsers);
+
+                List<Post> allPosts = userProfile.getPosts();
+
+                if (allPosts.contains(oldPost)) {
+                    int index = allPosts.indexOf(oldPost);
+                    allPosts.set(index, oldPost);
+                }
+
+                userProfile.setPosts(allPosts);
             }
         }
+
+
+        userProfileRepository.save(userProfile);
         postRepository.save(oldPost);
 
-        return !post.getIsLiked();
+        return post.getIsLike();
     }
 
     public Boolean deletePost(String id) {
