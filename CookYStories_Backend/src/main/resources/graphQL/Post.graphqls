@@ -20,6 +20,8 @@ input PostInput{
 
 extend type Query {
     getPost(id:String): Post
+    getAllPostsForUser(username:String!):[Post]
+    loadFeed(username:String!):[Post]
 }
 
 extend type Mutation {
@@ -27,6 +29,7 @@ extend type Mutation {
     updatePost(input: PostInput): Post
     likeUnlikePost(input: LikedPostInput): Boolean
     deletePost(id: String): Boolean
+
 }
 
 input LikedPostInput {
