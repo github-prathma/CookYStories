@@ -93,7 +93,7 @@ export default class ProfileHeader extends Component {
                     style={{display: 'flex'}}
                       />
                 </div>
-                <div className="form-group">
+                {/* <div className="form-group">
                   <label>User name:</label>
                   <input
                     type="text"
@@ -104,7 +104,7 @@ export default class ProfileHeader extends Component {
                     placeholder="rushang2413"
                     style={{display: 'flex'}}
                       />
-                </div>
+                </div> */}
                 <div className="form-group">
                   <label>City:</label>
                   <input
@@ -116,7 +116,7 @@ export default class ProfileHeader extends Component {
                     placeholder="Syracuse"
                     style={{display: 'flex'}}
                         />
-                  <label style={{marginLeft:'10px'}}>Contry:</label>
+                  <label style={{marginLeft:'10px'}}>Country:</label>
                   <input
                     type="text"
                     value={this.state.country}

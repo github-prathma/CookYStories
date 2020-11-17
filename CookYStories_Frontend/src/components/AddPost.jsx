@@ -7,7 +7,7 @@ export const AddPost = ({handleClose, show, children}) => {
   const showHideClassName = show ? " modal d-block" : 'modal d-none';
   return (
     <div className={showHideClassName}>
-      <div className="modal-container">
+      <div className="container">
         {children}
         <div className="button">
         <Button

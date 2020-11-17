@@ -74,10 +74,11 @@
 .header_info {
   display: flex;
   align-items: center;
+  margin-right: 30px;
 }
 
-.header_info > h4 {
-  margin-left: 10px;
+.logout {
+  padding-top: 10px;
 }
 
 .header_right {
@@ -87,31 +88,22 @@
 .tab {
   margin-left: 1.5em;
 }
-.modal-container {
-  position: absolute;
-  width: 60%;
-  background: white;
-  left: 25%;
-  top: 15%;
-  padding: 20px;
-  box-shadow: 2px 2px 2px #aaaaaa;
-  border-radius: 10px;
-}
-.modal {
-  background: rgba(0, 0, 0, 0.8);
-}
-.form-group {
-  display: flex;
-}
-.form-control {
-  display: flex;
-}
-label {
-  width: 40%;
-}
-.EditImage > img {
+
+.EditImage > .addIcon {
+  border-radius: 1px;
   width: 200px;
   height: 200px;
-  border-radius: 10px;
-  margin-top: 25%;
+}
+
+.header_info > h5 {
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.logout > .MuiButton-contained {
+  background-color: #afd0cc;
+}
+
+.account > .MuiButton-contained {
+  background-color: #afd0cc;
 }

@@ -7,9 +7,13 @@ export default class Story extends Component {
         return (
             <div style={{backgroundImage: `url(${this.props.image})`}} className='story'>
                 <Avatar className='story_avatar' src={this.props.image} />
-                <h4>{this.props.title}</h4>
+                <div className="subtitle">
+                    <h6>{this.props.title}</h6>
+                </div>
       
             </div>
+            
         )
     }
+
 }
