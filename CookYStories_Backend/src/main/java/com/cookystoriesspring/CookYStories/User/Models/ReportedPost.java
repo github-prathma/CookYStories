@@ -6,29 +6,20 @@ import javax.persistence.Id;
 import java.util.Date;
 import java.util.Objects;
 
-@Document(collection = "ReportedUsers")
-public class ReportedUser {
-
+@Document(collection = "ReportedPosts")
+public class ReportedPost {
     @Id
     private String id;
-    private String username;
+    private String postId;
     private String reportedBy;
     private Date reportedAt;
 
-    public ReportedUser() {
+    public ReportedPost() {
     }
 
-    public Date getReportedAt() {
-        return reportedAt;
-    }
-
-    public void setReportedAt(Date reportedAt) {
-        this.reportedAt = reportedAt;
-    }
-
-    public ReportedUser(String id, String username, String reportedBy, Date reportedAt) {
+    public ReportedPost(String id, String postId, String reportedBy, Date reportedAt) {
         this.id = id;
-        this.username = username;
+        this.postId = postId;
         this.reportedBy = reportedBy;
         this.reportedAt = reportedAt;
     }
@@ -41,6 +32,14 @@ public class ReportedUser {
         this.id = id;
     }
 
+    public String getPostId() {
+        return postId;
+    }
+
+    public void setPostId(String postId) {
+        this.postId = postId;
+    }
+
     public String getReportedBy() {
         return reportedBy;
     }
@@ -49,20 +48,20 @@ public class ReportedUser {
         this.reportedBy = reportedBy;
     }
 
-    public String getUsername() {
-        return username;
+    public Date getReportedAt() {
+        return reportedAt;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setReportedAt(Date reportedAt) {
+        this.reportedAt = reportedAt;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ReportedUser that = (ReportedUser) o;
-        return Objects.equals(id, that.id);
+        ReportedPost that = (ReportedPost) o;
+        return id.equals(that.id);
     }
 
     @Override
