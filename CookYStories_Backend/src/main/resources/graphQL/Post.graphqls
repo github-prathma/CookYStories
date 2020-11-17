@@ -22,6 +22,7 @@ extend type Query {
     getPost(id:String): Post
     getAllPostsForUser(username:String!):[Post]
     loadFeed(username:String!):[Post]
+    searchPostsByQuery(query:String!):[Post]
 }
 
 extend type Mutation {

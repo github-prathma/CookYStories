@@ -7,6 +7,8 @@ import com.cookystoriesspring.CookYStories.User.Models.UserProfile;
 import com.cookystoriesspring.CookYStories.User.MongoRepositories.UserProfileRepository;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -39,5 +41,15 @@ public class PostsGraphQLQueryController implements GraphQLQueryResolver {
              result.addAll(userProfileRepository.findByUsername(u.getUsername()).getPosts());
         }
         return result;
+    }
+
+    public List<Post> searchPostsByQuery(String query) {
+        List<Post> result = new ArrayList<>();
+
+        result = postRepository.findByDescriptionContaining(query);
+        if(result!=null) {
+            return result;
+        }
+        return new ArrayList<>();
     }
 }
