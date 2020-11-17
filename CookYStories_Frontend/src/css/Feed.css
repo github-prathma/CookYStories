@@ -1,8 +1,19 @@
 .feed {
   flex: 30px 150px;
-  padding: 30px 150px;
+  /* padding: 20px; 150px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+.main {
+  display: flex;
+}
+
+.main > .story-reel {
+  padding: 50px;
+}
+
+/* .pratik {
+  margin-top: 10px;
+} */

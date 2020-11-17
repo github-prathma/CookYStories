@@ -10,14 +10,14 @@ export default class StoryReel extends Component {
     render() {
         return (
             <div className="storyReel">
-                <Story
+                {/* <Story
                     image={rushang}
                     title='Rushang Shah' 
                 />
                 <Story
                     image={prathma}
                     title='Prathma Rastogi' 
-                />
+                /> */}
                 <Story
                     image={chintu}
                     title='Chintamani Satavlekar' 
@@ -42,6 +42,7 @@ export default class StoryReel extends Component {
                     image={pratik}
                     title='Pratik Bhatia' 
                 />
+                
                 
                 
             </div>

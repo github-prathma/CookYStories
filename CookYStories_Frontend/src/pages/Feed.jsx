@@ -9,10 +9,20 @@ import Sidebar from '../components/Sidebar'
 export default class Feed extends Component {
     render() {
         return (
-            <div className="feed" id="feed-page">
+            <div>
+            <div className="main">
+                <Sidebar />
+                <div className="story-reel">
                 <StoryReel />
-                {/* <Sidebar /> */}
-                <div id="page-wrap">
+                </div>
+                
+                
+            </div>
+
+            <div className="feed">
+                
+                
+                <div className="pratik">
                     <PostSend />
                     <Post 
                         profilePic={rushang}
@@ -28,7 +38,8 @@ export default class Feed extends Component {
                         username='rushang2413'
                     />
                 </div>
-            </div>   
+            </div> 
+            </div>  
         )
     }
 }

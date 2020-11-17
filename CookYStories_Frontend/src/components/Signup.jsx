@@ -177,7 +177,7 @@ export default class SignUp extends Component {
             <Grid container justify="flex-end">
               <Grid item>
                 Already have an account?
-                <Link href={<LoginPage />}> Login</Link>
+                <Link href="login"> Login</Link>
               </Grid>
             </Grid>
           </form>

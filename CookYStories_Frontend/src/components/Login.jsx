@@ -76,7 +76,7 @@ export default class Login extends Component {
             <Grid container justify="center">
               <Grid item>
                 Don't have an account?
-                <Link href={<SignupPage />}> Sign Up</Link>
+                <Link href="signup"> Sign Up</Link>
               </Grid>
             </Grid>
           </form>
