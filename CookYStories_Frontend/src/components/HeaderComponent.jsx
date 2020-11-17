@@ -81,7 +81,7 @@ class HeaderComponent extends Component {
                 </div>}
 
                 <div className="header_right">
-                    {isLoggedIn &&<div className="header_info">
+                    {isLoggedIn && <div className="header_info">
                       <Avatar src={rushang}/>
                       <h4>rushang2413</h4>
                     </div>}
