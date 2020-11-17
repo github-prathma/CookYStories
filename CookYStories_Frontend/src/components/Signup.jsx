@@ -13,7 +13,6 @@ import {
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import "../css/Signup.css";
-import LoginPage from "./Login";
 
 export default class SignUp extends Component {
   constructor(props) {
