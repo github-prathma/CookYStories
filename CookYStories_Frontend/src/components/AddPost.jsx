@@ -1,10 +1,9 @@
-//import { Modal } from '@material-ui/core';
+import React from 'react'
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
-import React from 'react'
-import '../css/userprofile-css/EditProfile.css'
+import '../css/AddPost.css'
 
-export const EditProfile = ({ handleClose, show, children }) => {
+export const AddPost = ({handleClose, show, children}) => {
   const showHideClassName = show ? " modal d-block" : 'modal d-none';
   return (
     <div className={showHideClassName}>
@@ -25,4 +24,3 @@ export const EditProfile = ({ handleClose, show, children }) => {
     </div>
   )
 }
-export default EditProfile;

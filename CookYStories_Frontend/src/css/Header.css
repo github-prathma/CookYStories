@@ -14,7 +14,7 @@
   justify-content: space-evenly;
 }
 
-.header_input{
+.header_input {
   display: flex;
   align-items: center;
   background-color: #eff2f5;
@@ -27,7 +27,7 @@
   height: 60px;
 }
 
-.header_input > input{
+.header_input > input {
   border: none;
   background-color: transparent;
   outline-width: 0;
@@ -48,7 +48,7 @@
   color: #ffb2a4;
 }
 
-.header_option--active > .MuiSvgIcon-root{
+.header_option--active > .MuiSvgIcon-root {
   color: #ffb2a4;
 }
 
@@ -63,7 +63,7 @@
   cursor: pointer;
 }
 
-.header_option:hover{
+.header_option:hover {
   background-color: #eff2f5;
   border-radius: 10px;
   align-items: center;
@@ -82,4 +82,36 @@
 
 .header_right {
   display: flex;
+}
+
+.tab {
+  margin-left: 1.5em;
+}
+.modal-container {
+  position: absolute;
+  width: 60%;
+  background: white;
+  left: 25%;
+  top: 15%;
+  padding: 20px;
+  box-shadow: 2px 2px 2px #aaaaaa;
+  border-radius: 10px;
+}
+.modal {
+  background: rgba(0, 0, 0, 0.8);
+}
+.form-group {
+  display: flex;
+}
+.form-control {
+  display: flex;
+}
+label {
+  width: 40%;
+}
+.EditImage > img {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  margin-top: 25%;
 }

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from 'prop-types';
 import {
   Avatar,
   Button,
@@ -13,6 +12,7 @@ import {
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import "../css/Signup.css";
+import AuthenticationService from '../backend/AuthenticationService'
 
 export default class SignUp extends Component {
   constructor(props) {
@@ -176,7 +176,7 @@ export default class SignUp extends Component {
             <Grid container justify="flex-end">
               <Grid item>
                 Already have an account?
-                <Link href="login"> Login</Link>
+                <Link onClick={this.loginLinkCLicked}> Login</Link>
               </Grid>
             </Grid>
           </form>
@@ -184,5 +184,9 @@ export default class SignUp extends Component {
         <Box mt={5}></Box>
       </Container>
     );
+  }
+
+  loginLinkCLicked = () => {
+    this.props.history.push('/login');
   }
 }
