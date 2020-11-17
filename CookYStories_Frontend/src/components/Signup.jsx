@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import "../css/Signup.css";
-import LoginPage from "./Login";
+import AuthenticationService from '../backend/AuthenticationService'
 
 export default class SignUp extends Component {
   constructor(props) {
@@ -177,7 +177,7 @@ export default class SignUp extends Component {
             <Grid container justify="flex-end">
               <Grid item>
                 Already have an account?
-                <Link href="login"> Login</Link>
+                <Link onClick={this.loginLinkCLicked}> Login</Link>
               </Grid>
             </Grid>
           </form>
@@ -185,5 +185,9 @@ export default class SignUp extends Component {
         <Box mt={5}></Box>
       </Container>
     );
+  }
+
+  loginLinkCLicked = () => {
+    this.props.history.push('/login');
   }
 }

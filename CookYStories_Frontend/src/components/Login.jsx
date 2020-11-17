@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import SignupPage from "./Signup";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import EmailSharpIcon from "@material-ui/icons/EmailSharp";
 
@@ -21,8 +20,8 @@ export default class Login extends Component {
     super(props);
 
     this.state = {
-      usernameOrEmail: "",
-      password: "",
+      username: "rushang2413",
+      password: "pass@123",
     };
   }
 
@@ -39,7 +38,7 @@ export default class Login extends Component {
                   required
                   fullWidth
                   id="email"
-                  label="Username or Email Address"
+                  label="Username"
                   name="email"
                   autoComplete="email"
                 />
@@ -76,7 +75,7 @@ export default class Login extends Component {
             <Grid container justify="center">
               <Grid item>
                 Don't have an account?
-                <Link href="signup"> Sign Up</Link>
+                <Link onClick={this.signupLinkClicked}> Sign Up</Link>
               </Grid>
             </Grid>
           </form>
@@ -101,5 +100,9 @@ export default class Login extends Component {
         </div>
       </Container>
     );
+  }
+
+  signupLinkClicked = () => {
+    this.props.history.push('/signup');
   }
 }

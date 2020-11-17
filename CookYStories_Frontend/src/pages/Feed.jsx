@@ -6,7 +6,6 @@ import StoryReel from '../components/StoryReel'
 import rushang from '../Images/rushang.PNG'
 import Sidebar from '../components/Sidebar'
 import {GET_FEED} from '../backend/PostApis.js'
-// import { useQuery } from 'react-apollo-hooks'
 import { Query } from 'react-apollo'
 import { Grid } from '@material-ui/core'
 
@@ -14,10 +13,7 @@ import { Grid } from '@material-ui/core'
 function LoadFeed(props) {
     
     return (
-
-    
     <Query query={GET_FEED} variables={{username: props.username}}>
-
         {
             ({loading, error, data}) => {
 
@@ -59,7 +55,6 @@ function LoadFeed(props) {
             }
         }
     </Query>
-
     )
 }
 
@@ -77,19 +72,6 @@ export default class Feed extends Component {
         
     }
 
-
-    // componentDidMount() {
-    //     // this.refresh()
-    //     return (
-    //         <div>
-    //             <LoadFeed/>
-    //         </div>
-    //     )
-    // }
-
-    // refresh() {
-        // return <LoadFeed/>
-    // }
 
     render() {
 
@@ -109,7 +91,6 @@ export default class Feed extends Component {
                     <LoadFeed username={this.state.username}/>
                 </div>
             </div>
-
         )
     }
 }
