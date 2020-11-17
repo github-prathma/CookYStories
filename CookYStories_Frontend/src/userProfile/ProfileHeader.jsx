@@ -4,8 +4,6 @@ import CreateIcon from '@material-ui/icons/Create';
 import SaveIcon from '@material-ui/icons/Save';
 import '../css/userprofile-css/ProfileHeader.css'
 import EditProfile from './EditProfile'
-import PropTypes from 'prop-types';
-import { Avatar } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
 export default class ProfileHeader extends Component {
@@ -19,30 +17,30 @@ export default class ProfileHeader extends Component {
     this.state = {
       modal: false,
       name: "",
+      first_name: "",
+      last_name: "",
+      user_name: "",
+      city: "",
+      country: "",
+      bio: "",
+
       modalInputName: ""
     };
   }
 
   handleChange(e) {
-    const target = e.target;
-    const name = target.name;
-    const value = target.value;
+    // const target = e.target;
+    // const name = target.name;
+    // const value = target.value;
 
     this.setState({
-      [name]: value
+      [e.target.name]: e.target.value
     });
   }
 
   handleSubmit(e) {
+    // const { first_name, last_name, user_name, city, country, bio } = this.state;
     this.setState({ name: this.state.modalInputName });
-    console.log("User name is" + this.state.modalInputName);
-    console.log("First name is" + this.state.modalInputName);
-    console.log("Last name is" + this.state.modalInputName);
-    console.log("User name is" + this.state.modalInputName);
-    console.log("city name is" + this.state.modalInputName);
-    console.log("country name is" + this.state.modalInputName);
-    console.log("Bio name is" + this.state.modalInputName);
-
     this.modalClose();
   }
 
@@ -52,7 +50,7 @@ export default class ProfileHeader extends Component {
 
   modalClose() {
     this.setState({
-      modalInputName: "",
+      // modalInputName: "",
       modal: false
     });
   }
@@ -60,7 +58,7 @@ export default class ProfileHeader extends Component {
     return (      
       <div className='userProfile'>
         <div className='profileImage'>
-          <img src={rushang} />
+          <img src={rushang} alt="Img"/>
         </div>
         <div className='profileBio'>
           <h4>Rushang Shah
@@ -69,15 +67,15 @@ export default class ProfileHeader extends Component {
             <EditProfile show={this.state.modal} handleClose={e => this.modalClose(e)}>
               <form className="form-group">
               <div className='EditImage'>
-          <img src={rushang} />
+               <img src={rushang} alt="img"/>
                 </div>
                 <ul>
                 <div className="form-group">
                   <label >First name:</label>
                   <input
                     type="text"
-                    value={this.state.modalInputName}
-                    name="modalInputName"
+                    value={this.state.first_name}
+                    name="first_name"
                     onChange={e => this.handleChange(e)}
                     className="form-control"
                     placeholder="Rushang"
@@ -87,8 +85,8 @@ export default class ProfileHeader extends Component {
                   <label>Last name:</label>
                   <input
                     type="text"
-                    value={this.state.modalInputName}
-                    name="modalInputName"
+                    value={this.state.last_name}
+                    name="last_name"
                     onChange={e => this.handleChange(e)}
                     className="form-control"
                     placeholder="Shah"
@@ -99,8 +97,8 @@ export default class ProfileHeader extends Component {
                   <label>User name:</label>
                   <input
                     type="text"
-                    value={this.state.modalInputName}
-                    name="modalInputName"
+                    value={this.state.user_name}
+                    name="user_name"
                     onChange={e => this.handleChange(e)}
                     className="form-control"
                     placeholder="rushang2413"
@@ -111,8 +109,8 @@ export default class ProfileHeader extends Component {
                   <label>City:</label>
                   <input
                     type="text"
-                    value={this.state.modalInputName}
-                    name="modalInputName"
+                    value={this.state.city}
+                    name="city"
                     onChange={e => this.handleChange(e)}
                     className="form-control"
                     placeholder="Syracuse"
@@ -121,8 +119,8 @@ export default class ProfileHeader extends Component {
                   <label style={{marginLeft:'10px'}}>Contry:</label>
                   <input
                     type="text"
-                    value={this.state.modalInputName}
-                    name="modalInputName"
+                    value={this.state.country}
+                    name="country"
                     onChange={e => this.handleChange(e)}
                     className="form-control"
                     placeholder="USA"
@@ -133,25 +131,25 @@ export default class ProfileHeader extends Component {
                 <label>Bio:</label>
                 <textarea
                   type="text"
-                  value={this.state.modalInputName}
-                  name="modalInputName"
+                  value={this.state.bio}
+                  name="bio"
                   onChange={e => this.handleChange(e)}
                   className="form-control"
-                  placeholder="Hello Everyone!!!!!!!!!"
+                  placeholder="Hello Everyone"
                   style={{display: 'flex'}}
                     />
                   </div>  
                 </ul>  
           </form>
               <form>
-                <div>
+                <div className="button">
                     <Button
                       variant="contained"
                       color="primary"                  
                       startIcon={<SaveIcon />}
                       onClick={e => this.handleSubmit(e)} >
                     Update
-                    </Button>
+            </Button>
                   </div>
           </form>
             </EditProfile></h4>
