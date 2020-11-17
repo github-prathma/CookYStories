@@ -1,4 +1,4 @@
-.story{
+.story {
   position: relative;
   background-position: center center;
   background-size: cover;
@@ -14,6 +14,43 @@
 
 .story:hover {
   transform: scale(1.07);
+  transition: 1s;
+  filter: brightness(30%);
+}
+
+.subtitle > h6 {
+  text-align: bottom;
+  align-items: center;
+  padding-left: 100;
+  padding-right: 100;
+  font-family: cursive;
+  /* font-style: italic; */
+  font-size: large;
+  font-weight: bold;
+  color: transparent;
+}
+
+.story:hover > .subtitle > h6 {
+  color: white;
+  text-align: center;
+  align-items: center;
+  padding-left: 100;
+  padding-right: 100;
+  font-family: cursive;
+  font-size: large;
+  font-weight: bold;
+  display: block;
+}
+
+.subtitle:hover > h6 {
+  color: white;
+  text-align: bottom;
+  align-items: center;
+  padding-left: 100;
+  padding-right: 100;
+  font-family: cursive;
+  font-size: large;
+  font-weight: bold;
 }
 
 .story_avatar {
@@ -21,9 +58,9 @@
   border: 4px solid #6a5acd;
 }
 
-.story > h4{
+/* .story > h6 {
   position: absolute;
   bottom: 20px;
   left: 20px;
   color: white;
-}
+} */

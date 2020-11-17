@@ -85,76 +85,30 @@ class HeaderComponent extends Component {
                 <div className="header_right">
                     {isLoggedIn && <div className="header_info">
                       <Avatar src={rushang}/>
-                      <h4>rushang2413</h4>
+                      <h5>rushang2413</h5>
                     </div>}
 
-              {/* {!isLoggedIn && !this.state.isLoginClicked && <div className="account"> 
+                    {isLoggedIn && <div className="logout">
+                    <Button fullWidth variant="contained" onClick={this.logoutClicked}>
+                        <AccountCircleIcon />
+                        <span className="tab">Logout </span>
+                      </Button>
+                      </div>}
+                      
+                    </div>
+
+              {!isLoggedIn && !this.state.isLoginClicked && <div className="account"> 
                     <Button fullWidth variant="contained" onClick={this.loginClicked}>
                         <AccountCircleIcon />
                         <span className="tab">Sign In / Create Account </span>
                       </Button>
-                    </div>} */}
+                    </div>}
                     
-              {/* {isLoggedIn && */}
-                <div className="addPost">
-                      <IconButton>
-                              <AddIcon onClick={e => this.modalOpen(e)} />
-                              <AddPost show={this.state.modal} handleClose={e => this.modalClose(e)}>
-                    <form className="form-group">
-                      <Grid container spacing={2}>
-                        <Grid item>
-                            <div className='EditImage'>
-                            <img src={addimage} className="addIcon" />
-                          </div>
-                        </Grid>
-                        <Grid item xs={12} sm container>
-                        <Grid item xs container direction="column" spacing={2}>
-                        <Grid item xs>
-                              <div className="form-group">
-                                <Typography variant="h6">How to Cook!</Typography>
-                                <br />
-                              </div>
-                              <div className="form-group">
-                                <textarea
-                                  type="text"
-                                  value={this.state.description}
-                                  name="description"
-                                  onChange={e => this.handleChange(e)}
-                                  className="form-control"
-                                  placeholder="Enter your way to cook!"
-                                  style={{height: '200px'}}
-                                />       
-                              </div>
-                            </Grid>
-                          </Grid>
-                          </Grid>
-                        </Grid>
-                    </form>
-                    <form>
-                              <div className="button">
-                              <Button
-                                variant="contained"
-                                color="primary"                  
-                                startIcon={<SaveIcon />}
-                                onClick={e => this.handleSubmit(e)} >
-                                      Post
-                              </Button>
-                                </div>
-                                </form>
-                              </AddPost>
-                      </IconButton>
-                      <IconButton>
-                        <NotificationActiveIcon />
-                      </IconButton>
-                      <IconButton>
-                        <ExpandMoreIcon />
-                      </IconButton>
-                      </div>
-                  {/* } */}
+              
 
                 </div>
 
-              </div>
+              
         );
     }
 
