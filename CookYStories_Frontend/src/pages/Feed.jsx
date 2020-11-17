@@ -35,7 +35,6 @@ function LoadFeed(props) {
                 const posts = data.loadFeed
                 
                 return (
-                    // console.log("hi testing api")
 
                     <div className="feed" id="feed-page">
                     <StoryReel />
@@ -52,7 +51,6 @@ function LoadFeed(props) {
                                 image='https://www.cookwithmanali.com/wp-content/uploads/2018/04/Vada-Pav-500x375.jpg'
                             />
                             )
-
                         }
                     
                     </div>  
@@ -97,7 +95,6 @@ export default class Feed extends Component {
 
         return (
             <div>
-<<<<<<< HEAD
             <div className="main">
                 <Sidebar />
                 <div className="story-reel">
@@ -107,28 +104,6 @@ export default class Feed extends Component {
                 
             </div>
 
-            <div className="feed">
-                
-                
-                <div className="pratik">
-                    <PostSend />
-                    <Post 
-                        profilePic={rushang}
-                        message='This is Message'
-                        timestamp='This is for TimeStamp'
-                        username='rushang2413'
-                        image='https://www.cookwithmanali.com/wp-content/uploads/2018/04/Vada-Pav-500x375.jpg'
-                    />
-                    <Post 
-                        profilePic={rushang}
-                        message='This is Message'
-                        timestamp='This is for TimeStamp'
-                        username='rushang2413'
-                    />
-                </div>
-            </div> 
-            </div>  
-=======
 
             <div>
                 <LoadFeed username={this.state.username}/>
@@ -136,7 +111,6 @@ export default class Feed extends Component {
 
             </div>
 
->>>>>>> b8764999d61382a9a3f977472d095f56c3afe235
         )
     }
 }
