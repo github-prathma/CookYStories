@@ -18,21 +18,31 @@ public class AuthenticationMutationController implements GraphQLMutationResolver
     @Autowired
     private AuthenticationRepository authenticationRepository;
 
+    @Autowired
+    private AuthenticationRepository authenticationRepository;
+
     public SignInPayload login(AuthenticationModel auth) throws IllegalAccessException {
-        User fetchedUser = userRepository.findByUsername(auth.getUsername());
-        if(fetchedUser.getPassword().equals(auth.getPassword())) {
+        AuthenticationModel existingLogin = authenticationRepository.findByUsername(auth.getUsername());
+        if(existingLogin!=null) {
+            User fetchedUser = userRepository.findByUsername(auth.getUsername());
 
-            SignInPayload payload = new SignInPayload(fetchedUser.getUsername(), fetchedUser.getId(), auth.getPassword());
-            AuthenticationModel authUser = new AuthenticationModel();
-            authUser.setPassword(auth.getPassword());
-            authUser.setUsername(auth.getUsername());
-            authUser.setToken(payload.getToken());
-            authUser.setEmail(fetchedUser.getEmail());
+            if(fetchedUser.getPassword().equals(auth.getPassword())) {
 
-            authenticationRepository.save(authUser);
-            return payload;
+                SignInPayload payload = new SignInPayload(fetchedUser.getUsername(), fetchedUser.getId(), auth.getPassword());
+                AuthenticationModel authUser = new AuthenticationModel();
+                authUser.setPassword(auth.getPassword());
+                authUser.setUsername(auth.getUsername());
+                authUser.setToken(payload.getToken());
+                authUser.setEmail(fetchedUser.getEmail());
+
+                authenticationRepository.save(authUser);
+                return payload;
+            } else {
+                throw new IllegalAccessException("Invalid Credentials");
+            }
         }
-        throw new IllegalAccessException("Invalid Credentials");
+        throw new IllegalAccessException("Already logged into the System.");
+
     }
 
     public Boolean logout(String username) {
