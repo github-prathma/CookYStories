@@ -1,5 +1,5 @@
 .post {
-  width: 100%;
+  max-width: 700px;
   margin-top: 15px;
   border-radius: 15px;
   background-color: #faf9f1;
@@ -17,7 +17,7 @@
   margin-right: 10px;
 }
 .post_image > img {
-  width: 100%;
+  max-width: 700px;
 }
 .post_topInfo > h3 {
   font-size: medium;

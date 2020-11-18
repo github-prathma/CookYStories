@@ -9,6 +9,7 @@ type Post{
     shareUrl: String
     comments:[Comment!]
     likedByUsers: [User!]
+    imageUrl:String
 }
 
 input PostInput{
@@ -16,6 +17,7 @@ input PostInput{
     description:String!
     media: [String]
     byUsername: String!
+    imageUrl:String
 }
 
 extend type Query {

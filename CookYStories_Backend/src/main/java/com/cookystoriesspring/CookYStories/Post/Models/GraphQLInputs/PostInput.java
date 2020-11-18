@@ -8,14 +8,24 @@ public class PostInput {
     private String description;
     private List<String> media;
     private String byUsername;
+    private String imageUrl;
 
     public PostInput() {
     }
 
-    public PostInput(String description, List<String> media, String byUsername) {
+    public PostInput(String description, List<String> media, String byUsername, String imageUrl) {
         this.description = description;
         this.media = media;
         this.byUsername = byUsername;
+        this.imageUrl = imageUrl;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getId() {

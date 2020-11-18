@@ -14,7 +14,6 @@ import {
   Link,
   Typography,
 } from "@material-ui/core";
-
 import "../css/Login.css";
 import { red } from "@material-ui/core/colors";
 
@@ -32,7 +31,7 @@ export default class Login extends Component {
 
 
   render() {
-  
+
 
     return (
 
@@ -51,15 +50,15 @@ export default class Login extends Component {
                 return(
                 <span>Error ... </span> 
                 )}
-    
+
               if (data) {
                 console.log(data)
                 const auth = data.login
                 AuthenticationService.registerSuccessLogin(auth.user, auth.password, auth.token)
                 this.props.history.push(`/feed/${AuthenticationService.getLoggedInUser()}`)
               }
-             
-              
+
+
               return (
                 <Container component="main" maxWidth="xs">
                 <CssBaseline />
@@ -143,7 +142,7 @@ export default class Login extends Component {
             }
           }
 
-      
+
           </Mutation>
 
 
@@ -154,22 +153,19 @@ export default class Login extends Component {
   signupLinkClicked = () => {
     this.props.history.push('/signup');
   }
-
-
   usernameTyped = (event) => {
     this.setState({username: event.target.value});
   }
-
   passwordTyped = (event) => {
     this.setState({password: event.target.value});
   }
 
   logInClicked = (event) => {
     // todo api call 
-      this.setState({
-        isLoginClicked: true
-      })
-      console.log("log in button click")
-      // this.props.history.push(`/feed/${AuthenticationService.getLoggedInUser}`)
-  }
+    this.setState({
+      isLoginClicked: true
+    })
+    console.log("log in button click")
+    // this.props.history.push(`/feed/${AuthenticationService.getLoggedInUser}`)
+}
 }

@@ -29,4 +29,8 @@ export const LOG_IN = gql`
         }
 `
 
-// const LOG_OUT = gql ``
+export const LOG_OUT = gql `
+mutation ($username: String!) {
+    logout(username: $username)
+}
+`

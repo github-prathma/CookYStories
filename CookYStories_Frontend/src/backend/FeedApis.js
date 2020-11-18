@@ -26,6 +26,7 @@ query($username: String!) {
             firstName
             lastName
         }
+        imageUrl
     }
 }`
 

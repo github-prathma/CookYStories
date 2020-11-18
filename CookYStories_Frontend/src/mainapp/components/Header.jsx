@@ -10,6 +10,9 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import '../css/Header.css'
 import AuthenticationService from '../../backend/AuthenticationService'
 import { withRouter } from 'react-router';
+import {LOG_OUT} from '../../backend/AuthApis'
+import { Mutation } from 'react-apollo'
+
 // import NotificationActiveIcon from '@material-ui/icons/NotificationsActive'
 // import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 // import addimage from '../Images/Addimage.png'
@@ -35,7 +38,6 @@ class Header extends Component {
       isLoginClicked: false
     };
   }
-
 
   handleChange(e) {
     this.setState({
@@ -63,58 +65,99 @@ class Header extends Component {
   }
 
   render() {
-      const isLoggedIn = AuthenticationService.isLoggedIn();
 
-        return (
-            <div className="header">
-                <div className="header_left">
-                  <img src={logo} alt='Logo' />
-                  {isLoggedIn && <div className="header_input">
-                    <FindInPageRoundedIcon />
-                    <input placeholder='Search CookYStory'
-                      type='text' />
-                  </div>}
+        // return (
+        //   <>
+          
+        //     <Mutation mutation={LOG_OUT} variables={{username: AuthenticationService.getLoggedInUser()}}>
+        //     {
+        //        (logOutUpdate, {loading, error, data}) => { 
 
-                </div>
+        //           if (loading) { 
+        //              return (
+        //               console.log("loading") 
+        //              )
+        //           } 
+
+        //           if (error) { 
+        //              return ( 
+        //               console.log("error")
+        //               ) 
+        //           }
+
+        //            if (data) { 
+        //              console.log('API call returned '+data)
+        //             if (AuthenticationService.isLoggedIn()) { 
+        //               console.log('Trying to clear Session Storage')
+        //                  AuthenticationService.logout()
+        //                  this.setState(
+        //                    {
+        //                     isLoginClicked: false
+        //                    }
+        //                  )
+        //             }
+
+        //            }
+
+                   return ( 
+                      <div className="header">
+                        <div className="header_left">
+                            <img src={logo} alt='Logo' />
+                            {AuthenticationService.isLoggedIn() && <div className="header_input">
+                                <FindInPageRoundedIcon />
+                                <input placeholder='Search CookYStory' type='text' />
+                                </div>
+                            }
+
+                        </div>
       
-                {isLoggedIn &&<div className="header_middle">
-                <div className="header_option header_option--active">
-                    <HomeIcon fontSize='large' onClick={this.onHomeClick} />
-                  </div>
-                  <div className="header_option">
-                    <FlagIcon fontSize='large' />
-                  </div>
-                </div>}
+                        {AuthenticationService.isLoggedIn() &&<div className="header_middle">
+                            <div className="header_option header_option--active">
+                                <HomeIcon fontSize='large' onClick={this.onHomeClick} />
+                            </div>
+                            <div className="header_option">
+                                <FlagIcon fontSize='large' />
+                            </div>
+                        </div>}
 
-                <div className="header_right">
-                    {isLoggedIn && <div className="header_info" onClick={this.userNameClicked}>
-                      <Avatar src={rushang}/>
-                      <h5>rushang2413</h5>
-                    </div>}
+                        <div className="header_right">
+                            {AuthenticationService.isLoggedIn() && <div className="header_info" onClick={this.userNameClicked}>
+                                <Avatar src={rushang}/>
+                                <h5>rushang2413</h5>
+                            </div>}
 
-                    {isLoggedIn && <div className="logout">
-                    <Button fullWidth variant="contained" onClick={this.logoutClicked}>
-                        <AccountCircleIcon />
-                        <span className="tab">Logout </span>
-                      </Button>
-                      </div>}
-                      
-                    </div>
+                            {AuthenticationService.isLoggedIn() && <div className="logout">
+                              {/* onClick={e => {logOutUpdate({variables: {username: AuthenticationService.getLoggedInUser()}})}} */}
+                                      <Button fullWidth variant="contained" onClick={e => {
+                                        // logOutUpdate({variables: {username: AuthenticationService.getLoggedInUser()}});
+                                      AuthenticationService.logout();
+                                      this.props.history.push('/login');
+                                    }} >
+                                        <AccountCircleIcon />
+                                        <span className="tab">Logout </span>
+                                      </Button>
+                            </div>} 
+                        </div>
 
-              {!isLoggedIn && !this.state.isLoginClicked && <div className="account"> 
-                    <Button fullWidth variant="contained" onClick={this.loginClicked}>
-                        <AccountCircleIcon />
-                        <span className="tab">Sign In/Create Account </span>
-                      </Button>
-                    </div>}
-                    
+                            {!AuthenticationService.isLoggedIn() && !this.state.isLoginClicked && <div className="account"> 
+                                      <Button fullWidth variant="contained" onClick={this.loginClicked}>
+                                         <AccountCircleIcon />
+                                          <span className="tab">Sign In/Create Account </span>
+                                      </Button>
+                             </div>}
+
+                      </div>
+                    )
               
+            
+        //       }
+        //     }
+        //   </Mutation> 
+        //   {/* } */}
+        //   </>
+        // )
 
-                </div>
-
-              
-        );
-    }
+      }
 
     loginClicked = (event) => {
       this.setState({

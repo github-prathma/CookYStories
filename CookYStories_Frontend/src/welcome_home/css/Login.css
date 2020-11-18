@@ -13,7 +13,8 @@
 
 .paper > .form > .MuiGrid-root > .MuiGrid-root > .MuiButton-contained {
   margin: 8px 0px 8px;
-  background-color: #afd0cc;
+  background-color: #cdcada;
+  ;
   /* background-color: white; */
   border-radius: 8px;
 }

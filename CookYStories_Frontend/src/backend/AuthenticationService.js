@@ -27,5 +27,13 @@ class AuthenticationService {
         return user;
     }
 
+    getLoggedInPassword() {
+        let password = sessionStorage.getItem('password');
+        if (password === null) {
+            return ''
+        }
+        return password
+    }
+
 }
 export default new AuthenticationService()
