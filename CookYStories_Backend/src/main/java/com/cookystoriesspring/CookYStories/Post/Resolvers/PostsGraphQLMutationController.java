@@ -1,7 +1,9 @@
 package com.cookystoriesspring.CookYStories.Post.Resolvers;
 
+import com.cookystoriesspring.CookYStories.Post.Models.Comment;
 import com.cookystoriesspring.CookYStories.Post.Models.Media;
 import com.cookystoriesspring.CookYStories.Post.Models.Post;
+import com.cookystoriesspring.CookYStories.Post.MongoRepositories.CommentRepository;
 import com.cookystoriesspring.CookYStories.User.Models.User;
 import com.cookystoriesspring.CookYStories.User.Models.UserProfile;
 import com.cookystoriesspring.CookYStories.Post.Models.GraphQLInputs.LikedPostInput;
@@ -31,6 +33,9 @@ public class PostsGraphQLMutationController implements GraphQLMutationResolver {
 
     @Autowired
     private UserProfileRepository userProfileRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
 
     public Boolean addPost(PostInput postInput) {
         Post post = new Post();
@@ -187,6 +192,33 @@ public class PostsGraphQLMutationController implements GraphQLMutationResolver {
     }
 
     public Boolean deletePost(String id) {
+
+        Post post = postRepository.findPostById(id);
+        if(post == null) {
+            return false;
+        }
+        UserProfile userProfile = userProfileRepository.findByUsername(post.getByUser().getUsername());
+
+        List<Post> allPosts = new ArrayList<>();
+        if(userProfile.getPosts()!=null && userProfile.getPosts().size()>0) {
+            allPosts = userProfile.getPosts();
+            int postIndex = allPosts.indexOf(post);
+            allPosts.remove(postIndex);
+            userProfile.setPosts(allPosts);
+            userProfileRepository.save(userProfile);
+        }
+
+        List<Comment> allComments = new ArrayList<>();
+        if(commentRepository.findAll()!=null && commentRepository.findAll().size()>0) {
+            allComments = commentRepository.findAll();
+
+            for (Comment comment : allComments) {
+                if(comment.getPostId().equals(id)) {
+                    commentRepository.delete(comment);
+                }
+            }
+        }
+
         postRepository.delete(postRepository.findPostById(id));
         return true;
     }

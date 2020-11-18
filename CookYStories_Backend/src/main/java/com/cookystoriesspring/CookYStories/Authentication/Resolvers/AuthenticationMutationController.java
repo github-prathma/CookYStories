@@ -21,7 +21,8 @@ public class AuthenticationMutationController implements GraphQLMutationResolver
     public SignInPayload login(AuthenticationModel auth) throws IllegalAccessException {
         User fetchedUser = userRepository.findByUsername(auth.getUsername());
         if(fetchedUser.getPassword().equals(auth.getPassword())) {
-            SignInPayload payload = new SignInPayload(fetchedUser.getUsername(), fetchedUser.getId());
+
+            SignInPayload payload = new SignInPayload(fetchedUser.getUsername(), fetchedUser.getId(), auth.getPassword());
             AuthenticationModel authUser = new AuthenticationModel();
             authUser.setPassword(auth.getPassword());
             authUser.setUsername(auth.getUsername());

@@ -13,4 +13,5 @@ extend type Mutation {
 type SignInPayload{
     user:String
     token:String
+    password:String
 }
