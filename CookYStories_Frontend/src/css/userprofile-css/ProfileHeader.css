@@ -2,18 +2,19 @@
   display: flex;
   margin: 20px 0px;
   padding-left: 5%;
+  background-color: #ddeac1;
 }
 .profileImage > img {
   width: 200px;
   height: 200px;
   border-radius: 120px;
 }
-.profileBio{
+.profileBio {
   padding-left: 50px;
 }
-.editProfile {
-  color: gray;
-  margin-left: 500px;
+h4 > .editProfile{
+  background-color: #1dacd6;
+  margin-right: -50px;
 }
 .editProfile:hover{
   color: #ffb2a4;

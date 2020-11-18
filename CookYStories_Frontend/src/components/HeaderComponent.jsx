@@ -6,7 +6,7 @@ import NotificationActiveIcon from '@material-ui/icons/NotificationsActive'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import rushang from '../Images/rushang.PNG'
 import addimage from '../Images/Addimage.png'
-import SearchIcon from '@material-ui/icons/Search'
+import FindInPageRoundedIcon from '@material-ui/icons/FindInPageRounded';
 import HomeIcon from '@material-ui/icons/Home'
 import FlagIcon from '@material-ui/icons/Flag'
 import AddIcon from '@material-ui/icons/Add'
@@ -66,7 +66,7 @@ class HeaderComponent extends Component {
                 <div className="header_left">
                   <img src={logo} alt='Logo' />
                   {isLoggedIn && <div className="header_input">
-                    <SearchIcon />
+                    <FindInPageRoundedIcon />
                     <input placeholder='Search CookYStory'
                       type='text' />
                   </div>}
@@ -100,7 +100,7 @@ class HeaderComponent extends Component {
               {!isLoggedIn && !this.state.isLoginClicked && <div className="account"> 
                     <Button fullWidth variant="contained" onClick={this.loginClicked}>
                         <AccountCircleIcon />
-                        <span className="tab">Sign In / Create Account </span>
+                        <span className="tab">Sign In/Create Account </span>
                       </Button>
                     </div>}
                     

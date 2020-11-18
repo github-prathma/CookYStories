@@ -63,7 +63,7 @@ export default class ProfileHeader extends Component {
         <div className='profileBio'>
           <h4>Rushang Shah
           <Button className="editProfile" onClick={e => this.modalOpen(e)} variant="contained"
-            color="default" startIcon={<CreateIcon />} style={{marginLeft: '900px'}}>Edit Profile</Button>
+             startIcon={<CreateIcon />}>Edit Profile</Button>
             <EditProfile show={this.state.modal} handleClose={e => this.modalClose(e)}>
               <form className="form-group">
               <div className='EditImage'>

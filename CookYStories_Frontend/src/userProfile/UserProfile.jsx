@@ -6,7 +6,7 @@ import ProfileHeader from './ProfileHeader'
 export default class UserProfile extends Component {
   render() {
     return (
-      <div>
+      <div className="profilePage">
         <ProfileHeader />
         <PostPreview />
       </div>
