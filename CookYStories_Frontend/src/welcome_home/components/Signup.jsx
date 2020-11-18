@@ -125,7 +125,7 @@ export default class SignUp extends Component {
                 <TextField
                   value={this.state.email}
                   errorText={this.state.emailErrorText}
-                  onChange={this._handleEmailChange.bind(this)}
+                  onChange={this._handleChange.bind(this)}
                   variant="outlined"
                   required
                   fullWidth
@@ -138,7 +138,7 @@ export default class SignUp extends Component {
               <Grid item xs={12}>
                 <TextField
                   value={this.state.password}
-                  onChange={this._handlePasswordChange.bind(this)}
+                  onChange={this._handleChange.bind(this)}
                   variant="outlined"
                   required
                   fullWidth
@@ -153,7 +153,7 @@ export default class SignUp extends Component {
                 <TextField
                   value={this.state.confirmPassword}
                   errorText={this.state.confirmPasswordErrorText}
-                  onChange={this._handleConfirmPasswordChange.bind(this)}
+                  onChange={this._handleChange.bind(this)}
                   variant="outlined"
                   required
                   fullWidth
@@ -189,4 +189,18 @@ export default class SignUp extends Component {
   loginLinkCLicked = () => {
     this.props.history.push('/login');
   }
+
+  _onSubmit = (event) => {
+
+  }
+
+  _handleChange = (event) => {
+      this.setState(
+        {
+          [event.target.name]: event.target.value
+        }
+      )      
+  }
+
+ 
 }
