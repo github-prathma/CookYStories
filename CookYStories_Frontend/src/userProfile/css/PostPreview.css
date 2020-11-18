@@ -1,22 +1,21 @@
-.profileStates{
+.profileStates {
   display: flex;
   justify-content: space-around;
   border-top: 0.5px solid grey;
   padding-top: 5px;
 }
-.statsData{
+.statsData {
   display: flex;
   cursor: pointer;
   padding-top: 5px;
   padding-right: 5px;
   padding-left: 5px;
   background-color: #ddeac1;
-
 }
 .statsData > h5 {
   margin-left: 5px;
 }
-.statsData:hover{
+.statsData:hover {
   background-color: #eff2f5;
   border-radius: 15px;
   border-bottom: none;
@@ -28,18 +27,22 @@
   color: #666666;
   cursor: pointer;
 }
-.statsData--active > .MuiSvgIcon-root{
-  color: #9D2929;
+.statsData--active > .MuiSvgIcon-root {
+  color: #9d2929;
 }
 .statsData--active {
-  border-bottom: 4px solid #9D2929;
+  border-bottom: 4px solid #9d2929;
 }
-.gallery{
+.gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-.item{
+.item {
   margin: 20px 5px;
   width: 30%;
+}
+
+.rushang {
+  background-color: #9d2929;
 }

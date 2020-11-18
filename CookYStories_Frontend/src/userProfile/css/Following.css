@@ -1,14 +1,18 @@
-.mainFollow{
+.mainFollow {
   box-shadow: 1px solid grey;
 }
-.paper{
-    max-width: 500px;
+.paper {
+  max-width: 500px;
 }
-.paper:hover{
+.paper:hover {
   cursor: pointer;
 }
-.image > img{
+.image > img {
   width: 100px;
   height: 100px;
   border-radius: 120px;
+}
+
+.rushang {
+  background-color: aqua;
 }
