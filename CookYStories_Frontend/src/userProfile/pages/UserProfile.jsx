@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../css/userprofile-css/Profile.css'
+import '../css/Profile.css'
 import PostPreview from './PostPreview'
 import ProfileHeader from './ProfileHeader'
 

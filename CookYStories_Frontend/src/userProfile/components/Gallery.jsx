@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import burger from '../../slider_images/burgers.jpg'
-import breakfast from '../../slider_images/breakfast.jpg'
-import hamburger from '../../slider_images/hamburger.jpg'
-import platter from '../../slider_images/platter.jpg'
-import sandwich from '../../slider_images/sandwich.jpg'
-import '../../css/userprofile-css/Gallery.css'
+import burger from '../../utils/slider_images/burgers.jpg'
+import breakfast from '../../utils/slider_images/breakfast.jpg'
+import hamburger from '../../utils/slider_images/hamburger.jpg'
+import platter from '../../utils/slider_images/platter.jpg'
+import sandwich from '../../utils/slider_images/sandwich.jpg'
+import '../css/Gallery.css'
 
 export default class Gallery extends Component {
   render() {

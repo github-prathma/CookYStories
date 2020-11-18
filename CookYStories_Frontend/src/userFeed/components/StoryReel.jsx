@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import Story from './Story'
 import '../css/StoryReel.css'
-import rushang from '../Images/rushang.PNG'
-import prathma from '../Images/Prathma.PNG'
-import chintu from '../Images/Chintu.PNG'
-import pratik from '../Images/Pratik.PNG'
+import rushang from '../../utils/Images/rushang.PNG'
+import prathma from '../../utils/Images/Prathma.PNG'
+import chintu from '../../utils/Images/Chintu.PNG'
+import pratik from '../../utils/Images/Pratik.PNG'
 import { Grid } from '@material-ui/core'
 
 export default class StoryReel extends Component {

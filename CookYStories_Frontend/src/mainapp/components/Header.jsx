@@ -1,25 +1,25 @@
-import logo from '../CookYLogo.png'
-import '../css/CookStories.css'
+import logo from '../../utils/CookYLogo.png'
+import '../../mainapp/css/CookStories.css'
 import React, { Component } from 'react';
+import rushang from '../../utils/Images/rushang.PNG'
 import { Avatar, Button, IconButton, Grid, Typography } from '@material-ui/core'
-import NotificationActiveIcon from '@material-ui/icons/NotificationsActive'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import rushang from '../Images/rushang.PNG'
-import addimage from '../Images/Addimage.png'
 import FindInPageRoundedIcon from '@material-ui/icons/FindInPageRounded';
 import HomeIcon from '@material-ui/icons/Home'
 import FlagIcon from '@material-ui/icons/Flag'
-import AddIcon from '@material-ui/icons/Add'
-import SaveIcon from '@material-ui/icons/Save';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import '../css/Header.css'
-import AuthenticationService from '../backend/AuthenticationService'
+import AuthenticationService from '../../backend/AuthenticationService'
 import { withRouter } from 'react-router';
-import { AddPost } from './AddPost';
+// import NotificationActiveIcon from '@material-ui/icons/NotificationsActive'
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+// import addimage from '../Images/Addimage.png'
+// import AddIcon from '@material-ui/icons/Add'
+// import SaveIcon from '@material-ui/icons/Save';
+// import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+// import { AddPost } from '../../components/AddPost';
 
 
-class HeaderComponent extends Component {
+class Header extends Component {
   constructor() {
     super()
     this.handleChange = this.handleChange.bind(this);
@@ -126,4 +126,4 @@ class HeaderComponent extends Component {
     }
 }
 
-export default withRouter(HeaderComponent);
+export default withRouter(Header);

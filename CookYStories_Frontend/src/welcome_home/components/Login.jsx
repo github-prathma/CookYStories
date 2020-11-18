@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import EmailSharpIcon from "@material-ui/icons/EmailSharp";
-import AuthenticationService from '../backend/AuthenticationService'
+import AuthenticationService from '../../backend/AuthenticationService'
 
 import {
   Button,

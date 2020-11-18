@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import "../css/Signup.css";
-import AuthenticationService from '../backend/AuthenticationService'
+// import AuthenticationService from '../../backend/AuthenticationService'
 
 export default class SignUp extends Component {
   constructor(props) {

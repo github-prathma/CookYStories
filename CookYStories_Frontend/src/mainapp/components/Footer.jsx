@@ -1,7 +1,7 @@
-import '../css/CookStories.css'
+import '../../mainapp/css/CookStories.css'
 import React, { Component } from 'react';
 
-class FooterComponent extends Component {
+class Footer extends Component {
     render() {
         return (
             <footer className="footer bg-light">
@@ -11,4 +11,4 @@ class FooterComponent extends Component {
     }
 }
 
-export default FooterComponent;
+export default Footer;

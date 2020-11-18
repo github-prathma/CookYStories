@@ -3,12 +3,10 @@ import '../css/Feed.css'
 import Post from '../components/Post'
 import PostSend from '../components/PostSend'
 import StoryReel from '../components/StoryReel'
-import rushang from '../Images/rushang.PNG'
+import rushang from '../../utils/Images/rushang.PNG'
 import Sidebar from '../components/Sidebar'
-import {GET_FEED} from '../backend/PostApis.js'
+import {GET_FEED} from '../../backend/PostApis.js'
 import { Query } from 'react-apollo'
-import { Grid } from '@material-ui/core'
-import AuthenticationService from "../backend/AuthenticationService"
 
 function LoadFeed(props) {
     

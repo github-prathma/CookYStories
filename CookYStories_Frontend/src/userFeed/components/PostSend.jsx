@@ -1,11 +1,9 @@
 import { Avatar } from '@material-ui/core'
 import React from 'react'
 import {Component} from 'react'
-import rushang from '../Images/rushang.PNG'
+import rushang from '../../utils/Images/rushang.PNG'
 import '../css/PostSend.css'
-import VideocamIcon from '@material-ui/icons/Videocam'
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary'
-import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon'
 
 export default class PostSend extends Component {
     

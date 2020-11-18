@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import rushang from '../Images/rushang.PNG'
+import rushang from '../../utils/Images/rushang.PNG'
 import CreateIcon from '@material-ui/icons/Create';
 import SaveIcon from '@material-ui/icons/Save';
-import '../css/userprofile-css/ProfileHeader.css'
-import EditProfile from './EditProfile'
+import '../css/ProfileHeader.css'
+import EditProfile from '../components/EditProfile'
 import Button from '@material-ui/core/Button';
-import ErrorIcon from '@material-ui/icons/Error';
-import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-import CheckIcon from '@material-ui/icons/Check';
+// import ErrorIcon from '@material-ui/icons/Error';
+// import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+// import CheckIcon from '@material-ui/icons/Check';
 
 export default class ProfileHeader extends Component {
   constructor() {
@@ -68,12 +68,7 @@ export default class ProfileHeader extends Component {
              {/* <Button variant="contained" color="primary" endIcon={<TrendingUpIcon />} style={{ marginLeft: '900px' }}>Follow</Button> */}
             {/* <CheckIcon /> */}
           <Button className="editProfile" onClick={e => this.modalOpen(e)} variant="contained"
-<<<<<<< HEAD
              startIcon={<CreateIcon />}>Edit Profile</Button>
-=======
-              color="default" startIcon={<CreateIcon />} style={{ marginLeft: '900px' }}>Edit Profile</Button>
-            {/* <ErrorIcon color="action" style={{color: 'red', marginLeft:'10px'}}/> */}
->>>>>>> a3322a3e63f843aac5a1e15d3bf2c2779067936c
             <EditProfile show={this.state.modal} handleClose={e => this.modalClose(e)}>
               <form className="form-group">
               <div className='EditImage'>

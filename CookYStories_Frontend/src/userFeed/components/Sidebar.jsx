@@ -3,7 +3,6 @@ import '../css/Sidebar.css';
 import NearMeIcon from '@material-ui/icons/NearMe';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
-import MovieIcon from '@material-ui/icons/Movie';
 import VideocamIcon from '@material-ui/icons/Videocam'
 import SidebarRow from './SidebarRow'
 import { Grid } from '@material-ui/core';

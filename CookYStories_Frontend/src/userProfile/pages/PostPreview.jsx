@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import '../css/userprofile-css/PostPreview.css'
+import '../css/PostPreview.css'
 import ViewComfyRoundedIcon from '@material-ui/icons/ViewComfyRounded';
 import TurnedInRoundedIcon from '@material-ui/icons/TurnedInRounded';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
-import Gallery from './userStats/Gallery'
-import Follow from './userStats/Follow';
-import Following from './userStats/Following'
+import Gallery from '../components/Gallery'
+import Follow from '../components/Follow';
+import Following from '../components/Following'
 
 export default class PostPreview extends Component {
   constructor() {

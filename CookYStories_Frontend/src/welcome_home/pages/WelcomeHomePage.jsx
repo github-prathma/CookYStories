@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import images from '../images'
-import '../css/CookStories.css'
+import images from '../../utils/images'
+import '../../mainapp/css/CookStories.css'
 import {Paper} from '@material-ui/core'
 import Carousel from 'react-material-ui-carousel'
 

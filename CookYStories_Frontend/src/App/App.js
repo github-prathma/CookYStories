@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import './App.css';
+import './css/App.css';
 import './css/bootstrap.css'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import WelcomeHomePage from "./pages/WelcomeHomePage";
-import HeaderComponent from "./components/HeaderComponent"
-import FooterComponent from "./components/FooterComponent"
-import Signup from "./components/Signup"
-import Login from "./components/Login"
-import Feed from "./pages/Feed";
-import UserProfile from "./userProfile/UserProfile"
-import AuthenticatedRoute from './AuthenticatedRoute'
+import WelcomeHomePage from "../welcome_home/pages/WelcomeHomePage";
+import Header from "../mainapp/components/Header"
+import Footer from "../mainapp/components/Footer"
+import Signup from "../welcome_home/components/Signup"
+import Login from "../welcome_home/components/Login"
+import Feed from "../userFeed/pages/Feed";
+import UserProfile from "../userProfile/pages/UserProfile"
+import AuthenticatedRoute from '../utils/AuthenticatedRoute'
 
 
 class App extends Component {
@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <Router>
         <>
-          <HeaderComponent />
+          <Header/>
           <Switch>
             <Route path="/" exact component={WelcomeHomePage} />
             <AuthenticatedRoute path="/feed/:name" exact component={Feed} />
@@ -28,7 +28,7 @@ class App extends Component {
             <Route path="/login" exact component={Login} />
 
           </Switch> 
-          <FooterComponent />
+          <Footer />
         </>
       </Router>
    );
