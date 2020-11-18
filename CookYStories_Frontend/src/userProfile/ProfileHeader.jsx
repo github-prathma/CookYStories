@@ -5,6 +5,9 @@ import SaveIcon from '@material-ui/icons/Save';
 import '../css/userprofile-css/ProfileHeader.css'
 import EditProfile from './EditProfile'
 import Button from '@material-ui/core/Button';
+import ErrorIcon from '@material-ui/icons/Error';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import CheckIcon from '@material-ui/icons/Check';
 
 export default class ProfileHeader extends Component {
   constructor() {
@@ -62,8 +65,11 @@ export default class ProfileHeader extends Component {
         </div>
         <div className='profileBio'>
           <h4>Rushang Shah
+             {/* <Button variant="contained" color="primary" endIcon={<TrendingUpIcon />} style={{ marginLeft: '900px' }}>Follow</Button> */}
+            {/* <CheckIcon /> */}
           <Button className="editProfile" onClick={e => this.modalOpen(e)} variant="contained"
-            color="default" startIcon={<CreateIcon />} style={{marginLeft: '900px'}}>Edit Profile</Button>
+              color="default" startIcon={<CreateIcon />} style={{ marginLeft: '900px' }}>Edit Profile</Button>
+            {/* <ErrorIcon color="action" style={{color: 'red', marginLeft:'10px'}}/> */}
             <EditProfile show={this.state.modal} handleClose={e => this.modalClose(e)}>
               <form className="form-group">
               <div className='EditImage'>

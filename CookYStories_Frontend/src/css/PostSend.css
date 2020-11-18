@@ -13,7 +13,12 @@
   border-bottom: 1px solid #eff2f5;
   padding: 15px;
 }
+.postSend_top > .user_avatar{
+  height: 50px;
+  width: 50px;
+  margin-top: 10px;
 
+}
 .postSend_top > form {
   flex: 1;
   display: flex;

@@ -42,7 +42,8 @@ function LoadFeed(props) {
                                 post => <Post
                                 profilePic={rushang}
                                 message={post.description}
-                                timestamp={post.createdAt}
+                                    timestamp={post.createdAt}
+                                    id={props.username}
                                 username={post.byUser.username}
                                 image='https://www.cookwithmanali.com/wp-content/uploads/2018/04/Vada-Pav-500x375.jpg'
                             />

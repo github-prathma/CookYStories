@@ -21,33 +21,28 @@ export default class PostSend extends Component {
         return (
             <div className='postSend'>
                 <div className='postSend_top'>
-                    <Avatar src={rushang}/>
+                    <Avatar src={rushang} className="user_avatar"/>
                     <form>
                     <input
                         value={this.props.input}
                         onChange={(e) => this.setInput(e.target.value)}
                         className='postSend_input'
                         placeholder={'What are you coooking today?'} />
-                    <input
-                        value={this.props.imgUrl}
-                        onChange={(e) => this.setImgUrl(e.target.value)}
-                        placeholder={'Share the receipe(URL)!!'} />
-                    <button onClick={this.handleSubmit} type='submit'> Hidden Button</button>
-                    </form>
-                </div>
-                <div className='postSend_bottom'>
-                    <div className="postSend_option">
-                        <VideocamIcon style={{ color: '#ffb2a4' }} />
-                        <h3>Live Cooking!</h3>
-                    </div>
-                    <div className="postSend_option">
+                        <div className="postSend_option">
                         <PhotoLibraryIcon style={{ color: 'green' }} />
                         <h3>Photo/Video</h3>
                     </div>
-                    <div className="postSend_option">
-                        <InsertEmoticonIcon style={{ color: 'orange' }} />
-                        <h3>Feeling</h3>
-                    </div>
+                    </form>
+                </div>
+                <div className='postSend_bottom'>
+                    {/* <div className="postSend_option">
+                        <VideocamIcon style={{ color: '#ffb2a4' }} />
+                        <h3>Live Cooking!</h3>
+                    </div> */}
+                    {/* <div className="postSend_option">
+                        <PhotoLibraryIcon style={{ color: 'green' }} />
+                        <h3>Photo/Video</h3>
+                    </div> */}
                 </div>
             </div>
         )

@@ -88,14 +88,14 @@ class HeaderComponent extends Component {
                       <h4>rushang2413</h4>
                     </div>}
 
-              {/* {!isLoggedIn && !this.state.isLoginClicked && <div className="account"> 
+              {!isLoggedIn && !this.state.isLoginClicked && <div className="account"> 
                     <Button fullWidth variant="contained" onClick={this.loginClicked}>
                         <AccountCircleIcon />
                         <span className="tab">Sign In / Create Account </span>
                       </Button>
-                    </div>} */}
+                    </div>}
                     
-              {/* {isLoggedIn && */}
+              {isLoggedIn &&
                 <div className="addPost">
                       <IconButton>
                               <AddIcon onClick={e => this.modalOpen(e)} />
@@ -150,7 +150,7 @@ class HeaderComponent extends Component {
                         <ExpandMoreIcon />
                       </IconButton>
                       </div>
-                  {/* } */}
+                  }
 
                 </div>
 
