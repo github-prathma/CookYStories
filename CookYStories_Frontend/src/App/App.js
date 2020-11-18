@@ -28,7 +28,7 @@ class App extends Component {
             <Route path="/login" exact component={Login} />
 
           </Switch> 
-          <Footer />
+          {/* <Footer /> */}
         </>
       </Router>
    );

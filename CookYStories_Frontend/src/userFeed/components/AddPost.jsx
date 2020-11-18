@@ -24,3 +24,4 @@ export const AddPost = ({handleClose, show, children}) => {
     </div>
   )
 }
+export default AddPost;

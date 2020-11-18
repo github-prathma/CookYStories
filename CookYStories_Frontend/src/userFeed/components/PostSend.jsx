@@ -1,62 +1,124 @@
-import { Avatar } from '@material-ui/core'
+import { Avatar, Grid, Typography, Button } from '@material-ui/core'
 import React from 'react'
-import {Component} from 'react'
+import { Component } from 'react'
+import AddPost from './AddPost'
 import rushang from '../../utils/Images/rushang.PNG'
+import addimage from '../../utils/Images/Addimage.png'
 import '../css/PostSend.css'
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary'
+import SaveIcon from '@material-ui/icons/Save';
 
-export default class PostSend extends Component {
-    
-    constructor(props) {
-        super(props)
+
+export default class PostSend extends Component {    
+    constructor() {
+        super()
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.modalOpen = this.modalOpen.bind(this);
+        this.modalClose = this.modalClose.bind(this);
+        
         this.state = {
-            input : "",
-            imgUrl : ""
-        }
+            // input: "",
+            // imgUrl: "",
+            modal: false,
+            description: "",
+            modalInputDescription: ""
+        };
         
     }
+    handleChange(e) {
+        this.setState({
+          [e.target.name]: e.target.value
+        });
+      }
+      handleSubmit(e) {
+        this.setState({ description: this.state.modalInputDescription });
+        this.modalClose();
+      }
+      modalOpen() {
+        this.setState({ modal: true });
+      }
+      modalClose() {
+        this.setState({
+          modal: false
+        });
+      }
+    
     render() {
         return (
             <div className='postSend'>
-                <div className='postSend_top'>
+                <AddPost show={this.state.modal} handleClose={e => this.modalClose(e)}>
+                <form className="form-group">
+                      <Grid container spacing={2}>
+                        <Grid item>
+                                <div className='EditImage'>
+                                <img src={addimage} className="addIcon" alt="img" />
+                          </div>
+                        </Grid>
+                        <Grid item xs={12} sm container>
+                        <Grid item xs container direction="column" spacing={2}>
+                        <Grid item xs>
+                              <div className="form-group">
+                                <Typography variant="h6">How to Cook!</Typography>
+                                <br />
+                                        </div>
+                                        <div className="form-group">
+                                        <textarea
+                                  type="text"
+                                  value={this.state.description}
+                                  name="description"
+                                  onChange={e => this.handleChange(e)}
+                                  className="form-control"
+                                                placeholder="Enter your way to cook!"
+                                                style={{height: '200px'}}
+                                />       
+                              </div>
+                            </Grid>
+                          </Grid>
+                          </Grid>
+                        </Grid>
+                    </form>
+                    <form>
+                              <div className="button">
+                              <Button
+                                variant="contained"
+                                color="primary"                  
+                                startIcon={<SaveIcon />}
+                                onClick={e => this.handleSubmit(e)} >
+                                      Post
+                              </Button>
+                                </div>
+                                </form>      
+                                </AddPost>
+                <div className='postSend_top' onClick={e => this.modalOpen(e)}>
                     <Avatar src={rushang} className="user_avatar"/>
                     <form>
                     <input
                         value={this.props.input}
-                        onChange={(e) => this.setInput(e.target.value)}
+                        // onChange={(e) => this.setInput(e.target.value)}
                         className='postSend_input'
                         placeholder={'What are you coooking today?'} />
                         <div className="postSend_option">
-                        <PhotoLibraryIcon style={{ color: 'green' }} />
+                        <PhotoLibraryIcon style={{ color: 'green' }}/>
                         <h3>Photo/Video</h3>
                     </div>
                     </form>
-                </div>
-                <div className='postSend_bottom'>
-                    {/* <div className="postSend_option">
-                        <VideocamIcon style={{ color: '#ffb2a4' }} />
-                        <h3>Live Cooking!</h3>
-                    </div> */}
-                    {/* <div className="postSend_option">
-                        <PhotoLibraryIcon style={{ color: 'green' }} />
-                        <h3>Photo/Video</h3>
-                    </div> */}
-                </div>
+              </div>
             </div>
         )
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
+//     handleSubmit = (event) => {
+//         event.preventDefault();
 
-        this.setInput('')
-        this.setImgUrl('')
-    }
+//         this.setInput('')
+//         this.setImgUrl('')
+//     }
 
-    setInput = () => {
-        this.setState = {
-            input : "",
-            imgUrl : ""
-        }
-    }
-}
+//     setInput = () => {
+//         this.setState = {
+//             input : "",
+//             imgUrl : ""
+//         }
+//     }
+ }

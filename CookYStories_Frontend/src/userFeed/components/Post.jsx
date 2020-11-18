@@ -29,18 +29,18 @@ class Post extends Component {
                 <div className="post_top">
                     <Avatar src={this.props.profilePic} className='post_avatar' />
                     <div className="post_topInfo">
-                        <h3>{this.props.username}<MoreVertIcon style={{ marginLeft: "500px" }} onClick={this.handleClick} />
+                        <h3>{this.props.username}<MoreVertIcon style={{ marginLeft: "605px" }} onClick={this.handleClick} />
                             
                             <Menu id="simple-menu"
                                     anchorEl={anchorEl}
                                     keepMounted
                                     open={Boolean(anchorEl)}
                                 onClose={this.handleClose}>
-                                {sameUser ?  <MenuItem onClick={this.handleClose}>Edit Post</MenuItem>  :<MenuItem onClick={this.handleClose}>Report User</MenuItem>}
+                                {sameUser ?  <MenuItem onClick={this.handleClose}>Edit Post</MenuItem>  :<MenuItem onClick={this.handleClose}>Report Post</MenuItem>}
                                 {sameUser ? <MenuItem onClick={this.handleClose}>Delete Post</MenuItem> : <></> }
                                 
                         </Menu></h3>
-                        <p>TimeStamp..!!</p>                        
+                <p>{this.props.createdAt}</p>                        
                     </div>
                 </div>
                 <div className="post_bottom">

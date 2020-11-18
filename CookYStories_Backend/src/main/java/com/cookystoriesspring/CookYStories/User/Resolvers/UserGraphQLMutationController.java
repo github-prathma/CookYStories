@@ -176,8 +176,9 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
     }
 
     @Transactional
-    public UserProfile updateProfileImage(ProfileInput profileInput) {
+    public UserProfile updateProfile(ProfileInput profileInput) {
         UserProfile user = userProfileRepository.findByUsername(profileInput.getUsername());
+
         user.setProfileImageUrl(profileInput.getProfileImageUrl());
         return userProfileRepository.save(user);
     }

@@ -7,7 +7,7 @@
 
 .paper > .MuiAvatar-colorDefault {
   margin: 8px;
-  background-color: #afd0cc;
+  background-color: #cdcada;
 }
 
 .form {
@@ -17,7 +17,7 @@
 
 .paper > .form > .MuiButton-fullWidth {
   margin: 24px 0px 16px;
-  background-color: #afd0cc;
+  background-color: #cdcada;
 }
 
 .paper > .form > .MuiLink-underlineHover {

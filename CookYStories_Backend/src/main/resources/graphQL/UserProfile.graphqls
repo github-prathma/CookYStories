@@ -21,7 +21,7 @@ type Query {
 }
 
 type Mutation {
-    updateProfileImage(input:ProfileInput):UserProfile
+    updateProfile(input:ProfileInput):UserProfile
     followUser(input:FollowerRelationship):UserProfile
     reportUser(input:ReportUserInput):String
     reportPost(input:ReportPostInput):String
@@ -44,7 +44,7 @@ input FollowerRelationship {
 }
 
 input ProfileInput {
-    username:String
+    username:String!
     profileImageUrl:String
 }
 

@@ -22,11 +22,12 @@ public class Post {
     private String shareUrl;
     private List<Comment> comments;
     private List<User> likedByUsers;
+    private String imageUrl;
 
     public Post() {
     }
 
-    public Post(String description, Date createdAt, User byUser, List<Media> media, Integer numLikes, Integer numComments, String shareUrl, List<Comment> comments, List<User> likedByUsers) {
+    public Post(String description, Date createdAt, User byUser, List<Media> media, Integer numLikes, Integer numComments, String shareUrl, List<Comment> comments, List<User> likedByUsers, String imageUrl) {
         this.description = description;
         this.createdAt = createdAt;
         this.byUser = byUser;
@@ -36,6 +37,15 @@ public class Post {
         this.shareUrl = shareUrl;
         this.comments = comments;
         this.likedByUsers = likedByUsers;
+        this.imageUrl = imageUrl;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getId() {
