@@ -13,7 +13,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Component
 @CrossOrigin(origins = "http://localhost:3000")
@@ -33,6 +36,19 @@ public class PostsGraphQLQueryController implements GraphQLQueryResolver {
         return userProfileRepository.findByUsername(username).getPosts();
     }
 
+    private class SortPostByDate implements Comparator<Post> {
+        @Override
+        public int compare(Post p1, Post p2) {
+            if(p1.getCreatedAt().compareTo(p2.getCreatedAt()) > 0) {
+                return -1;
+            } else if(p1.getCreatedAt().compareTo(p2.getCreatedAt()) == 0) {
+                return 0;
+            } else {
+                return 1;
+            }
+        }
+
+    }
     public List<Post> loadFeed(String username) {
         List<Post> result = new ArrayList<>();
         UserProfile userProfile = userProfileRepository.findByUsername(username);
@@ -40,16 +56,25 @@ public class PostsGraphQLQueryController implements GraphQLQueryResolver {
         for(User u: following) {
              result.addAll(userProfileRepository.findByUsername(u.getUsername()).getPosts());
         }
+        result.addAll(userProfile.getPosts());
+        Collections.sort(result, new SortPostByDate());
+
         return result;
     }
 
     public List<Post> searchPostsByQuery(String query) {
+        List<Post> allPosts = new ArrayList<>();
         List<Post> result = new ArrayList<>();
+        allPosts = postRepository.findAll();
 
-        result = postRepository.findByDescriptionContaining(query);
-        if(result!=null) {
-            return result;
+        for(Post post: allPosts) {
+            boolean found = Pattern.compile(Pattern.quote(query), Pattern.CASE_INSENSITIVE).matcher(post.getDescription()).find();
+            if(found){
+                result.add(post);
+            }
         }
-        return new ArrayList<>();
+
+        Collections.sort(result, new SortPostByDate());
+        return result;
     }
 }
