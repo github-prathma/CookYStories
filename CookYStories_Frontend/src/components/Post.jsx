@@ -4,16 +4,43 @@ import '../css/Post.css'
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import ShareIcon from '@material-ui/icons/Share';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 class Post extends Component {
+    state = {
+        anchorEl: null
+    }
+
+    handleClick = event => this.setState({
+        anchorEl: event.currentTarget
+            })
+    handleClose = () => this.setState({ anchorEl: null })
+    
     render() {
+        // console.log(this.props.id)
+        // console.log(this.props.username)
+        const sameUser =   (this.props.id === this.props.username )
+        const { anchorEl } = this.state
         return (
+            
             <div className='post'>
                 <div className="post_top">
                     <Avatar src={this.props.profilePic} className='post_avatar' />
                     <div className="post_topInfo">
-                        <h3>{this.props.username}</h3>
-                        <p>TimeStamp..!!</p>
+                        <h3>{this.props.username}<MoreVertIcon style={{ marginLeft: "500px" }} onClick={this.handleClick} />
+                            
+                            <Menu id="simple-menu"
+                                    anchorEl={anchorEl}
+                                    keepMounted
+                                    open={Boolean(anchorEl)}
+                                onClose={this.handleClose}>
+                                {sameUser ?  <MenuItem onClick={this.handleClose}>Edit Post</MenuItem>  :<MenuItem onClick={this.handleClose}>Report User</MenuItem>}
+                                {sameUser ? <MenuItem onClick={this.handleClose}>Delete Post</MenuItem> : <></> }
+                                
+                        </Menu></h3>
+                        <p>TimeStamp..!!</p>                        
                     </div>
                 </div>
                 <div className="post_bottom">

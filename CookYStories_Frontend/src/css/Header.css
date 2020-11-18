@@ -3,7 +3,11 @@
   padding: 15px 20px;
   justify-content: space-between;
   position: sticky;
+<<<<<<< HEAD
   background-color: #fad3a3;
+=======
+  background-color: #f9c784;
+>>>>>>> a3322a3e63f843aac5a1e15d3bf2c2779067936c
   z-index: 100;
   top: 0;
   box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
