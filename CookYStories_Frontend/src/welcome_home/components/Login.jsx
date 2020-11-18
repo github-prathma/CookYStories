@@ -56,7 +56,7 @@ export default class Login extends Component {
                 console.log(data)
                 const auth = data.login
                 AuthenticationService.registerSuccessLogin(auth.user, auth.password, auth.token)
-                this.props.history.push(`/feed/${AuthenticationService.getLoggedInUser}`)
+                this.props.history.push(`/feed/${AuthenticationService.getLoggedInUser()}`)
               }
              
               
