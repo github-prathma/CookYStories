@@ -74,10 +74,11 @@
 .header_info {
   display: flex;
   align-items: center;
+  margin-right: 30px;
 }
 
-.header_info > h4 {
-  margin-left: 10px;
+.logout {
+  padding-top: 10px;
 }
 
 .header_right {
@@ -88,8 +89,21 @@
   margin-left: 1.5em;
 }
 
-.EditImage > .addIcon{
+.EditImage > .addIcon {
   border-radius: 1px;
   width: 200px;
   height: 200px;
+}
+
+.header_info > h5 {
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.logout > .MuiButton-contained {
+  background-color: #afd0cc;
+}
+
+.account > .MuiButton-contained {
+  background-color: #afd0cc;
 }
