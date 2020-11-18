@@ -140,7 +140,7 @@ export default class ProfileHeader extends Component {
                   name="bio"
                   onChange={e => this.handleChange(e)}
                   className="form-control"
-                  placeholder="Hello Everyone"
+                  placeholder="Hello Everyone!!!!!!!!!"
                   style={{display: 'flex'}}
                     />
                   </div>  
@@ -162,7 +162,6 @@ export default class ProfileHeader extends Component {
             <h5>rushang2413</h5>
             <h5>Hello Everyone!!!!!!!!!</h5>
             <h5>Syracuse, USA</h5>
-            <h5>My Website..!!</h5>
           </div>
 
         </div>

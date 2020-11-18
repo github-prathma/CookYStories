@@ -2,7 +2,7 @@ import logo from '../../utils/CookYLogo.png'
 import '../../mainapp/css/CookStories.css'
 import React, { Component } from 'react';
 import rushang from '../../utils/Images/rushang.PNG'
-import { Avatar, Button, IconButton, Grid, Typography } from '@material-ui/core'
+import { Avatar, Button } from '@material-ui/core'
 import FindInPageRoundedIcon from '@material-ui/icons/FindInPageRounded';
 import HomeIcon from '@material-ui/icons/Home'
 import FlagIcon from '@material-ui/icons/Flag'
@@ -58,6 +58,10 @@ class Header extends Component {
     });
   }
 
+  userNameClicked = () => {
+    this.props.history.push('/user')
+  }
+
   render() {
       const isLoggedIn = AuthenticationService.isLoggedIn();
 
@@ -83,7 +87,7 @@ class Header extends Component {
                 </div>}
 
                 <div className="header_right">
-                    {isLoggedIn && <div className="header_info">
+                    {isLoggedIn && <div className="header_info" onClick={this.userNameClicked}>
                       <Avatar src={rushang}/>
                       <h5>rushang2413</h5>
                     </div>}
