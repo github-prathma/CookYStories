@@ -5,7 +5,7 @@ import PostSend from '../components/PostSend'
 import StoryReel from '../components/StoryReel'
 import rushang from '../../utils/Images/rushang.PNG'
 import Sidebar from '../components/Sidebar'
-import {GET_FEED} from '../../backend/PostApis.js'
+import {GET_FEED} from '../../backend/FeedApis.js'
 import { Query } from 'react-apollo'
 
 function LoadFeed(props) {
