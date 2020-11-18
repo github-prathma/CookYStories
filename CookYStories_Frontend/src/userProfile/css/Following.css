@@ -1,0 +1,14 @@
+.mainFollow{
+  box-shadow: 1px solid grey;
+}
+.paper{
+    max-width: 500px;
+}
+.paper:hover{
+  cursor: pointer;
+}
+.image > img{
+  width: 100px;
+  height: 100px;
+  border-radius: 120px;
+}

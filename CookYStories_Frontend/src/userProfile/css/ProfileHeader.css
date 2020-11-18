@@ -1,0 +1,56 @@
+.userProfile{
+  display: flex;
+  /* margin: 20px 0px; */
+  margin-bottom: 20px;
+  padding-left: 5%;
+  background-color: #ddeac1;
+}
+.profileImage > img {
+  width: 200px;
+  height: 200px;
+  border-radius: 120px;
+}
+.profileBio {
+  padding-left: 50px;
+}
+h4 > .editProfile{
+  background-color: #1dacd6;
+  margin-top: 10px;
+  margin-left: 900px;
+
+}
+.editProfile:hover{
+  color: #ffb2a4;
+  cursor: pointer;
+}
+.modal-container {
+  position: absolute;
+  width: 60%;
+  background: white;
+  left: 25%;
+  top: 15%;
+  padding: 20px;
+  box-shadow: 2px 2px 2px #aaaaaa;
+  border-radius: 10px;
+}
+.modal {
+  background: rgba(0, 0, 0, 0.8);
+}
+.save {
+  text-align: center;
+}
+.form-group{
+  display: flex;
+}
+.form-control{
+  display: flex;
+}
+label{
+  width: 40%;
+}
+.EditImage > img {
+  width: 200px;
+  height: 200px;
+  border-radius: 120px;
+  margin-top: 25%;
+}
