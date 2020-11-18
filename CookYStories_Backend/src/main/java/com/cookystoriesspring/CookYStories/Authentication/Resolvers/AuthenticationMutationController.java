@@ -18,12 +18,9 @@ public class AuthenticationMutationController implements GraphQLMutationResolver
     @Autowired
     private AuthenticationRepository authenticationRepository;
 
-    @Autowired
-    private AuthenticationRepository authenticationRepository;
-
     public SignInPayload login(AuthenticationModel auth) throws IllegalAccessException {
         AuthenticationModel existingLogin = authenticationRepository.findByUsername(auth.getUsername());
-        if(existingLogin!=null) {
+        if(existingLogin==null) {
             User fetchedUser = userRepository.findByUsername(auth.getUsername());
 
             if(fetchedUser.getPassword().equals(auth.getPassword())) {
@@ -40,8 +37,9 @@ public class AuthenticationMutationController implements GraphQLMutationResolver
             } else {
                 throw new IllegalAccessException("Invalid Credentials");
             }
+        } else {
+            throw new IllegalAccessException("Already logged into the System.");
         }
-        throw new IllegalAccessException("Already logged into the System.");
 
     }
 
