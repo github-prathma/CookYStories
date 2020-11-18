@@ -14,7 +14,8 @@
 }
 h4 > .editProfile{
   background-color: #1dacd6;
-  margin-right: -50px;
+  margin-top: 10px;
+
 }
 .editProfile:hover{
   color: #ffb2a4;

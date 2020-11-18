@@ -68,12 +68,8 @@ export default class ProfileHeader extends Component {
              {/* <Button variant="contained" color="primary" endIcon={<TrendingUpIcon />} style={{ marginLeft: '900px' }}>Follow</Button> */}
             {/* <CheckIcon /> */}
           <Button className="editProfile" onClick={e => this.modalOpen(e)} variant="contained"
-<<<<<<< HEAD
-             startIcon={<CreateIcon />}>Edit Profile</Button>
-=======
               color="default" startIcon={<CreateIcon />} style={{ marginLeft: '900px' }}>Edit Profile</Button>
             {/* <ErrorIcon color="action" style={{color: 'red', marginLeft:'10px'}}/> */}
->>>>>>> a3322a3e63f843aac5a1e15d3bf2c2779067936c
             <EditProfile show={this.state.modal} handleClose={e => this.modalClose(e)}>
               <form className="form-group">
               <div className='EditImage'>
