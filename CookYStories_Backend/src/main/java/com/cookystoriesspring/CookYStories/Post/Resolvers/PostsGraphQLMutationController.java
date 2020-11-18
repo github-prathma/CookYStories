@@ -81,7 +81,10 @@ public class PostsGraphQLMutationController implements GraphQLMutationResolver {
     public Post updatePost(PostInput post) {
         Post oldPost = postRepository.findPostById(post.getId());
         oldPost.setDescription(post.getDescription());
-        List<String> media = post.getMedia();
+        List<String> media = new ArrayList<>();
+        if(post.getMedia()!=null && post.getMedia().size()>0) {
+            media = post.getMedia();
+        }
         List<Media> postsMedia = new ArrayList<>();
         for (String m: media) {
             Media md = new Media();
@@ -90,6 +93,20 @@ public class PostsGraphQLMutationController implements GraphQLMutationResolver {
         }
         oldPost.setMedia(postsMedia);
         postRepository.save(oldPost);
+
+        UserProfile postedbyUserProfile = userProfileRepository.findByUsername(post.getByUsername());
+        List<Post> allPosts = new ArrayList<>();
+        if(postedbyUserProfile.getPosts()!=null && postedbyUserProfile.getPosts().size()>0) {
+            allPosts = postedbyUserProfile.getPosts();
+            int postIndex = allPosts.indexOf(oldPost);
+            if(postIndex!=-1) {
+                allPosts.set(postIndex, oldPost);
+            }
+            postedbyUserProfile.setPosts(allPosts);
+            userProfileRepository.save(postedbyUserProfile);
+        }
+
+
         return oldPost;
     }
 
