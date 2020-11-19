@@ -5,6 +5,7 @@ export const GET_USER_PROFILE = gql `
 query ($loggedInUser:String!, $toFollowUser:String!) {
     getUserProfile(input:{loggedInUser:$loggedInUser toFollowUser:$toFollowUser}){
         username
+        profileImageUrl
         basicInfo{
             firstName
             lastName
@@ -22,6 +23,7 @@ query ($loggedInUser:String!, $toFollowUser:String!) {
                 username
                 firstName
                 lastName
+                profileImageUrl
             }
             numLikes
             numComments
@@ -32,12 +34,14 @@ query ($loggedInUser:String!, $toFollowUser:String!) {
                     username
                     firstName
                     lastName
+                    profileImageUrl
                 }
             }
             likedByUsers{
                 username
                 firstName
                 lastName
+                profileImageUrl
             }
         }
         
@@ -47,6 +51,7 @@ query ($loggedInUser:String!, $toFollowUser:String!) {
             lastName
             city
             country
+            profileImageUrl
         }
         following{
             username
@@ -54,6 +59,7 @@ query ($loggedInUser:String!, $toFollowUser:String!) {
             lastName
             city
             country
+            profileImageUrl
         }
     }
 }

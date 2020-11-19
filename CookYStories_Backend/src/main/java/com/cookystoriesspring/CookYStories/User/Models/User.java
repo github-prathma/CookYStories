@@ -21,11 +21,12 @@ public class User {
     private String city;
     private String country;
     private Date createdAt;
+    private String profileImageUrl;
 
     public User() {
     }
 
-    public User(String id, String username, String firstName, String lastName, String bioDescription, String password, String email, String city, String country, Date createdAt) {
+    public User(String id, String username, String firstName, String lastName, String bioDescription, String password, String email, String city, String country, Date createdAt, String profileImageUrl) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
@@ -36,6 +37,7 @@ public class User {
         this.city = city;
         this.country = country;
         this.createdAt = createdAt;
+        this.profileImageUrl = profileImageUrl;
     }
 
     public String getId() {
@@ -118,6 +120,14 @@ public class User {
         this.createdAt = createdAt;
     }
 
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -143,6 +153,8 @@ public class User {
                 ", email='" + email + '\'' +
                 ", city='" + city + '\'' +
                 ", country='" + country + '\'' +
+                ", profileImageUrl='" + profileImageUrl + '\'' +
+
                 '}';
     }
 }

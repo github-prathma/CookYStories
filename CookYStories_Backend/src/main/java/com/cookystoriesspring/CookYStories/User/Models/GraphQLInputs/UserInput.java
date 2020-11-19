@@ -9,9 +9,10 @@ public class UserInput {
     private String city;
     public String country;
     private String bioDescription;
+    private String profileImageUrl;
 
 
-    public UserInput(String username, String firstName, String lastName, String password, String email, String city, String country, String bioDescription) {
+    public UserInput(String username, String firstName, String lastName, String password, String email, String city, String country, String bioDescription, String profileImageUrl) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -20,6 +21,7 @@ public class UserInput {
         this.city = city;
         this.country = country;
         this.bioDescription = bioDescription;
+        this.profileImageUrl = profileImageUrl;
     }
 
     public UserInput() {
@@ -89,4 +91,11 @@ public class UserInput {
         this.bioDescription = bioDescription;
     }
 
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
+    }
 }

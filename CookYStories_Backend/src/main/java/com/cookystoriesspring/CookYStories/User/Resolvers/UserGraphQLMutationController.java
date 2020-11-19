@@ -96,12 +96,54 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
         fetchedUser.setCity(user.getCity());
         fetchedUser.setCountry(user.getCountry());
         fetchedUser.setPassword(user.getPassword());
+        fetchedUser.setProfileImageUrl(user.getProfileImageUrl());
 
         User updatedUser = userRepository.save(fetchedUser);
 
         UserProfile fetchedUserProfile = userProfileRepository.findByUsername(user.getUsername());
         fetchedUserProfile.setUsername(updatedUser.getUsername());
         fetchedUserProfile.setBasicInfo(updatedUser);
+
+        // followers set updated User info
+        List<User> followers = new ArrayList<>();
+        if(fetchedUserProfile.getFollowers()!=null && fetchedUserProfile.getFollowers().size()>0) {
+            followers = fetchedUserProfile.getFollowers();
+            for(User follower: followers) {
+                UserProfile followerProfile = userProfileRepository.findByUsername(follower.getUsername());
+                List<User> follower_following_list = new ArrayList<>();
+                if(followerProfile.getFollowing()!=null && followerProfile.getFollowing().size()>0) {
+                    follower_following_list = followerProfile.getFollowing();
+                    int followingIndex = follower_following_list.indexOf(fetchedUser);
+                    if(followingIndex!= -1) {
+                        follower_following_list.set(followingIndex, updatedUser);
+                        followerProfile.setFollowing(follower_following_list);
+                        userProfileRepository.save(followerProfile);
+                    }
+                }
+            }
+
+        }
+
+        // following set updated User info
+        List<User> following = new ArrayList<>();
+        if(fetchedUserProfile.getFollowing()!=null && fetchedUserProfile.getFollowing().size()>0) {
+            following = fetchedUserProfile.getFollowing();
+            for(User follows: following) {
+                UserProfile followingProfile = userProfileRepository.findByUsername(follows.getUsername());
+                List<User> following_followers_list = new ArrayList<>();
+                if(followingProfile.getFollowers()!=null && followingProfile.getFollowers().size()>0) {
+                    following_followers_list = followingProfile.getFollowing();
+                    int followerIndex = following_followers_list.indexOf(fetchedUser);
+                    if(followerIndex != -1) {
+                        following_followers_list.set(followerIndex, updatedUser);
+                        followingProfile.setFollowers(following_followers_list);
+                        userProfileRepository.save(followingProfile);
+                    }
+                }
+            }
+
+        }
+
 
         List<Post> posts = new ArrayList<>();
 
@@ -146,7 +188,10 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
             commentRepository.save(comment);
 
             Post postForComment = postRepository.findPostById(comment.getPostId());
-            List<Comment> comments = new ArrayList<>(postForComment.getComments());
+            List<Comment> comments = new ArrayList<>();
+            if(postForComment.getComments()!=null && postForComment.getComments().size()>0) {
+                comments = postForComment.getComments();
+            }
             int index = comments.indexOf(comment);
             comments.set(index, comment);
             postForComment.setComments(comments);

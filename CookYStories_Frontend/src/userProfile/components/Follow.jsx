@@ -29,7 +29,7 @@ export default class Follow extends Component {
                 <Grid container spacing={2}>
                   <Grid item>
                     <ButtonBase className="image">
-                      <img src={chintu} alt="img"/>
+                      <img src={user.profileImageUrl} alt="img"/>
                     </ButtonBase>            
                   </Grid> 
   

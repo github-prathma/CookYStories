@@ -34,10 +34,12 @@ function LoadProfile(props) {
                       <ProfileHeader username={profile.username} 
                         firstName={profile.basicInfo.firstName} lastName={profile.basicInfo.lastName} 
                         city={profile.basicInfo.city} country={profile.basicInfo.country} bio={profile.basicInfo.bioDescription}
+                        profileImageUrl={profile.profileImageUrl}
                         />
                       <PostPreview username={profile.username} 
                         firstName={profile.basicInfo.firstName} lastName={profile.basicInfo.lastName}
                         city={profile.basicInfo.city} country={profile.basicInfo.country}
+                        profileImageUrl={profile.profileImageUrl}
                         followers={profile.followers} following={profile.following} posts={profile.posts} 
                         numFollowers={profile.numFollowers} numFollowing={profile.numFollowing} numPosts={profile.numPosts}/>
                     </div>
