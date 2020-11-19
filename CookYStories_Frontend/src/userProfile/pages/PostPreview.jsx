@@ -10,8 +10,8 @@ import Follow from '../components/Follow';
 import Following from '../components/Following'
 
 export default class PostPreview extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       showGalleryComponent: true,
       showFollowComponent: false,
@@ -73,9 +73,9 @@ export default class PostPreview extends Component {
           <h5>Saved</h5>
           </div>          
         </div>
-          {this.state.showGalleryComponent ? <Gallery /> : null}
-          {this.state.showFollowComponent ? <Follow /> : null}
-          {this.state.showFollowingComponent ? <Following /> : null}  
+          {this.state.showGalleryComponent ? <Gallery posts={this.props.posts}/> : null}
+          {this.state.showFollowComponent ? <Follow followers={this.props.followers}/> : null}
+          {this.state.showFollowingComponent ? <Following following={this.props.following}/> : null}  
         
               
       </div>

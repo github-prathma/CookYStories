@@ -33,26 +33,27 @@ function LoadFeed(props) {
 
                     <div className="feed">
                     
-                    <div>
-                        
-                        <PostSend />
-                        {
+                        <div>
                             
-                            posts.map (
+                            <PostSend />
+                            {
                                 
-                                post => <Post
-                                profilePic={rushang}
-                                message={post.description}
+                                posts.map (
+                                    
+                                    post => <Post
+                                    key={post.id}
+                                    profilePic={rushang}
+                                    message={post.description}
                                     timestamp={post.createdAt}
                                     id={props.username}
-                                username={post.byUser.username}
-                                image={post.imageUrl}
-                                createdAt={post.createdAt}
-                            />
-                            )
-                        }
-                    
-                    </div>  
+                                    username={post.byUser.username}
+                                    image={post.imageUrl}
+                                    createdAt={post.createdAt}
+                                />
+                                )
+                            }
+                        
+                        </div>  
                     </div>              
                 )
             }

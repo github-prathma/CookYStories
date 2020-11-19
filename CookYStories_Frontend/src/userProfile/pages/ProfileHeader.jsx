@@ -10,8 +10,8 @@ import Button from '@material-ui/core/Button';
 // import CheckIcon from '@material-ui/icons/Check';
 
 export default class ProfileHeader extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.modalOpen = this.modalOpen.bind(this);
@@ -64,7 +64,7 @@ export default class ProfileHeader extends Component {
           <img src={rushang} alt="Img"/>
         </div>
         <div className='profileBio'>
-          <h4>Rushang Shah
+    <h4>{this.props.firstName} {this.props.lastName}
              {/* <Button variant="contained" color="primary" endIcon={<TrendingUpIcon />} style={{ marginLeft: '900px' }}>Follow</Button> */}
             {/* <CheckIcon /> */}
           <Button className="editProfile" onClick={e => this.modalOpen(e)} variant="contained"
@@ -159,9 +159,9 @@ export default class ProfileHeader extends Component {
           </form>
             </EditProfile></h4>
           <div className='profileData'>
-            <h5>rushang2413</h5>
-            <h5>Hello Everyone!!!!!!!!!</h5>
-            <h5>Syracuse, USA</h5>
+            <h5>{this.props.username}</h5>
+              <h5>{this.props.bio}</h5>
+              <h5>{this.props.city}, {this.props.country}</h5>
           </div>
 
         </div>

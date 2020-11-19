@@ -1,4 +1,4 @@
-import { Avatar } from '@material-ui/core'
+import { Avatar, Button } from '@material-ui/core'
 import React, {Component} from 'react'
 import '../css/Post.css'
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
@@ -6,12 +6,17 @@ import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
+// import {Mutation} from 'react-apollo'
 import MenuItem from '@material-ui/core/MenuItem';
+// import {UPDATE_POST} from '../../backend/FeedApis'
 
 class Post extends Component {
-    state = {
-        anchorEl: null
-    }
+    
+        state = {
+            anchorEl: null,
+           
+        }
+    
 
     handleClick = event => this.setState({
         anchorEl: event.currentTarget
@@ -29,18 +34,31 @@ class Post extends Component {
                 <div className="post_top">
                     <Avatar src={this.props.profilePic} className='post_avatar' />
                     <div className="post_topInfo">
-                        <h3>{this.props.username}<MoreVertIcon style={{ marginLeft: "605px" }} onClick={this.handleClick} />
+                        <h3>{this.props.username}<MoreVertIcon style={{ marginLeft: "605px" }} onClick={this.handleClick} /><p>{this.props.createdAt}</p>
+                        
                             
-                            <Menu id="simple-menu"
-                                    anchorEl={anchorEl}
-                                    keepMounted
-                                    open={Boolean(anchorEl)}
-                                onClose={this.handleClose}>
-                                {sameUser ?  <MenuItem onClick={this.handleClose}>Edit Post</MenuItem>  :<MenuItem onClick={this.handleClose}>Report Post</MenuItem>}
-                                {sameUser ? <MenuItem onClick={this.handleClose}>Delete Post</MenuItem> : <></> }
+                        {/* <Mutation mutation={UPDATE_POST} > {
+                ( updatePost, {data}) => {
+                    return ( */}
+                                <Menu id="simple-menu"
+                                        anchorEl={anchorEl}
+                                        keepMounted
+                                        open={Boolean(anchorEl)}
+                                    onClose={this.handleClose}>
+                                    {sameUser ?  <MenuItem onClick={(e) => {
+                                            // e.preventDefault();
+                                            this.handleClose();
+                                            // updatePost( {variables :  {id:this.props.id, description: this.props.description, byUsername:this.props.byUsername}})
+                                        }}> Edit Post
+                                        </MenuItem>  : <MenuItem >Report Post</MenuItem>}
+                                    {sameUser ? <MenuItem >Delete Post</MenuItem> : <></> }
+                                    
+                                </Menu>
+                                {/* )}}
+                                </Mutation> */}
                                 
-                        </Menu></h3>
-                <p>{this.props.createdAt}</p>                        
+                        </h3>
+                               
                     </div>
                 </div>
                 <div className="post_bottom">
@@ -67,6 +85,7 @@ class Post extends Component {
                     </div>
                 </div>
             </div>
+                    
         )
     }
 }

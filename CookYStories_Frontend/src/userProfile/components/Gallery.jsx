@@ -7,6 +7,13 @@ import sandwich from '../../utils/slider_images/sandwich.jpg'
 import '../css/Gallery.css'
 
 export default class Gallery extends Component {
+  constructor(props) {
+    super(props)
+    this.state={
+      posts : this.props.posts
+    }
+  }
+
   render() {
     return (
       <div className="gallery">
