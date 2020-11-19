@@ -9,6 +9,7 @@ type User {
     email: String!
     city:String
     country:String
+    profileImageUrl:String
 }
 
 extend type Query {
@@ -25,6 +26,7 @@ input UserInput{
     city:String
     country:String
     bioDescription:String
+    profileImageUrl:String
 }
 
 extend type Mutation {

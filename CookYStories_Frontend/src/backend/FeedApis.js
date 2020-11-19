@@ -4,6 +4,7 @@ import {gql} from "apollo-boost"
 export const GET_FEED = gql`
 query($username: String!) {
     loadFeed(username: $username) {
+        id
         description
         createdAt
         byUser {
@@ -43,39 +44,39 @@ query($username: String!) {
 
 
 // // update post
-// export const UPDATE_POST = gql `
-// mutation ($post_id:String!, $description:String!, $byUsername:String!){
-//     updatePost(input: {
-//         id:$post_id
-//         description:$description
-//         byUsername:$byUsername
-//     }) {
-//         createdAt
-//         description
-//         byUser{
-//             username 
-//             firstName
-//             lastName
-//         }
-//         numLikes
-//         numComments
-//         likedByUsers{
-//             username
-//             firstName
-//             lastName
-//         }
-//         comments{
-//             commentText
-//             createdAt
-//             byUser{
-//                 username
-//                 firstName
-//                 lastName
-//             }
-//         }
-//     }
-// }
-// `
+export const UPDATE_POST = gql `
+mutation ($post_id:String!, $description:String!, $byUsername:String!){
+    updatePost(input: {
+        id:$post_id
+        description:$description
+        byUsername:$byUsername
+    }) {
+        createdAt
+        description
+        byUser{
+            username 
+            firstName
+            lastName
+        }
+        numLikes
+        numComments
+        likedByUsers{
+            username
+            firstName
+            lastName
+        }
+        comments{
+            commentText
+            createdAt
+            byUser{
+                username
+                firstName
+                lastName
+            }
+        }
+    }
+}
+`
 
 // // delete post
 // export const DELETE_POST = gql `
