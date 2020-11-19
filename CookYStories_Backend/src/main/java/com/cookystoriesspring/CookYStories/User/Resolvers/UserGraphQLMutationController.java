@@ -102,6 +102,7 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
 
         UserProfile fetchedUserProfile = userProfileRepository.findByUsername(user.getUsername());
         fetchedUserProfile.setUsername(updatedUser.getUsername());
+        fetchedUserProfile.setProfileImageUrl(updatedUser.getProfileImageUrl());
         fetchedUserProfile.setBasicInfo(updatedUser);
 
         // followers set updated User info
@@ -132,7 +133,7 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
                 UserProfile followingProfile = userProfileRepository.findByUsername(follows.getUsername());
                 List<User> following_followers_list = new ArrayList<>();
                 if(followingProfile.getFollowers()!=null && followingProfile.getFollowers().size()>0) {
-                    following_followers_list = followingProfile.getFollowing();
+                    following_followers_list = followingProfile.getFollowers();
                     int followerIndex = following_followers_list.indexOf(fetchedUser);
                     if(followerIndex != -1) {
                         following_followers_list.set(followerIndex, updatedUser);

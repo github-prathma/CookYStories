@@ -26,7 +26,6 @@ export default class ProfileHeader extends Component {
       city: "",
       country: "",
       bio: "",
-
       modalInputName: ""
     };
   }
@@ -61,10 +60,10 @@ export default class ProfileHeader extends Component {
     return (      
       <div className='userProfile'>
         <div className='profileImage'>
-          <img src={rushang} alt="Img"/>
+          <img src={this.props.profileImageUrl} alt="Img"/>
         </div>
         <div className='profileBio'>
-    <h4>{this.props.firstName} {this.props.lastName}
+          <h4>{this.props.firstName} {this.props.lastName}
              {/* <Button variant="contained" color="primary" endIcon={<TrendingUpIcon />} style={{ marginLeft: '900px' }}>Follow</Button> */}
             {/* <CheckIcon /> */}
           <Button className="editProfile" onClick={e => this.modalOpen(e)} variant="contained"
@@ -72,7 +71,7 @@ export default class ProfileHeader extends Component {
             <EditProfile show={this.state.modal} handleClose={e => this.modalClose(e)}>
               <form className="form-group">
               <div className='EditImage'>
-               <img src={rushang} alt="img"/>
+               <img src={this.props.profileImageUrl} alt="img"/>
                 </div>
                 <ul>
                 <div className="form-group">
@@ -160,8 +159,8 @@ export default class ProfileHeader extends Component {
             </EditProfile></h4>
           <div className='profileData'>
             <h5>{this.props.username}</h5>
-              <h5>{this.props.bio}</h5>
-              <h5>{this.props.city}, {this.props.country}</h5>
+            <h5>{this.props.bio}</h5>
+            <h5>{this.props.city}, {this.props.country}</h5>
           </div>
 
         </div>
