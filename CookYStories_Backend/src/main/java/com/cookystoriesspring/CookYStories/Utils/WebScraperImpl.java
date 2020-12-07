@@ -1,19 +1,37 @@
 package com.cookystoriesspring.CookYStories.Utils;
 
+import com.cookystoriesspring.CookYStories.Scarpers.Models.Channels;
 import com.cookystoriesspring.CookYStories.Scarpers.Models.Restaurant;
+import com.cookystoriesspring.CookYStories.Scarpers.MongoRepositories.ChannelRepository;
 import com.cookystoriesspring.CookYStories.Scarpers.MongoRepositories.RestaurantRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.json.JSONTokener;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
+@Slf4j
 @Service
 public class WebScraperImpl implements WebScraperService{
 
+    Logger log = LoggerFactory.getLogger(WebScraperService.class);
     @Autowired
     private RestaurantRepository restaurantRepository;
+
+    @Autowired
+    private ChannelRepository channelRepository;
+
     @Override
     public String loadRestaurants() {
         String baseUrl = "https://www.cntraveller.com/gallery/best-new-restaurants-world";
@@ -84,7 +102,82 @@ public class WebScraperImpl implements WebScraperService{
     }
 
     @Override
-    public void loadNearBy() {
+    public String loadNearBy(String searchQuery) {
+        List<String> tags = new ArrayList(Arrays.asList(searchQuery.split(" ")));
+        log.info(tags.toString());
+        String youtubeBaseUrl = "http://www.youtube.com/results?search_query=";
+        String gsearchUrl = "https://www.google.com/search?q=";
+        String videoFormatExtension = "&tbm=vid";
+        youtubeBaseUrl += searchQuery.replaceAll(" ","+");
+        gsearchUrl += searchQuery.replaceAll(" ","+")+videoFormatExtension;
+        log.info("Searching webpage: "+youtubeBaseUrl);
+        try {
+            Document doc = Jsoup.connect(youtubeBaseUrl)
+                    .userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0")
+                    .timeout(15000)
+                    .get();
+
+            String channel = "";
+            String views = "";
+            String title = "";
+            String age = "";
+            String link = "";
+
+            String result = "";
+
+            Elements bigE;
+//            bigE = doc.select("div#search");
+
+            bigE = doc.select("div#contents");
+            log.info("Found: "+ bigE.text());
+
+//            for(Element e : bigE.select("div.rc")) {
+//                String joinedTitle = e.select("h3").text();
+//                log.info(joinedTitle);
+//                if(joinedTitle.contains("|")) {
+//                    title = joinedTitle.split("\\|")[0];
+//                    channel = joinedTitle.split("\\|")[1];
+//                } else if (joinedTitle.contains("-")) {
+//                    title = joinedTitle.split("\\-")[0];
+//                    channel = joinedTitle.split("\\-")[1];
+//                }
+//                age = e.select("div.fG8Fp").text();
+//                if(age.contains("·")) {
+//                    age = age.split("· ")[0];
+//                }
+//                link = e.select("a").attr("href");
+//
+//                result += title+"<br>  "+views+" "+age+" "+channel+" "+link+" <br>\n\n";
+//
+//                Channels channelObj = new Channels();
+//                channelObj.setAge(age);
+//                channelObj.setChannel(channel);
+//                channelObj.setLink(link);
+//                channelObj.setTitle(title);
+//                channelObj.setTags(tags);
+//
+//                channelRepository.save(channelObj);
+//
+//            }
+
+            for (Element e : bigE.select("ytd-video-renderer")) {
+
+                log.info(e.text());
+
+//                Channels channelObj = new Channels();
+//                channelObj.setAge(age);
+//                channelObj.setChannel(channel);
+//                channelObj.setLink(link);
+//                channelObj.setTitle(title);
+//                channelObj.setTags(tags);
+//
+//                channelRepository.save(channelObj);
+            }
+            return result;
+
+        } catch (Exception e) {
+            return e.getMessage();
+        }
 
     }
 }

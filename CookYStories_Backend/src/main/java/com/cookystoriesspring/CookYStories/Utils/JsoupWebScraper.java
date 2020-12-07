@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
@@ -23,5 +24,10 @@ public class JsoupWebScraper {
     public String ScrapeRestaurantData() {
         return webScraperService.loadRestaurants();
 
+    }
+
+    @GetMapping("/loadChannels/{searchQuery}")
+    public String ScrapeChannelData(@PathVariable String searchQuery) {
+        return  webScraperService.loadNearBy(searchQuery);
     }
 }

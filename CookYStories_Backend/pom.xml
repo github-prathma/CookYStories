@@ -167,6 +167,14 @@
 			<version>1.13.1</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20201115</version>
+		</dependency>
+
+
 		<!-- https://mvnrepository.com/artifact/com.graphql-java/graphql-java -->
 <!--		<dependency>-->
 <!--			<groupId>com.graphql-java</groupId>-->
