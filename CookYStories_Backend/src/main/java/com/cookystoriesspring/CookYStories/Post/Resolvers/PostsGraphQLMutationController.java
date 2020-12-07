@@ -52,7 +52,6 @@ public class PostsGraphQLMutationController implements GraphQLMutationResolver {
 
         log.info(byUser.getFirstName());
 
-//        byUserProfile.setBasicInfo(byUser);
         byUserProfile.setNumPosts(byUserProfile.getNumPosts()+1);
 
         post.setByUser(byUser);
@@ -63,20 +62,28 @@ public class PostsGraphQLMutationController implements GraphQLMutationResolver {
         post.setLikedByUsers(new ArrayList<>());
         post.setComments(new ArrayList<>());
 
-        if (postInput.getMedia() != null) {
-            List<Media> medias = postInput.getMedia();
-            for (Media m: medias) {
-                mediaRepository.insert(m);
-            }
-            post.setMedia(medias);
-        } else {
-            post.setMedia(new ArrayList<>());
-        }
-
         post.setDescription(postInput.getDescription());
         post.setShareUrl("");
 
         Post savedPost = postRepository.insert(post);
+
+        List<Media> newpostMedias = new ArrayList<>();
+        if (postInput.getMedia() != null) {
+            List<String> medias = postInput.getMedia();
+
+            for (String mid: medias) {
+                Media media = mediaRepository.findById(mid).orElse(null);
+                media.setPostId(savedPost.getId());
+                mediaRepository.save(media);
+                if (media != null) {
+                    newpostMedias.add(media);
+                }
+
+            }
+
+        }
+        post.setMedia(newpostMedias);
+        postRepository.save(savedPost);
         posts.add(savedPost);
         byUserProfile.setPosts(posts);
         userProfileRepository.save(byUserProfile);
@@ -87,14 +94,14 @@ public class PostsGraphQLMutationController implements GraphQLMutationResolver {
     public Post updatePost(PostInput post) {
         Post oldPost = postRepository.findPostById(post.getId());
         oldPost.setDescription(post.getDescription());
-        List<Media> medias = new ArrayList<>();
-        if(post.getMedia()!=null && post.getMedia().size()>0) {
-            for (Media m: post.getMedia()) {
-                mediaRepository.save(m);
-                medias.add(m);
-            }
-        }
-        oldPost.setMedia(medias);
+//        List<Media> medias = new ArrayList<>();
+//        if(post.getMedia()!=null && post.getMedia().size()>0) {
+//            for (Media m: post.getMedia()) {
+//                mediaRepository.save(m);
+//                medias.add(m);
+//            }
+//        }
+//        oldPost.setMedia(medias);
         postRepository.save(oldPost);
 
         UserProfile postedbyUserProfile = userProfileRepository.findByUsername(post.getByUsername());
@@ -195,6 +202,7 @@ public class PostsGraphQLMutationController implements GraphQLMutationResolver {
         if(post == null) {
             return false;
         }
+
         UserProfile userProfile = userProfileRepository.findByUsername(post.getByUser().getUsername());
 
         List<Post> allPosts = new ArrayList<>();
@@ -214,6 +222,15 @@ public class PostsGraphQLMutationController implements GraphQLMutationResolver {
                 if(comment.getPostId().equals(id)) {
                     commentRepository.delete(comment);
                 }
+            }
+        }
+
+        //deleted all media of this post from media table
+        List<Media> medias = post.getMedia();
+        if (post.getMedia() != null && post.getMedia().size()>0) {
+            List<Media> postMedias = post.getMedia();
+            for (Media m: postMedias) {
+                mediaRepository.delete(m);
             }
         }
 

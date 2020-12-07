@@ -2,11 +2,13 @@ scalar ByteArray
 
 type Media{
     id:String!
+    postId: String!
     type:String!
     content: ByteArray
 }
 
 input MediaInput {
+    postId: String
     contentType: String!
     content: ByteArray
 }
@@ -15,5 +17,6 @@ extend type Query {
 }
 
 extend type Mutation {
-    uploadFile(input: MediaInput): Boolean
+    uploadMedia(input: MediaInput): String
+    deleteMedia(mediaId: String!): Boolean
 }

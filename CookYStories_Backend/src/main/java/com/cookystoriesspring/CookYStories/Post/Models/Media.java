@@ -13,6 +13,8 @@ public class Media {
     @Id
     String id;
 
+    String postId;
+
     // Image, Gif, Video
     String type;
 
@@ -22,9 +24,10 @@ public class Media {
 
     }
 
-    public Media(String type, byte[] imagesContent) {
+    public Media(String type, String postId, byte[] imagesContent) {
         this.type = type;
         this.content = imagesContent;
+        this.postId = postId;
     }
 
     public String getId() {
@@ -51,6 +54,14 @@ public class Media {
         this.content = content;
     }
 
+    public String getPostId() {
+        return postId;
+    }
+
+    public void setPostId(String postId) {
+        this.postId = postId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -69,6 +80,7 @@ public class Media {
         return "Media{" +
                 "id='" + id + '\'' +
                 ", type='" + type + '\'' +
+                ", postId='" + postId + '\'' +
                 ", content=" + content +
                 '}';
     }

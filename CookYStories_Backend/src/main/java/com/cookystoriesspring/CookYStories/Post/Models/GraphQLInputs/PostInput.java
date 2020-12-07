@@ -8,14 +8,15 @@ public class PostInput {
 
     private String id;
     private String description;
-    private List<Media> media;
+    //media ids
+    private List<String> media;
     private String byUsername;
     private String imageUrl;
 
     public PostInput() {
     }
 
-    public PostInput(String description, List<Media> media, String byUsername, String imageUrl) {
+    public PostInput(String description, List<String> media, String byUsername, String imageUrl) {
         this.description = description;
         this.media = media;
         this.byUsername = byUsername;
@@ -46,11 +47,11 @@ public class PostInput {
         this.description = description;
     }
 
-    public List<Media> getMedia() {
+    public List<String> getMedia() {
         return media;
     }
 
-    public void setMedia(List<Media> media) {
+    public void setMedia(List<String> media) {
         this.media = media;
     }
 

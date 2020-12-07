@@ -9,4 +9,6 @@ import java.util.List;
 @Service
 public interface MediaRepository extends MongoRepository<Media, String> {
 
+    List<Media> findAllByPostId(String postId);
+
 }

@@ -6,6 +6,8 @@ public class MediaInput {
 
     byte[] content;
 
+    String postId;
+
     public MediaInput() {
 
     }
@@ -29,5 +31,13 @@ public class MediaInput {
 
     public void setContent(byte[] content) {
         this.content = content;
+    }
+
+    public String getPostId() {
+        return postId;
+    }
+
+    public void setPostId(String postId) {
+        this.postId = postId;
     }
 }
