@@ -4,6 +4,7 @@ import com.cookystoriesspring.CookYStories.Post.Models.Comment;
 import com.cookystoriesspring.CookYStories.Post.Models.Media;
 import com.cookystoriesspring.CookYStories.Post.Models.Post;
 import com.cookystoriesspring.CookYStories.Post.MongoRepositories.CommentRepository;
+import com.cookystoriesspring.CookYStories.Post.MongoRepositories.MediaRepository;
 import com.cookystoriesspring.CookYStories.User.Models.User;
 import com.cookystoriesspring.CookYStories.User.Models.UserProfile;
 import com.cookystoriesspring.CookYStories.Post.Models.GraphQLInputs.LikedPostInput;
@@ -30,6 +31,9 @@ public class PostsGraphQLMutationController implements GraphQLMutationResolver {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private MediaRepository mediaRepository;
 
     @Autowired
     private UserProfileRepository userProfileRepository;
@@ -60,14 +64,11 @@ public class PostsGraphQLMutationController implements GraphQLMutationResolver {
         post.setComments(new ArrayList<>());
 
         if (postInput.getMedia() != null) {
-            List<String> media = postInput.getMedia();
-            List<Media> postsMedia = new ArrayList<>();
-            for (String m: media) {
-                Media md = new Media();
-                md.setType(m);
-                postsMedia.add(md);
+            List<Media> medias = postInput.getMedia();
+            for (Media m: medias) {
+                mediaRepository.insert(m);
             }
-            post.setMedia(postsMedia);
+            post.setMedia(medias);
         } else {
             post.setMedia(new ArrayList<>());
         }
@@ -86,17 +87,14 @@ public class PostsGraphQLMutationController implements GraphQLMutationResolver {
     public Post updatePost(PostInput post) {
         Post oldPost = postRepository.findPostById(post.getId());
         oldPost.setDescription(post.getDescription());
-        List<String> media = new ArrayList<>();
+        List<Media> medias = new ArrayList<>();
         if(post.getMedia()!=null && post.getMedia().size()>0) {
-            media = post.getMedia();
+            for (Media m: post.getMedia()) {
+                mediaRepository.save(m);
+                medias.add(m);
+            }
         }
-        List<Media> postsMedia = new ArrayList<>();
-        for (String m: media) {
-            Media md = new Media();
-            md.setType(m);
-            postsMedia.add(md);
-        }
-        oldPost.setMedia(postsMedia);
+        oldPost.setMedia(medias);
         postRepository.save(oldPost);
 
         UserProfile postedbyUserProfile = userProfileRepository.findByUsername(post.getByUsername());

@@ -1,19 +1,21 @@
 package com.cookystoriesspring.CookYStories.Post.Models.GraphQLInputs;
 
+import com.cookystoriesspring.CookYStories.Post.Models.Media;
+
 import java.util.List;
 
 public class PostInput {
 
     private String id;
     private String description;
-    private List<String> media;
+    private List<Media> media;
     private String byUsername;
     private String imageUrl;
 
     public PostInput() {
     }
 
-    public PostInput(String description, List<String> media, String byUsername, String imageUrl) {
+    public PostInput(String description, List<Media> media, String byUsername, String imageUrl) {
         this.description = description;
         this.media = media;
         this.byUsername = byUsername;
@@ -44,11 +46,11 @@ public class PostInput {
         this.description = description;
     }
 
-    public List<String> getMedia() {
+    public List<Media> getMedia() {
         return media;
     }
 
-    public void setMedia(List<String> media) {
+    public void setMedia(List<Media> media) {
         this.media = media;
     }
 

@@ -4,6 +4,7 @@ import javax.persistence.Id;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
 import java.util.Objects;
 
 @Document(collection = "Media")
@@ -15,16 +16,16 @@ public class Media {
     // Image, Gif, Video
     String type;
 
-//    List<Byte> imagesBinary;
-//
-//    public Media() {
-//
-//    }
+    byte[] content;
 
-//    public Media(String type, List<Byte> imageBinary) {
-//        this.type = type;
-//        this.imagesBinary = imageBinary;
-//    }
+    public Media() {
+
+    }
+
+    public Media(String type, byte[] imagesContent) {
+        this.type = type;
+        this.content = imagesContent;
+    }
 
     public String getId() {
         return id;
@@ -42,13 +43,13 @@ public class Media {
         this.type = type;
     }
 
-//    public List<Byte> getImagesBinary() {
-//        return imagesBinary;
-//    }
-//
-//    public void setImagesBinary(List<Byte> imagesBinary) {
-//        this.imagesBinary = imagesBinary;
-//    }
+    public byte[] getContent() {
+        return content;
+    }
+
+    public void setContent(byte[] content) {
+        this.content = content;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -68,7 +69,7 @@ public class Media {
         return "Media{" +
                 "id='" + id + '\'' +
                 ", type='" + type + '\'' +
-//                ", imagesBinary=" + imagesBinary +
+                ", content=" + content +
                 '}';
     }
 }

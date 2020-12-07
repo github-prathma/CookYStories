@@ -1,13 +1,19 @@
+scalar ByteArray
+
 type Media{
     id:String!
     type:String!
-#    imagesBinary:GraphQLByte
+    content: ByteArray
 }
 
+input MediaInput {
+    contentType: String!
+    content: ByteArray
+}
 extend type Query {
 
 }
 
 extend type Mutation {
-
+    uploadFile(input: MediaInput): Boolean
 }
