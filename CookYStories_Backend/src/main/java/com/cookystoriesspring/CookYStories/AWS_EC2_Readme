@@ -1,0 +1,45 @@
+# Guidelines for AWS EC2 server start
+
+* git checkout "branch_name: <b>AWS_RUN_PROJECT</b>"
+* cd to your backend project folder:
+
+        cd {PATH_TO_COOKYSTORIES_PROJECT}/CookYStories_Backend
+
+***
+
+### If don't have maven:
+
+#### For MAC Users: 
+brew install maven
+
+#### For Windows Users: 
+Refer: https://howtodoinjava.com/maven/how-to-install-maven-on-windows/
+
+#### RDP Client 
+
+#### MAC Users:
+* Download FileZilla
+* Follow these steps to connect to ec2-instance: 
+https://angus.readthedocs.io/en/2014/amazon/transfer-files-between-instance.html
+
+### RUN:
+
+* Login to AWS and check if instance is running 
+
+* In your Backend project folder run:
+  
+        mvn package
+        
+  (This will create <b>0.0.1-SNAPSHOT.jar</b> file inside <b>target</b> folder of your backend project folder) 
+
+* Using command line ssh to ec2 server using:
+
+        ssh -i {PATH_TO_PEM_FILE}/{.pem file}  ec2-user@ec2-18-220-62-236.us-east-2.compute.amazonaws.com
+  
+* Transfer your <b>.jar</b> file from local to <b>/home/ec2-user/PROJECT</b> folder
+
+* In cmd-prompt/terminal, run:
+
+        java -jar {.jar}
+        
+* Done, server will start now. (you are all set)
