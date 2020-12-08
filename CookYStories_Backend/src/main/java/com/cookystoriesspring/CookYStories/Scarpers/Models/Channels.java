@@ -14,12 +14,13 @@ public class Channels {
     private String title;
     private String age;
     private String link;
+    private String time;
     private List<String> tags;
 
     public Channels() {
     }
 
-    public Channels(String id, String channel, String views, String title, String age, String link, List<String> tags) {
+    public Channels(String id, String channel, String views, String title, String age, String link, List<String> tags, String time) {
         this.id = id;
         this.channel = channel;
         this.views = views;
@@ -27,6 +28,15 @@ public class Channels {
         this.age = age;
         this.link = link;
         this.tags = tags;
+        this.time = time;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getId() {

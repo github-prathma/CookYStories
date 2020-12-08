@@ -1,7 +1,5 @@
 package com.cookystoriesspring.CookYStories.Post.MongoRepositories;
 import com.cookystoriesspring.CookYStories.Post.Models.Comment;
-import com.cookystoriesspring.CookYStories.User.Models.User;
-import org.checkerframework.checker.units.qual.C;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Service;
 

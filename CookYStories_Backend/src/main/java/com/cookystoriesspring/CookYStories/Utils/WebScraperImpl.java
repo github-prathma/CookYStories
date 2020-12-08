@@ -4,17 +4,22 @@ import com.cookystoriesspring.CookYStories.Scarpers.Models.Channels;
 import com.cookystoriesspring.CookYStories.Scarpers.Models.Restaurant;
 import com.cookystoriesspring.CookYStories.Scarpers.MongoRepositories.ChannelRepository;
 import com.cookystoriesspring.CookYStories.Scarpers.MongoRepositories.RestaurantRepository;
+
 import lombok.extern.slf4j.Slf4j;
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.json.JSONTokener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +36,9 @@ public class WebScraperImpl implements WebScraperService{
 
     @Autowired
     private ChannelRepository channelRepository;
+
+    @Autowired
+    private ChromeDriver driver;
 
     @Override
     public String loadRestaurants() {
@@ -78,21 +86,7 @@ public class WebScraperImpl implements WebScraperService{
                     cluttered = cluttered.substring(0, index);
                 }
                 restaurantRepository.save(res);
-//                for(Element e : bigE.select("div.bb-callout__body")) {
-//                    String address = e.select("p:nth-of-type(1)").text();
-//                    String telephone = e.select("p:nth-of-type(2)").text();
-//                    String website = e.select("p:nth-of-type(3)").text();
-//                    String price = e.select("p:nth-of-type(4)").text();
-//
-//                    Restaurant res = new Restaurant();
-//                    res.setAddress(address);
-//                    res.setName(name);
-//                    res.setPrice(price);
-//                    res.setWebsite(website);
-//                    res.setTelephone(telephone);
-//
-//                    restaurantRepository.save(res);
-//                }
+
             }
             return result;
         } catch (Exception e){
@@ -112,24 +106,33 @@ public class WebScraperImpl implements WebScraperService{
         gsearchUrl += searchQuery.replaceAll(" ","+")+videoFormatExtension;
         log.info("Searching webpage: "+youtubeBaseUrl);
         try {
-            Document doc = Jsoup.connect(youtubeBaseUrl)
-                    .userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0")
-                    .timeout(15000)
-                    .get();
+
+            WebDriverWait wait = new WebDriverWait(driver, 30);
+
+            driver.get(youtubeBaseUrl);
+
+            final WebElement videoList = driver.findElementByTagName("ytd-item-section-renderer");
+
+            final List<WebElement> list = videoList.findElements(By.tagName("ytd-video-renderer"));
+
+//            Document doc = Jsoup.connect(youtubeBaseUrl)
+//                    .timeout(20000)
+//                    .get();
 
             String channel = "";
             String views = "";
             String title = "";
             String age = "";
             String link = "";
+            String time = "";
 
             String result = "";
 
-            Elements bigE;
+//            Elements bigE;
 //            bigE = doc.select("div#search");
 
-            bigE = doc.select("div#contents");
-            log.info("Found: "+ bigE.text());
+//            bigE = doc.select("div#content");
+//            log.info("Found: "+ bigE.text());
 
 //            for(Element e : bigE.select("div.rc")) {
 //                String joinedTitle = e.select("h3").text();
@@ -160,18 +163,28 @@ public class WebScraperImpl implements WebScraperService{
 //
 //            }
 
-            for (Element e : bigE.select("ytd-video-renderer")) {
+            for (WebElement e : list) {
+                e.findElement(By.tagName("ytd-thumbnail"));
+//                time = e.findElement(By.xpath("//div[@id='overlays']/ytd-thumbnail-overlay-time-status-renderer/span")).getText();
+                WebElement meta = e.findElement(By.xpath(".//*[@id=\"meta\"]"));
+                WebElement channelInfo = e.findElement(By.xpath(".//*[@id=\"channel-info\"]"));
 
-                log.info(e.text());
+                link = e.findElement(By.xpath(".//*[@id=\"thumbnail\"]")).getAttribute("href");
+                title = meta.findElement(By.xpath(".//*[@id=\"video-title\"]")).getText();
+                age = meta.findElement(By.xpath(".//*[@id=\"metadata-line\"]/span[2]")).getText();
+                views = meta.findElement(By.xpath(".//*[@id=\"metadata-line\"]/span[1]")).getText();
+                channel = channelInfo.findElement(By.xpath(".//*[@id=\"text\"]/a")).getText();
 
-//                Channels channelObj = new Channels();
-//                channelObj.setAge(age);
-//                channelObj.setChannel(channel);
-//                channelObj.setLink(link);
-//                channelObj.setTitle(title);
-//                channelObj.setTags(tags);
-//
-//                channelRepository.save(channelObj);
+                Channels channelObj = new Channels();
+                channelObj.setAge(age);
+                channelObj.setChannel(channel);
+                channelObj.setLink(link);
+                channelObj.setTitle(title);
+                channelObj.setTags(tags);
+                channelObj.setViews(views);
+
+                channelRepository.save(channelObj);
+                result+=e.getText()+"<br><br>";
             }
             return result;
 

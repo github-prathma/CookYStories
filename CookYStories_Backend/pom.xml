@@ -40,10 +40,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.141.59</version>
 		</dependency>
+
+
+		<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-data-mongodb</artifactId>-->
+<!--		</dependency>-->
 <!--		<dependency>-->
 <!--			<groupId>org.springframework.boot</groupId>-->
 <!--			<artifactId>spring-boot-starter-data-neo4j</artifactId>-->
@@ -174,7 +183,6 @@
 			<version>20201115</version>
 		</dependency>
 
-
 		<!-- https://mvnrepository.com/artifact/com.graphql-java/graphql-java -->
 <!--		<dependency>-->
 <!--			<groupId>com.graphql-java</groupId>-->
@@ -195,14 +203,6 @@
 			<artifactId>graphql-java-servlet</artifactId>
 			<version>6.1.3</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.graphql-java/graphql-java-servlet -->
-		<dependency>
-			<groupId>com.graphql-java</groupId>
-			<artifactId>graphql-java-servlet</artifactId>
-			<version>6.1.3</version>
-		</dependency>
-
 
 		<!-- https://mvnrepository.com/artifact/com.graphql-java/graphql-spring-boot-starter -->
 		<dependency>
