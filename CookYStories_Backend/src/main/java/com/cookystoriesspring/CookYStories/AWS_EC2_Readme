@@ -34,7 +34,7 @@ https://angus.readthedocs.io/en/2014/amazon/transfer-files-between-instance.html
 
 * Using command line ssh to ec2 server using:
 
-        ssh -i {PATH_TO_PEM_FILE}/prathma.pem  ec2-user@ec2-18-220-62-236.us-east-2.compute.amazonaws.com
+        ssh -i {PATH_TO_PEM_FILE}/{.pem file}  ec2-user@ec2-18-220-62-236.us-east-2.compute.amazonaws.com
   
 * Transfer your <b>.jar</b> file from local to <b>/home/ec2-user/PROJECT</b> folder
 
