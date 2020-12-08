@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Document(collection = "Channels")
-public class Channels {
+public class Channel {
 
     private String id;
     private String channel;
@@ -17,10 +17,10 @@ public class Channels {
     private String time;
     private List<String> tags;
 
-    public Channels() {
+    public Channel() {
     }
 
-    public Channels(String id, String channel, String views, String title, String age, String link, List<String> tags, String time) {
+    public Channel(String id, String channel, String views, String title, String age, String link, List<String> tags, String time) {
         this.id = id;
         this.channel = channel;
         this.views = views;

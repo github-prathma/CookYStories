@@ -1,0 +1,16 @@
+type Channel {
+    id: String!
+    channel:String
+    views:String
+    title:String
+    age:String
+    link:String
+    time:String
+    tags:[String]
+}
+
+extend type Query {
+    getChannel(channel:String!):[Channel]
+    getAllChannels:[Channel]
+    getChannelByTags(tags:[String]):[Channel]
+}

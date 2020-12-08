@@ -1,0 +1,12 @@
+type Restaurant {
+    id:String!
+    name:String!
+    address:String
+    telephone: String
+    website: String
+    price: String
+}
+
+extend type Query {
+    getRestaurants:[Restaurant]
+}
