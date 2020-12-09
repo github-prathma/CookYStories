@@ -8,7 +8,5 @@ import java.util.List;
 
 @Service
 public interface ChannelRepository extends MongoRepository<Channel, String> {
-    public List<Channel> findAllByChannelEquals(String channel);
-
-    public List<Channel> findAllByTagsIn(List<String> tags);
+    public Channel findChannelsByChannelNameEquals(String name);
 }

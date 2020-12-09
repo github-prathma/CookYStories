@@ -1,4 +1,4 @@
-type Channel {
+type Video {
     id: String!
     channel:String
     views:String
@@ -7,10 +7,17 @@ type Channel {
     link:String
     time:String
     tags:[String]
+    thumbnailUrl:String
+}
+
+type Channel {
+    id:String!
+    channelName:String!
+    videos:[Video!]
+    numVideos:Int!
+    channelLink:String!
 }
 
 extend type Query {
-    getChannel(channel:String!):[Channel]
     getAllChannels:[Channel]
-    getChannelByTags(tags:[String]):[Channel]
 }
