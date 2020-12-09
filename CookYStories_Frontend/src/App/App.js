@@ -10,6 +10,7 @@ import Login from "../welcome_home/components/Login"
 import Feed from "../userFeed/pages/Feed";
 import UserProfile from "../userProfile/pages/UserProfile"
 import AuthenticatedRoute from '../utils/AuthenticatedRoute'
+import RestaurantPage from '../mainapp/WebScrapers/pages/RestarantPage'
 
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
             <AuthenticatedRoute path="/user/:name" exact component={UserProfile} />
             <Route path="/signup" exact component={Signup} />
             <Route path="/login" exact component={Login} />
+            <Route path="/restaurants" exact component={RestaurantPage} />
 
           </Switch> 
           {/* <Footer /> */}

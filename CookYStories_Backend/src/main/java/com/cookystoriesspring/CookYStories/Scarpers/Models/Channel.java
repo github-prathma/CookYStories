@@ -16,11 +16,12 @@ public class Channel {
     private String link;
     private String time;
     private List<String> tags;
+    private String thumbnailUrl;
 
     public Channel() {
     }
 
-    public Channel(String id, String channel, String views, String title, String age, String link, List<String> tags, String time) {
+    public Channel(String id, String channel, String views, String title, String age, String link, List<String> tags, String time, String thumbnailUrl) {
         this.id = id;
         this.channel = channel;
         this.views = views;
@@ -29,6 +30,15 @@ public class Channel {
         this.link = link;
         this.tags = tags;
         this.time = time;
+        this.thumbnailUrl = thumbnailUrl;
+    }
+
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
+    }
+
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
     }
 
     public String getTime() {
@@ -105,6 +115,7 @@ public class Channel {
                 ", age='" + age + '\'' +
                 ", link='" + link + '\'' +
                 ", tags='" + tags + '\'' +
+                ", thumbnailUrl='" + thumbnailUrl + '\'' +
                 '}';
     }
 }

@@ -8,6 +8,8 @@ import Sidebar from '../components/Sidebar'
 import {GET_FEED} from '../../backend/FeedApis.js'
 import { Query } from 'react-apollo'
 
+import Card from '../../mainapp/WebScrapers/components/Card'
+
 function LoadFeed(props) {
     
     return (
