@@ -1,0 +1,20 @@
+/* .channels > .MuiSvgIcon-root {
+  font-size: xx-large;
+  color: #9d2929;
+} */
+
+.channels {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.channels > h6 {
+  font-weight: 500;
+  margin-left: 20px;
+}
+
+.channels:hover {
+  background-color: beige;
+}
