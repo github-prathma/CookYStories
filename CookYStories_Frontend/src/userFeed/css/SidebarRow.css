@@ -1,6 +1,6 @@
 .sidebarRow > .MuiSvgIcon-root {
   font-size: xx-large;
-  color: #9D2929;
+  color: #9d2929;
 }
 
 .sidebarRow {
@@ -12,7 +12,7 @@
 
 .sidebarRow > h6 {
   font-weight: 500;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 .sidebarRow:hover {
