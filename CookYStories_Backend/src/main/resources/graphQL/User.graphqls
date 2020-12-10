@@ -18,11 +18,11 @@ extend type Query {
 }
 
 input UserInput{
-    username: String!
-    firstName:String!
-    lastName: String!
-    password:String!
-    email: String!
+    username: String
+    firstName:String
+    lastName: String
+    password:String
+    email: String
     city:String
     country:String
     bioDescription:String

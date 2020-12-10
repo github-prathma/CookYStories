@@ -9,6 +9,8 @@ import AuthenticationService from '../../backend/AuthenticationService.js'
 import ErrorIcon from '@material-ui/icons/Error';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 // import CheckIcon from '@material-ui/icons/Check';
+import {UPDATE_USER_INFO} from '../../backend/UserProfileApis'
+import { Mutation } from 'react-apollo'
 
 
 export default class ProfileHeader extends Component {
@@ -84,19 +86,51 @@ export default class ProfileHeader extends Component {
     }
 
     return (      
-        <div className='userProfile'>
-                <div className='profileImage'>
-                    <img src={imageUrl} alt="Img"/>
-                </div>
-                <div className='profileBio'>
-                    <h4>{this.state.userData.first_name} {this.state.userData.first_name}</h4>
-                    <div className='profileData'>
-                        <h5>{this.state.userData.user_name}</h5>
-                        <h5>{this.state.userData.bio}</h5>
-                        <h5>{this.state.userData.city}, {this.state.userData.country}</h5>
+       
+      <Mutation mutation={UPDATE_USER_INFO}> 
+      {
+        (onUpdateClick, {loading, error, data}) => {
+            const onUpdateFunc = () => onUpdateClick(
+              {
+                variables:
+                {
+                  username: this.state.userData.user_name, 
+                  firstName: this.state.userData.first_name, 
+                  lastName: this.state.userData.last_name, 
+                  city: this.state.userData.city, 
+                  country: this.state.userData.country, 
+                  bio: this.state.userData.bio
+                }
+              })
+
+              if (loading) {
+                        
+              }
+
+              if (error) {
+
+              } 
+              if (data) {
+                console.log(data)
+                // this.setState({
+
+                // })
+              }
+              return (
+
+                <div className='userProfile'>
+                    <div className='profileImage'>
+                        <img src={imageUrl} alt="Img"/>
                     </div>
-                    {this.state.userData.user_name != AuthenticationService.getLoggedInUser() && 
-                        <>
+                    <div className='profileBio'>
+                      <h4>{this.state.userData.first_name} {this.state.userData.last_name}</h4>
+                      <div className='profileData'>
+                          <h5>{this.state.userData.user_name}</h5>
+                          <h5>{this.state.userData.bio}</h5>
+                          <h5>{this.state.userData.city}, {this.state.userData.country}</h5>
+                      </div>
+                      {this.state.userData.user_name !== AuthenticationService.getLoggedInUser() && 
+                          <>
                           {this.state.isFollowed && 
                             <Button variant="contained" style={{ color: "green" }} endIcon={<TrendingUpIcon />} style={{ marginLeft: '900px' }}>Unfollow</Button>
                           }
@@ -104,21 +138,20 @@ export default class ProfileHeader extends Component {
                             <Button variant="contained" color="primary" endIcon={<TrendingUpIcon />} style={{ marginLeft: '900px' }}>Follow</Button>
                           }
                           <ErrorIcon style={{ fill: "red" }}/>
-                      
-                        </>
-                    }
-          
-                    { this.state.userData.user_name == AuthenticationService.getLoggedInUser() &&
+                                  
+                          </>
+                      }
+                      { this.state.userData.user_name == AuthenticationService.getLoggedInUser() &&
                           <Button className="editProfile" onClick={e => this.modalOpen(e)} variant="contained"
                           startIcon={<CreateIcon />}>Edit Profile</Button>
-                    }
-            
-          
-                    <EditProfile show={this.state.modal} onUserChange={(e) => this.onUserChange(e)} handleUpdate={e => this.handleUpdate(e)}  handleClose={e => this.modalClose(e)} user={this.state.userData}/>         
-
-                </div>
-        
-         </div> 
+                      }
+                      <EditProfile show={this.state.modal} onUserChange={(e) => this.onUserChange(e)} handleUpdate={onUpdateFunc}  handleClose={e => this.modalClose(e)} user={this.state.userData}/>         
+                    </div>
+                </div> 
+              )
+        }
+      }
+      </Mutation>         
     )
   }
 }

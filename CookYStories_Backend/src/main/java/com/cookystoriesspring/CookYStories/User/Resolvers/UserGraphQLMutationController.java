@@ -90,13 +90,27 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
     public User updateUser(User user) {
         User fetchedUser = userRepository.findByUsername(user.getUsername());
 
-        fetchedUser.setBioDescription(user.getBioDescription());
-        fetchedUser.setFirstName(user.getFirstName());
-        fetchedUser.setLastName(user.getLastName());
-        fetchedUser.setCity(user.getCity());
-        fetchedUser.setCountry(user.getCountry());
-//        fetchedUser.setPassword(user.getPassword());
-        fetchedUser.setProfileImageUrl(user.getProfileImageUrl());
+        if (user.getBioDescription() != null && user.getBioDescription() != "") {
+            fetchedUser.setBioDescription(user.getBioDescription());
+        }
+        if (user.getFirstName() != null && user.getFirstName() != "") {
+            fetchedUser.setFirstName(user.getFirstName());
+        }
+        if (user.getLastName() != null && user.getLastName() != "") {
+            fetchedUser.setLastName(user.getLastName());
+        }
+        if (user.getCity() != null && user.getCity() != "") {
+            fetchedUser.setCity(user.getCity());
+        }
+        if (user.getCountry() != null && user.getCountry() != "") {
+            fetchedUser.setCountry(user.getCountry());
+        }
+        if (user.getPassword() != null && user.getPassword() != "") {
+            fetchedUser.setPassword(user.getPassword());
+        }
+        if (user.getProfileImageUrl() != null && user.getProfileImageUrl() != "") {
+            fetchedUser.setProfileImageUrl(user.getProfileImageUrl());
+        }
 
         User updatedUser = userRepository.save(fetchedUser);
 
