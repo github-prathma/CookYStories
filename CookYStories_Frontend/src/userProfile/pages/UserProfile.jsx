@@ -64,10 +64,25 @@ export default class UserProfile extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: props.match.params.name,
+      username: this.props.match.params.name,
     }
   }
+
+  componentWillReceiveProps(props) {
+    this.setState(
+      {
+        username: props.match.params.name
+      }
+    )
+
+    return <LoadProfile username={this.state.username}/>    
+
+  }
+
   render() {
+
+    console.log(this.state.username)
+
     return (
       <LoadProfile username={this.state.username}/>    
     )

@@ -5,8 +5,9 @@ import { Grid } from '@material-ui/core'
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import {withRouter} from 'react-router-dom';
 
-export default class Follow extends Component {
+class Follow extends Component {
   constructor(props) {
     super(props)
     this.state={
@@ -14,7 +15,14 @@ export default class Follow extends Component {
     }
   }
 
-  
+  componentWillReceiveProps(props) {
+    this.setState(
+      {
+        followers : props.followers
+      }
+    )
+  }
+
   render() {
     const followers = this.state.followers
     return (
@@ -25,7 +33,7 @@ export default class Follow extends Component {
             user =>             
             <Grid item xs>
               <Paper className='paper' elevation={3}>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} onClick={() => this.followerClicked(user.username)}>
                   <Grid item>
                     <ButtonBase className="image">
                       {user.profileImageUrl != null && user.profileImageUrl != "" && <img src={user.profileImageUrl} alt="img"/>}
@@ -55,4 +63,10 @@ export default class Follow extends Component {
       </div>
     )
   }
+
+  followerClicked = (username) => {
+    this.props.history.push(`/user/${username}`)
+  }
 }
+
+export default withRouter(Follow);

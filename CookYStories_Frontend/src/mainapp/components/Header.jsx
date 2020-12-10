@@ -66,13 +66,7 @@ class Header extends Component {
     this.props.history.push(`/user/${AuthenticationService.getLoggedInUser()}`)
   }
 
-  componentDidUpdate() {
-    this.setState (
-      {
-        profileImage: AuthenticationService.getProfileImageUrl()
-      }
-    )
-  }
+  
 
   render() {
 

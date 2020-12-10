@@ -5,13 +5,20 @@ import { Grid } from '@material-ui/core'
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import {withRouter} from 'react-router-dom';
 
-export default class Following extends Component {
+class Following extends Component {
 
   constructor(props) {
     super(props)
     this.state={
       following : this.props.following
+    }
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState={
+      following : props.following
     }
   }
 
@@ -30,7 +37,7 @@ export default class Following extends Component {
             
             <Grid item xs>
               <Paper className='paper' elevation={3}>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} onClick = {()=>this.followingClicked(user.username)}> 
                   <Grid item>
                     <ButtonBase className="image">
                       {user.profileImageUrl != null && user.profileImageUrl != "" && <img src={user.profileImageUrl} alt="img"/>}
@@ -63,4 +70,10 @@ export default class Following extends Component {
       </div>
     )
   }
+
+  followingClicked = (username) => {
+    this.props.history.push(`/user/${username}`)
+  }
 }
+
+export default withRouter(Following);

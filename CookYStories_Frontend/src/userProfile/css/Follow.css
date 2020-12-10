@@ -1,6 +1,7 @@
 .mainFollow{
   flex-grow: 1;
   box-shadow: 1px solid grey;
+  margin-left: 10px;
 }
 .paper{
     max-width: 500px;
