@@ -1,11 +1,12 @@
 import {gql} from "apollo-boost"
 
-// //get profile
+// get profile
 export const GET_USER_PROFILE = gql `
 query ($loggedInUser:String!, $toFollowUser:String!) {
     getUserProfile(input:{loggedInUser:$loggedInUser toFollowUser:$toFollowUser}){
         username
         profileImageUrl
+        isFollowed
         basicInfo{
             firstName
             lastName

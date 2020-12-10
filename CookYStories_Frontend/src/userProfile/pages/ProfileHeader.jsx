@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import chefAvatar from '../../utils/Images/chefAvatar.jpg'
 import AuthenticationService from '../../backend/AuthenticationService.js'
 
-// import ErrorIcon from '@material-ui/icons/Error';
+import ErrorIcon from '@material-ui/icons/Error';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import CheckIcon from '@material-ui/icons/Check';
 
@@ -28,8 +28,23 @@ export default class ProfileHeader extends Component {
       city: props.city,
       country: props.country,
       bio: props.bio,
-      modalInputName: ""
+      modalInputName: "",
+      isFollowed: props.isFollowed
     };
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState(
+      {
+        first_name: props.firstName,
+        last_name: props.lastName,
+        user_name: props.username,
+        city: props.city,
+        country: props.country,
+        bio: props.bio,
+        isFollowed: props.isFollowed
+      }
+    )
   }
 
   handleChange(e) {
@@ -60,7 +75,6 @@ export default class ProfileHeader extends Component {
   }
 
   
-
   render() {
     let imageUrl
 
@@ -69,6 +83,7 @@ export default class ProfileHeader extends Component {
     } else {
       imageUrl = {chefAvatar}
     }
+
     return (      
       <div className='userProfile'>
         <div className='profileImage'>
@@ -76,23 +91,29 @@ export default class ProfileHeader extends Component {
         </div>
         <div className='profileBio'>
           <h4>{this.props.firstName} {this.props.lastName}
-          <div className='profileData'>
-            <h5>{this.props.username}</h5>
-            <h5>{this.props.bio}</h5>
-            <h5>{this.props.city}, {this.props.country}</h5>
-          </div>
-          {this.state.user_name != AuthenticationService.getLoggedInUser() && 
-            <>
-            <Button variant="contained" color="primary" endIcon={<TrendingUpIcon />} style={{ marginLeft: '900px' }}>Follow</Button>
-            <CheckIcon />
-            </>
-          }
-
+            <div className='profileData'>
+              <h5>{this.props.username}</h5>
+              <h5>{this.props.bio}</h5>
+              <h5>{this.props.city}, {this.props.country}</h5>
+            </div>
+            {this.state.user_name != AuthenticationService.getLoggedInUser() && 
+                <>
+                  {this.state.isFollowed && 
+                    <Button variant="contained" style={{ color: "green" }} endIcon={<TrendingUpIcon />} style={{ marginLeft: '900px' }}>Unfollow</Button>
+                  }
+                  {!this.state.isFollowed && 
+                    <Button variant="contained" color="primary" endIcon={<TrendingUpIcon />} style={{ marginLeft: '900px' }}>Follow</Button>
+                  }
+                  <ErrorIcon style={{ fill: "red" }}/>
+              
+              </>
+            }
+          </h4>
           { this.state.user_name == AuthenticationService.getLoggedInUser() &&
                 <Button className="editProfile" onClick={e => this.modalOpen(e)} variant="contained"
                 startIcon={<CreateIcon />}>Edit Profile</Button>
           }
-            </h4>
+            
           
             <EditProfile show={this.state.modal} handleClose={e => this.modalClose(e)}>
               <form className="form-group">
