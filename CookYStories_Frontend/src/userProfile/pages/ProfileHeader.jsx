@@ -90,7 +90,7 @@ export default class ProfileHeader extends Component {
           <img src={imageUrl} alt="Img"/>
         </div>
         <div className='profileBio'>
-          <h4>{this.props.firstName} {this.props.lastName}
+          <h4>{this.props.firstName} {this.props.lastName}</h4>
             <div className='profileData'>
               <h5>{this.props.username}</h5>
               <h5>{this.props.bio}</h5>
@@ -108,7 +108,7 @@ export default class ProfileHeader extends Component {
               
               </>
             }
-          </h4>
+          
           { this.state.user_name == AuthenticationService.getLoggedInUser() &&
                 <Button className="editProfile" onClick={e => this.modalOpen(e)} variant="contained"
                 startIcon={<CreateIcon />}>Edit Profile</Button>

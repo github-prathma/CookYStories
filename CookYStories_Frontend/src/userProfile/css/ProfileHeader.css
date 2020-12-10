@@ -13,6 +13,8 @@
 
 .profileBio > h4 {
   font-weight: bold;
+  font-family: cursive;
+
 }
 
 .profileBio {
@@ -25,6 +27,9 @@
   margin-left: 900px;
 }
 
+.profileData {
+  font-family: cursive;
+}
 
 .editProfile:hover {
   color: #070707;
