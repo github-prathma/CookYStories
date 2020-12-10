@@ -95,7 +95,7 @@ public class UserGraphQLMutationController implements GraphQLMutationResolver {
         fetchedUser.setLastName(user.getLastName());
         fetchedUser.setCity(user.getCity());
         fetchedUser.setCountry(user.getCountry());
-        fetchedUser.setPassword(user.getPassword());
+//        fetchedUser.setPassword(user.getPassword());
         fetchedUser.setProfileImageUrl(user.getProfileImageUrl());
 
         User updatedUser = userRepository.save(fetchedUser);
