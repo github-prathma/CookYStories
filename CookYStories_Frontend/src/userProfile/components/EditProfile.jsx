@@ -5,7 +5,6 @@ import React, { Component,  useCallback } from 'react'
 import '../css/EditProfile.css'
 import SaveIcon from '@material-ui/icons/Save';
 
-//children
 class EditProfile extends Component {
 
   constructor(props) {
