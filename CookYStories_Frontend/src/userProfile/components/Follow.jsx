@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import chintu from '../../utils/Images/Chintu.PNG'
-import prathma from '../../utils/Images/Prathma.PNG'
-import pratik from '../../utils/Images/Pratik.PNG'
+import chefAvatar from '../../utils/Images/chefAvatar.jpg'
 import '../css/Follow.css'
 import { Grid } from '@material-ui/core'
 import Paper from '@material-ui/core/Paper';
@@ -16,6 +14,7 @@ export default class Follow extends Component {
     }
   }
 
+  
   render() {
     const followers = this.state.followers
     return (
@@ -29,7 +28,9 @@ export default class Follow extends Component {
                 <Grid container spacing={2}>
                   <Grid item>
                     <ButtonBase className="image">
-                      <img src={user.profileImageUrl} alt="img"/>
+                      {user.profileImageUrl != null && user.profileImageUrl != "" && <img src={user.profileImageUrl} alt="img"/>}
+                      {(user.profileImageUrl == null || user.profileImageUrl == "") && <img src={chefAvatar} alt="img"/>}
+                      
                     </ButtonBase>            
                   </Grid> 
   
