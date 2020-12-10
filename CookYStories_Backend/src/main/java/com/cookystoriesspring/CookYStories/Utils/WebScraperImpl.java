@@ -1,8 +1,10 @@
 package com.cookystoriesspring.CookYStories.Utils;
 
 import com.cookystoriesspring.CookYStories.Scarpers.Models.Channel;
+import com.cookystoriesspring.CookYStories.Scarpers.Models.Video;
 import com.cookystoriesspring.CookYStories.Scarpers.Models.Restaurant;
 import com.cookystoriesspring.CookYStories.Scarpers.MongoRepositories.ChannelRepository;
+import com.cookystoriesspring.CookYStories.Scarpers.MongoRepositories.VideoRepository;
 import com.cookystoriesspring.CookYStories.Scarpers.MongoRepositories.RestaurantRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -13,8 +15,6 @@ import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +33,9 @@ public class WebScraperImpl implements WebScraperService{
     Logger log = LoggerFactory.getLogger(WebScraperService.class);
     @Autowired
     private RestaurantRepository restaurantRepository;
+
+    @Autowired
+    private VideoRepository videoRepository;
 
     @Autowired
     private ChannelRepository channelRepository;
@@ -127,6 +130,7 @@ public class WebScraperImpl implements WebScraperService{
             String time = "";
             String thumbnailUrl = "";
             String result = "";
+            String channelLink = "";
 
 //            Elements bigE;
 //            bigE = doc.select("div#search");
@@ -177,17 +181,39 @@ public class WebScraperImpl implements WebScraperService{
                 thumbnailUrl = e.findElement(By.xpath("//*[@id=\"img\"]")).getAttribute("src");
 
                 log.info(thumbnailUrl);
-                Channel channelObj = new Channel();
-                channelObj.setAge(age);
-                channelObj.setChannel(channel);
-                channelObj.setLink(link);
-                channelObj.setTitle(title);
-                channelObj.setTags(tags);
-                channelObj.setViews(views);
-                channelObj.setThumbnailUrl(thumbnailUrl);
+                Video videoObj = new Video();
+                videoObj.setAge(age);
+                videoObj.setChannel(channel);
+                videoObj.setLink(link);
+                videoObj.setTitle(title);
+                videoObj.setTags(tags);
+                videoObj.setViews(views);
+                videoObj.setThumbnailUrl(thumbnailUrl);
 
-                channelRepository.save(channelObj);
+                videoRepository.save(videoObj);
                 result+=e.getText()+"<br><br>";
+
+                Channel existing = channelRepository.findChannelsByChannelNameEquals(channel);
+                if (existing == null) {
+                    Channel createdChannel = new Channel();
+                    createdChannel.setChannelName(channel);
+                    createdChannel.setNumVideos(1);
+                    List<Video> videos = new ArrayList<>();
+                    videos.add(videoObj);
+                    createdChannel.setVideos(videos);
+                    channelLink = channelInfo.findElement(By.xpath("//*[@id=\"channel-info\"]/a")).getAttribute("href");
+                    log.info(channelLink);
+
+                    createdChannel.setChannelLink(channelLink);
+
+                    channelRepository.save(createdChannel);
+                } else {
+                    List<Video> videos = existing.getVideos();
+                    videos.add(videoObj);
+                    existing.setNumVideos(existing.getNumVideos()+1);
+
+                    channelRepository.save(existing);
+                }
             }
             return result;
 

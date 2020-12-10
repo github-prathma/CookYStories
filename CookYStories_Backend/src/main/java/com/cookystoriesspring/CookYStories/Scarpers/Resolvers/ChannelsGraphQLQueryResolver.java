@@ -16,15 +16,7 @@ public class ChannelsGraphQLQueryResolver implements GraphQLQueryResolver {
     @Autowired
     private ChannelRepository channelRepository;
 
-    public List<Channel> getChannel(String channel) {
-        return channelRepository.findAllByChannelEquals(channel);
-    }
-
     public List<Channel> getAllChannels() {
         return channelRepository.findAll();
-    }
-
-    public List<Channel> getChannelByTags(List<String> tags) {
-        return channelRepository.findAllByTagsIn(tags);
     }
 }
