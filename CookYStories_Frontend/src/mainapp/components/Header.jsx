@@ -109,7 +109,8 @@ class Header extends Component {
           avatar = <Avatar src={chefAvatar}/>
 
         }
-                   return ( 
+                   
+        return ( 
                       <div className="header">
                         <div className="header_left">
                             <img src={logo} alt='Logo' />
@@ -157,7 +158,7 @@ class Header extends Component {
                              </div>}
 
                       </div>
-                    )
+          )
               
             
         //       }
