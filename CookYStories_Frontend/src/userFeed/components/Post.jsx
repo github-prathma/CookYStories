@@ -8,7 +8,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import {Mutation} from 'react-apollo'
 import MenuItem from '@material-ui/core/MenuItem';
-import {DELETE_POST} from '../../backend/FeedApis'
+import {DELETE_POST, UPDATE_POST} from '../../backend/FeedApis'
 import AuthenticationService from '../../backend/AuthenticationService';
 
 class Post extends Component {
@@ -44,6 +44,13 @@ class Post extends Component {
     openPost = event => {
         
     }
+
+    shouldComponentUpdate(nextProps, nextState) { 
+        if (nextProps.description === this.props.description) return false;
+    
+        return true;
+      }
+    
     
     render() {
         // console.log(this.props.id)
@@ -66,12 +73,35 @@ class Post extends Component {
                                         keepMounted
                                         open={Boolean(anchorEl)}
                                     onClose={this.handleClose}>
-                                    {sameUser ?  <MenuItem onClick={(e) => {
-                                            // e.preventDefault();
-                                            this.handleClose();
-                                            // updatePost( {variables :  {id:this.props.id, description: this.props.description, byUsername:this.props.byUsername}})
-                                        }}> Edit Post
-                                        </MenuItem>  : <MenuItem >Report Post</MenuItem>}
+                                    {sameUser ?  
+                                    // <Mutation mutation={UPDATE_POST} variables={} >
+                                    //     {
+                                    //         (updatePostClicked, {loading, error, data}) => {
+                                    //             if(loading) {
+                                    //               return(
+                                    //               <span>Loading ... </span>
+                                    //               )}
+                                    //             if(error) {
+                                    //               return(
+                                    //               <span>Error ... </span> 
+                                    //               )}
+                                  
+                                    //             if (data) {
+                                    //               console.log(data)
+                                    //               console.log(this.props.post_id)
+                                    //               this.setState({refresh:data.deletePost})
+                                    //             }
+                                    //             return (
+                                                    <MenuItem onClick={(e) => {
+                                                        this.handleClose();
+                                                        // updatePostClicked( {variables :  {id:this.props.post_id, description: this.props.description, byUsername:this.props.byUsername}})
+                                                    }}> Edit Post
+                                                    </MenuItem>
+                                    //             )
+                                    //         }
+                                    //     }
+                                    // </Mutation>
+                                      : <MenuItem >Report Post</MenuItem>}
                                         {sameUser ? 
                                         <Mutation mutation={DELETE_POST} variables={{post_id:this.props.post_id}}>
                                             {
@@ -88,6 +118,7 @@ class Post extends Component {
                                                     if (data) {
                                                       console.log(data)
                                                       console.log(this.props.post_id)
+                                                      this.setState({refresh:data.deletePost})
                                                     }
                                                 
                                                     return (

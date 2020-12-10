@@ -28,7 +28,9 @@ class PostSend extends Component {
             // imgUrl: "",
             modal: false,
             description: "",
-            modalInputDescription: ""
+            modalInputDescription: "",
+            showEditPostModel:false
+
         };
         
     }

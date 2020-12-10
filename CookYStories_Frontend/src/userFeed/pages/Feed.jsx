@@ -9,6 +9,7 @@ import {GET_FEED} from '../../backend/FeedApis.js'
 import { Query } from 'react-apollo'
 
 import Card from '../../mainapp/WebScrapers/components/Card'
+import AuthenticationService from '../../backend/AuthenticationService'
 
 
 
@@ -80,6 +81,15 @@ export default class Feed extends Component {
             }
         
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.refresh) {
+            return <LoadFeed username={AuthenticationService.getLoggedInUser()} />
+            this.setState({refres:false})
+        }
+        return <LoadFeed username={AuthenticationService.getLoggedInUser()} />
+    }
+
 
 
     render() {
