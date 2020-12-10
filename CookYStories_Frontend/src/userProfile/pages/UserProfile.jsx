@@ -35,7 +35,7 @@ function LoadProfile(props) {
                   <div>
                     <div></div>
                     
-                    <div className="profilePage">
+                    <div className="profilePage" style = {{height:"100vh"}}>
                       <ProfileHeader username={profile.username} 
                         firstName={profile.basicInfo.firstName} lastName={profile.basicInfo.lastName} 
                         city={profile.basicInfo.city} country={profile.basicInfo.country} bio={profile.basicInfo.bioDescription}

@@ -25,7 +25,7 @@ class WelcomeHomePage extends Component {
         ]
         return (
             
-                <div className="row">
+                <div className="row" style = {{height:"100vh"}}>
                     <div className="leftColumn">
                         <Carousel className="welcomeSlider" width="100%" autoPlay={true} interval={3500} animation="slide" navButtonsAlwaysVisible={true} fullHeightHover={true}>
                             {
