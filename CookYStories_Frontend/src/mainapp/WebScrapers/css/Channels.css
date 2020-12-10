@@ -1,0 +1,4 @@
+.videoGallery {
+    display:flex;
+    flex-direction:row;
+}
