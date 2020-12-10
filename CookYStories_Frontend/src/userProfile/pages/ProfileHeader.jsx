@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-import rushang from '../../utils/Images/rushang.PNG'
 import CreateIcon from '@material-ui/icons/Create';
 import SaveIcon from '@material-ui/icons/Save';
 import '../css/ProfileHeader.css'
 import EditProfile from '../components/EditProfile'
 import Button from '@material-ui/core/Button';
+import chefAvatar from '../../utils/Images/chefAvatar.jpg'
+import AuthenticationService from '../../backend/AuthenticationService.js'
+
 // import ErrorIcon from '@material-ui/icons/Error';
-// import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-// import CheckIcon from '@material-ui/icons/Check';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import CheckIcon from '@material-ui/icons/Check';
 
 export default class ProfileHeader extends Component {
   constructor(props) {
@@ -20,12 +22,12 @@ export default class ProfileHeader extends Component {
     this.state = {
       modal: false,
       name: "",
-      first_name: "",
-      last_name: "",
-      user_name: "",
-      city: "",
-      country: "",
-      bio: "",
+      first_name: props.firstName,
+      last_name: props.lastName,
+      user_name: props.username,
+      city: props.city,
+      country: props.country,
+      bio: props.bio,
       modalInputName: ""
     };
   }
@@ -56,18 +58,42 @@ export default class ProfileHeader extends Component {
       modal: false
     });
   }
+
+  
+
   render() {
+    let imageUrl
+
+    if (this.props.profileImageUrl != null && this.props.profileImageUrl != "") {
+      imageUrl = this.props.profileImageUrl
+    } else {
+      imageUrl = {chefAvatar}
+    }
     return (      
       <div className='userProfile'>
         <div className='profileImage'>
-          <img src={this.props.profileImageUrl} alt="Img"/>
+          <img src={imageUrl} alt="Img"/>
         </div>
         <div className='profileBio'>
           <h4>{this.props.firstName} {this.props.lastName}
-             {/* <Button variant="contained" color="primary" endIcon={<TrendingUpIcon />} style={{ marginLeft: '900px' }}>Follow</Button> */}
-            {/* <CheckIcon /> */}
-          <Button className="editProfile" onClick={e => this.modalOpen(e)} variant="contained"
-             startIcon={<CreateIcon />}>Edit Profile</Button>
+          <div className='profileData'>
+            <h5>{this.props.username}</h5>
+            <h5>{this.props.bio}</h5>
+            <h5>{this.props.city}, {this.props.country}</h5>
+          </div>
+          {this.state.user_name != AuthenticationService.getLoggedInUser() && 
+            <>
+            <Button variant="contained" color="primary" endIcon={<TrendingUpIcon />} style={{ marginLeft: '900px' }}>Follow</Button>
+            <CheckIcon />
+            </>
+          }
+
+          { this.state.user_name == AuthenticationService.getLoggedInUser() &&
+                <Button className="editProfile" onClick={e => this.modalOpen(e)} variant="contained"
+                startIcon={<CreateIcon />}>Edit Profile</Button>
+          }
+            </h4>
+          
             <EditProfile show={this.state.modal} handleClose={e => this.modalClose(e)}>
               <form className="form-group">
               <div className='EditImage'>
@@ -156,12 +182,8 @@ export default class ProfileHeader extends Component {
             </Button>
                   </div>
           </form>
-            </EditProfile></h4>
-          <div className='profileData'>
-            <h5>{this.props.username}</h5>
-            <h5>{this.props.bio}</h5>
-            <h5>{this.props.city}, {this.props.country}</h5>
-          </div>
+            </EditProfile>
+         
 
         </div>
         

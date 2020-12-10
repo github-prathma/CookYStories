@@ -18,6 +18,8 @@ h4 > .editProfile {
   margin-top: 10px;
   margin-left: 900px;
 }
+
+
 .editProfile:hover {
   color: #070707;
   cursor: pointer;

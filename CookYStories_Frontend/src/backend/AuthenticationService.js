@@ -1,8 +1,16 @@
 class AuthenticationService {
+
+    profileImageUrl = ""
+
+
     registerSuccessLogin(username, password, token) {
         sessionStorage.setItem('authenticatedUser', username);
         sessionStorage.setItem('password', password);
         sessionStorage.setItem('token', token);
+    }
+
+    setProfileImage(profileImageUrl) {
+        this.profileImageUrl = profileImageUrl
     }
 
     logout() {
@@ -33,6 +41,10 @@ class AuthenticationService {
             return ''
         }
         return password
+    }
+
+    getProfileImageUrl() {
+        return this.profileImageUrl;
     }
 
 }

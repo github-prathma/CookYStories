@@ -26,9 +26,14 @@ function LoadProfile(props) {
               console.log(data)
               const profile = data.getUserProfile
 
+              if (profile.profileImageUrl != null && profile.profileImageUrl != "") {
+                AuthenticationService.setProfileImage(profile.profileImageUrl);
+              }
+
               if(data) {
                 return (
                   <div>
+                    <div></div>
                     
                     <div className="profilePage">
                       <ProfileHeader username={profile.username} 

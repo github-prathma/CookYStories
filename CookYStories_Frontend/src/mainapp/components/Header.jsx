@@ -1,7 +1,8 @@
 import logo from '../../utils/CookYLogo.png'
 import '../../mainapp/css/CookStories.css'
 import React, { Component } from 'react';
-import rushang from '../../utils/Images/rushang.PNG'
+import { useEffect } from 'react';
+import chefAvatar from '../../utils/Images/chefAvatar.jpg'
 import { Avatar, Button } from '@material-ui/core'
 import FindInPageRoundedIcon from '@material-ui/icons/FindInPageRounded';
 import HomeIcon from '@material-ui/icons/Home'
@@ -23,7 +24,7 @@ import { Mutation } from 'react-apollo'
 
 
 class Header extends Component {
-  constructor() {
+  constructor(props) {
     super()
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,6 +36,7 @@ class Header extends Component {
       description: "",
       modalInputDescription: "",
       username: "",
+      profileImage: props.profileImage,
       isLoginClicked: false
     };
   }
@@ -61,7 +63,15 @@ class Header extends Component {
   }
 
   userNameClicked = () => {
-    this.props.history.push('/user')
+    this.props.history.push(`/user/${AuthenticationService.getLoggedInUser()}`)
+  }
+
+  componentDidUpdate() {
+    this.setState (
+      {
+        profileImage: AuthenticationService.getProfileImageUrl()
+      }
+    )
   }
 
   render() {
@@ -98,7 +108,13 @@ class Header extends Component {
         //             }
 
         //            }
+        let avatar;
+        if (this.state.profileImage!=null && this.state.profileImage!="") {
+          avatar = <Avatar src={this.state.profileImage}/>
+        } else {
+          avatar = <Avatar src={chefAvatar}/>
 
+        }
                    return ( 
                       <div className="header">
                         <div className="header_left">
@@ -122,8 +138,8 @@ class Header extends Component {
 
                         <div className="header_right">
                             {AuthenticationService.isLoggedIn() && <div className="header_info" onClick={this.userNameClicked}>
-                                <Avatar src={rushang}/>
-                                <h5>rushang2413</h5>
+                                {avatar}
+                                <h5>{AuthenticationService.getLoggedInUser()}</h5>
                             </div>}
 
                             {AuthenticationService.isLoggedIn() && <div className="logout">
