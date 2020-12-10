@@ -27,6 +27,10 @@
   color: #666666;
   cursor: pointer;
 }
+.statsData:active > .MuiSvgIcon-root {
+  color: #9d2929;
+}
+
 .statsData--active > .MuiSvgIcon-root {
   color: #9d2929;
 }
