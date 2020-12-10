@@ -1,4 +1,20 @@
 .videoGallery {
-    display:flex;
-    flex-direction:row;
+display: grid;
+grid-gap: 10px;
+grid-template-columns: repeat(6, calc(50% - 40px));
+grid-template-rows: minmax(150px, 1fr);
+padding: 0 20px;
+}
+
+.channel_outer_container {
+display: grid;
+grid-template-columns: 20px 1fr 20px;
+}
+
+.channel_outer_container > * {
+grid-column: 2 / -2;
+}
+
+.videoGallery > .full {
+grid-column: 1 / -1;
 }

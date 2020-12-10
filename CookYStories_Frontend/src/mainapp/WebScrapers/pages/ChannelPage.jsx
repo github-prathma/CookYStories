@@ -4,6 +4,8 @@ import {LOAD_CHANNELS} from '../../../backend/ChannelsApis'
 import { Query } from 'react-apollo'
 import ChannelCard from '../components/ChannelCard'
 
+import '../css/Channels.css'
+
 function LoadChannels () {
     return (
         <Query query = {LOAD_CHANNELS}>
@@ -25,7 +27,7 @@ function LoadChannels () {
                     const channels = data.getAllChannels
 
                     return (
-                        <div className="main_Channel">
+                        <div className="videoScrollableList">
                             {
                                 channels.map(
                                     channel => <ChannelCard 

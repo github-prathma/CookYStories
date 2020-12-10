@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import VideoCard from './VideoCard';
 
+import '../css/Channels.css'
+
 class ChannelCard extends Component {
 
     constructor(props) {
@@ -14,7 +16,7 @@ class ChannelCard extends Component {
                     <h3>{this.props.channelName}</h3>
                     <a href = {this.props.channelLink} >Go to Channel</a>
                 </div>
-                <div className="videoGallery">
+                <div className="videoGallery full">
                     {
                         this.props.videos.map (
                             video => 

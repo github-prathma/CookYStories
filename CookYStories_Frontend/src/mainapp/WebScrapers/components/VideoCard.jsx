@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import '../css/Channels.css'
 
 class VideoCard extends Component {
     render() {
