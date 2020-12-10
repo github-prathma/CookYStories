@@ -33,7 +33,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:8080/graphql",
+  "proxy": "http://192.168.1.112.:8080/graphql",
   "eslintConfig": {
     "extends": "react-app"
   },

@@ -10,6 +10,8 @@ import { Query } from 'react-apollo'
 
 import Card from '../../mainapp/WebScrapers/components/Card'
 
+
+
 function LoadFeed(props) {
     
     return (
@@ -44,6 +46,7 @@ function LoadFeed(props) {
                                     
                                     post => <Post
                                     key={post.id}
+                                    post_id = {post.id}
                                     profilePic={rushang}
                                     message={post.description}
                                     timestamp={post.createdAt}
@@ -81,6 +84,9 @@ export default class Feed extends Component {
 
     render() {
 
+        
+
+        
         return (
             <div className="outer-container">
                 <div className="main">
@@ -95,8 +101,10 @@ export default class Feed extends Component {
 
                 <div>
                     <LoadFeed username={this.state.username}/>
+                    
                 </div>
             </div>
         )
     }
 }
+

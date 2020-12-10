@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Map, GoogleApiWrapper } from 'google-maps-react';
 import '../css/Sidebar.css';
 import NearMeIcon from '@material-ui/icons/NearMe';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
@@ -19,7 +18,7 @@ export default class Sidebar extends Component {
           <div className="sidebar">
            <Grid item xs={12} spacing={3}>
 
-              <SidebarRow statusImage={<NearMeIcon />} title="NEAR ME" /> {onclick = <NearMe />}
+              <SidebarRow statusImage={<NearMeIcon />} title="NEAR ME" /> 
               <hr />
               <SidebarRow statusImage={<RestaurantIcon />} title="RESTAURANTS" />
               <hr />
