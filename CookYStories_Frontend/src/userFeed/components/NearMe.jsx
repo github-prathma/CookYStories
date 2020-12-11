@@ -29,7 +29,7 @@ class NearMe extends Component {
       
       
       
-      <div className = {showHideClassName}>
+      <div className = {showHideClassName} style={{height:'50vh', width:'70%'}}>
           <div className="modal-container">
             <div className="button">
                 <Button
@@ -51,7 +51,9 @@ class NearMe extends Component {
             />
             {/* <SearchBox /> */}
             </GoogleMapReact>
-            </div>
+
+        
+      </div>
       </div>
       
     );

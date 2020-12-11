@@ -23,6 +23,7 @@ export const LOG_IN = gql`
                 user
                 password
                 token
+                profileImageUrl
             }
         }
 `

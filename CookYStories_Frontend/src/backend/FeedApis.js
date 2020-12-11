@@ -85,6 +85,17 @@ mutation ($post_id:String!){
     deletePost(id:$post_id)
 }`
 
+//report Post
+
+export const REPORT_POST = gql`
+mutation ($postId:String!, $reportedBy:String!){
+    reportPost(input:{
+        postId:$postId
+        reportedBy:$reportedBy
+    }) 
+}
+`
+
 
 // // like unlike post
 // export const LIKE_UNLIKE_POST = gql `
@@ -157,3 +168,15 @@ mutation ($post_id:String!){
 //         }
 //     }
 // }`
+
+// Add comment to a specific post
+
+export const ADD_COMMENT = gql`
+mutation ($postId:String, $description:String!, $byUsername:String){
+    addComment(input:{
+        postId:$postId
+        byUsername:$byUsername
+        description:$description
+    }) 
+}
+`

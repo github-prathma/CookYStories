@@ -8,9 +8,11 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import {Mutation} from 'react-apollo'
 import MenuItem from '@material-ui/core/MenuItem';
-import {DELETE_POST, UPDATE_POST} from '../../backend/FeedApis'
+import {DELETE_POST, REPORT_POST} from '../../backend/FeedApis'
 import UpdatePost from './UpdatePost'
 import Comment from './Comment'
+import AddComment from './AddComment';
+import AuthenticationService from '../../backend/AuthenticationService';
 
 class Post extends Component {
     
@@ -25,7 +27,10 @@ class Post extends Component {
             byUsername: props.username,
             image : props.image,
             byUser : props.byUser,
-            showModal:false
+            showModal:false,
+            dataDelete:false,
+            dataReport:false
+
         }
 
         this.modalOpen = this.modalOpen.bind(this);
@@ -41,6 +46,8 @@ class Post extends Component {
           description: param.description,
           byUsername: param.byUsername,
           post_id:param.post_id,
+          reportResponse: '',
+          showReportResult:false,
     
         });
       }
@@ -85,7 +92,7 @@ class Post extends Component {
     
     
     render() {
-        // console.log(this.props.id)
+        console.log(this.state)
         // console.log(this.props.username)
         const sameUser =   (this.props.id === this.props.username )
         const { anchorEl } = this.state
@@ -107,13 +114,45 @@ class Post extends Component {
                                         >
                                     {sameUser ?  
                                     
-                                    <MenuItem onClick={ (e) => this.modalOpen(e)
-                                    }
-                                    > Edit Post
+                                    <MenuItem onClick={ (e) => this.modalOpen(e)}> 
+                                        Edit Post
                                     </MenuItem>  
 
                                         
-                                        : <MenuItem >Report Post</MenuItem>}
+                                        : 
+                                        <Mutation mutation={REPORT_POST} variables={{postId:this.props.post_id, reportedBy:AuthenticationService.getLoggedInUser()}}>
+                                            {
+
+                                            (reportPostClicked, {loading, error, data}) => {
+                                                console.log(this.props.post_id)
+                                                if(loading) {
+                                                return(
+                                                <span>Loading ... </span>
+                                                )}
+                                                if(error) {
+                                                return(
+                                                <span>Error ... </span> 
+                                                )}
+
+                                                if (data && this.state.dataReport) {
+                                                console.log(data)
+                                                this.setState({dataReport:true, reportResponse:data.reportPost, showReportResult:true})
+                                                
+                                                }
+
+                                                return (
+                                            
+                                                    <MenuItem onClick={(e) => {
+                                                        reportPostClicked({variables:{postId:this.props.post_id, reportedBy:AuthenticationService.getLoggedInUser()}})
+                                                    }}>
+                                                        Report Post
+                                                    </MenuItem>
+                                                );
+                                            }
+                                            }
+                                        </Mutation>
+
+                                        }
                                     {sameUser ? 
                                     <Mutation mutation={DELETE_POST} variables={{post_id:this.props.post_id}}>
                                         {
@@ -127,10 +166,10 @@ class Post extends Component {
                                                       <span>Error ... </span> 
                                                       )}
                                       
-                                                    if (data) {
+                                                    if (data && this.state.dataDelete) {
                                                       console.log(data)
-                                                      console.log(this.props.post_id)
-                                                      this.setState({refresh:data.deletePost})
+                                                      this.setState({dataDelete:true})
+                                                      
                                                     }
                                                 
                                                     return (
@@ -157,6 +196,9 @@ class Post extends Component {
                     {this.state.description}
                     </p>
                 </div>
+                { this.state.showReportResult &&<div>
+                    <p>{this.state.reportResponse}</p>
+                </div>}
                 <div className="post_image">
                     <img src={this.state.image} alt='' />
                 </div>
@@ -176,11 +218,16 @@ class Post extends Component {
                     </div>
                 </div>
                 <div className="CommentsBox">
-                    {
-                        this.props.comments.map(
-                            comment => <Comment commentText={comment.commentText} byUser={comment.byUser}/>
-                        ) 
-                    }
+                    <div className="previousComments">
+                        {
+                            this.props.comments.map(
+                                comment => <Comment commentText={comment.commentText} byUser={comment.byUser} profilePic={comment.byUser.profileImageUrl} post_id={this.state.post_id}/>
+                            ) 
+                        }
+                    </div>
+                    <div className="newComment">
+                        <AddComment post_id={this.state.post_id} profilePic={this.state.profilePic}/>
+                    </div>
                 </div>
             </div>
                     
