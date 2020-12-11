@@ -16,11 +16,12 @@ public class PostInput {
     public PostInput() {
     }
 
-    public PostInput(String description, List<String> media, String byUsername, String imageUrl) {
+    public PostInput(String id, String description, List<String> media, String byUsername, String imageUrl) {
         this.description = description;
         this.media = media;
         this.byUsername = byUsername;
         this.imageUrl = imageUrl;
+        this.id = id;
     }
 
     public String getImageUrl() {
