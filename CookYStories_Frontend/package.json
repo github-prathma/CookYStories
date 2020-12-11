@@ -14,8 +14,6 @@
     "apollo-link-http": "^1.5.17",
     "axios": "^0.21.0",
     "formik": "^2.2.1",
-    "google-map-react": "^2.1.9",
-    "google-maps-react": "^2.0.6",
     "graphql": "^15.4.0",
     "graphql-tag": "^2.11.0",
     "moment": "^2.29.1",
@@ -25,7 +23,6 @@
     "react-burger-menu": "^2.9.0",
     "react-dom": "^16.13.1",
     "react-material-ui-carousel": "^2.0.0",
-    "react-modal": "^3.12.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3"
   },
@@ -35,7 +32,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://ec2-18-220-62-236.us-east-2.compute.amazonaws.com:8080/graphql",
+
+  "proxy": "http://10.0.0.249:8080/graphql",
+  
   "eslintConfig": {
     "extends": "react-app"
   },
