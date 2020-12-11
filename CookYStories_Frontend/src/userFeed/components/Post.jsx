@@ -6,83 +6,22 @@ import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
-import {Mutation} from 'react-apollo'
+// import {Mutation} from 'react-apollo'
 import MenuItem from '@material-ui/core/MenuItem';
-import {DELETE_POST, UPDATE_POST} from '../../backend/FeedApis'
-import UpdatePost from './UpdatePost'
-import AuthenticationService from '../../backend/AuthenticationService';
+// import {UPDATE_POST} from '../../backend/FeedApis'
 
 class Post extends Component {
     
-    constructor(props) {
-        super(props)
-        this.state = {
+        state = {
             anchorEl: null,
-            profilePic: props.profilePic,
-            createdAt: props.timestamp,
-            post_id : props.post_id,
-            description : props.message,
-            byUsername: props.username,
-            image : props.image,
-            byUser : props.byUser
+           
         }
-
-        this.modalOpen = this.modalOpen.bind(this);
-        this.modalClose = this.modalClose.bind(this);
-        this.onFieldChange = this.onFieldChange.bind(this);
-
-    }
-
-    componentWillReceiveProps(props) {
-        this.setState(
-            {
-                profilePic: props.profilePic,
-                createdAt: props.timestamp,
-                post_id : props.post_id,
-                description : props.message,
-                buUser: props.username,
-                image : props.image,
-                byUser : props.byUser
-            }
-        )
-    }
     
-    modalOpen() {
-        this.setState({ ShowModal: true });
-    }
-    
-    modalClose() {
-        this.setState({
-            anchorEl: null,
-            showModal: false,
-        });
-    } 
-    
-    onFieldChange = (e) => {
-        this.setState({
-          [e.target.name]: e.target.value
-        });
-    }
 
     handleClick = event => this.setState({
         anchorEl: event.currentTarget
-    })
-
-    handleClose = () => this.setState({ 
-        anchorEl: null,
-        showModal:true 
-    })
-
-    openPost = event => {
-        
-    }
-
-    shouldComponentUpdate(nextProps, nextState) { 
-        if (nextProps.description === this.props.description) return false;
-    
-        return true;
-      }
-    
+            })
+    handleClose = () => this.setState({ anchorEl: null })
     
     render() {
         // console.log(this.props.id)
@@ -90,107 +29,45 @@ class Post extends Component {
         const sameUser =   (this.props.id === this.props.username )
         const { anchorEl } = this.state.anchorEl
         return (
-
-           <>
-                
             
-            <div className='post' onClick = {this.openPost}>
-                
-                
+            <div className='post'>
                 <div className="post_top">
-                    <Avatar src={this.state.profilePic} className='post_avatar' />
+                    <Avatar src={this.props.profilePic} className='post_avatar' />
                     <div className="post_topInfo">
-                        <h3>{this.state.byUsername}<MoreVertIcon style={{ marginLeft: "605px" }} onClick={this.handleClick} /><p>{this.state.createdAt}</p>
+                        <h3>{this.props.username}<MoreVertIcon style={{ marginLeft: "605px" }} onClick={(e) => this.handleClick(e)} /><p>{this.props.createdAt}</p>
+                        
+                            
+                        {/* <Mutation mutation={UPDATE_POST} > {
+                ( updatePost, {data}) => {
+                    return ( */}
                                 <Menu id="simple-menu"
                                         anchorEl={anchorEl}
                                         keepMounted
                                         open={Boolean(anchorEl)}
-                                    onClose={this.modalClose}>
-                                    {sameUser ?  
-                                    <Mutation mutation={UPDATE_POST} variables={{post_id:this.state.post_id, byUsername:this.state.byUsername, description:this.state.byUsername}} >
-                                        {
-                                            (updatePostClicked, {loading, error, data}) => {
-                                                const onUpdateFunc = () => updatePostClicked(
-                                                    {
-                                                      variables:
-                                                      {
-                                                        description: this.state.description, 
-                                                        post_id: this.state.post_id,
-                                                        byUsername: this.state.byUsername
-                                                      }
-                                                    })
-                                                if(loading) {
-                                                  return(
-                                                  <span>Loading ... </span>
-                                                  )}
-                                                if(error) {
-                                                  return(
-                                                  <span>Error ... </span> 
-                                                  )}
-                                  
-                                                if (data) {
-                                                  console.log(data)
-                                                  console.log(this.props.post_id)
-                                                  this.setState({refresh:data.deletePost})
-                                                }
-                                                return (
-                                                    <MenuItem onClick={ (e) => this.modalOpen(e)
-                                                        // updatePostClicked( {variables :  {id:this.props.post_id, description: this.props.description, byUsername:this.props.byUsername}})
-                                                    }
-                                                    > Edit Post
-                                                    <UpdatePost showModal={this.state.showModal} onFieldChange={(e) => this.onFieldChange(e)} handleUpdate={onUpdateFunc}  handleClose={e => this.modalClose(e)} description={this.state.description} />
-                                                    </MenuItem>
-                                                    
-                                                )
-                                            }
-                                        }
-                                    </Mutation>
-                                      : <MenuItem >Report Post</MenuItem>}
-                                        {sameUser ? 
-                                        <Mutation mutation={DELETE_POST} variables={{post_id:this.props.post_id}}>
-                                            {
-                                                (deletePostClicked, {loading, error, data}) => {
-                                                    if(loading) {
-                                                      return(
-                                                      <span>Loading ... </span>
-                                                      )}
-                                                    if(error) {
-                                                      return(
-                                                      <span>Error ... </span> 
-                                                      )}
-                                      
-                                                    if (data) {
-                                                      console.log(data)
-                                                      console.log(this.props.post_id)
-                                                      this.setState({refresh:data.deletePost})
-                                                    }
-                                                
-                                                    return (
-                                                        <MenuItem onClick={(e) => {
-                                                            console.log(this.props.post_id)
-                                                            deletePostClicked({variables:{post_id:this.props.post_id}})
-                                                        }} >Delete Post</MenuItem>
-                                                     );
-                                                }
-                                            }
-                                        </Mutation>
-                                         : <> </> }
+                                    onClose={this.handleClose}>
+                                    {sameUser ?  <MenuItem onClick={(e) => {
+                                            // e.preventDefault();
+                                            this.handleClose();
+                                            // updatePost( {variables :  {id:this.props.id, description: this.props.description, byUsername:this.props.byUsername}})
+                                        }}> Edit Post
+                                        </MenuItem>  : <MenuItem >Report Post</MenuItem>}
+                                    {sameUser ? <MenuItem>Delete Post</MenuItem> : <></> }
                                     
                                 </Menu>
                                 {/* )}}
                                 </Mutation> */}
                                 
                         </h3>
-                            
+                               
                     </div>
                 </div>
                 <div className="post_bottom">
                     <p>
-                    {this.state.description}
+                    {this.props.message}
                     </p>
                 </div>
                 <div className="post_image">
-                    <img src={this.state.image} alt='' />
+                    <img src={this.props.image} alt='' />
                 </div>
 
                 <div className="post_options">
@@ -208,8 +85,8 @@ class Post extends Component {
                     </div>
                 </div>
             </div>
-            </>
-        );
+                    
+        )
     }
 }
 
