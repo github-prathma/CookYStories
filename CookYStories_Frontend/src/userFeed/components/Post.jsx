@@ -29,7 +29,8 @@ class Post extends Component {
             byUser : props.byUser,
             showModal:false,
             dataDelete:false,
-            dataReport:false
+            dataReport:false,
+            liked:false
 
         }
 
@@ -37,6 +38,13 @@ class Post extends Component {
         this.modalClose = this.modalClose.bind(this);
         this.menuModalClose = this.menuModalClose.bind(this);
 
+    }
+
+    toggleliked = (e) => {
+        this.setState({liked: !this.state.liked})
+        console.log(this.state.liked)
+        e.preventDefault()
+        e.target.style.color = (this.state.liked)? "green":"gray";
     }
 
     onFieldChange = (param) => {
@@ -92,6 +100,7 @@ class Post extends Component {
     
     
     render() {
+        const styleString = (this.state.liked)?"color: green[500]":"primary";
         console.log(this.state)
         // console.log(this.props.username)
         const sameUser =   (this.props.id === this.props.username )
@@ -114,7 +123,7 @@ class Post extends Component {
                                         >
                                     {sameUser ?  
                                     
-                                    <MenuItem onClick={ (e) => this.modalOpen(e)}> 
+                                    <MenuItem onClick={ (e) => this.modalOpen(e) }> 
                                         Edit Post
                                     </MenuItem>  
 
@@ -204,7 +213,7 @@ class Post extends Component {
                 </div>
 
                 <div className="post_options">
-                    <div className="post_option">
+                    <div className="post_option" onClick={(e) => this.toggleliked(e)} >
                         <ThumbUpIcon />
                         <p>Yummy!</p>
                     </div>

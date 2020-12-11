@@ -10,7 +10,7 @@ class AddComment extends Component {
 
     constructor(props) {
         super(props)
-        this.state={
+        this.state = {
             description:'',
             postId:props.post_id,
             profilePic:props.profilePic,
@@ -49,9 +49,7 @@ class AddComment extends Component {
 
                         return (
                             <div className="main_add_comment">
-                                <div className="titleSection">
-                                    <p>Add a comment on this post!</p>
-                                </div>
+                                
                                 <div className="addComment">
                                 
                                     <Avatar src={`${AuthenticationService.getProfileImageUrl()}`} />
@@ -63,7 +61,7 @@ class AddComment extends Component {
                                             rows="2"
                                             cols="52"
                                             value={this.state.description} 
-                                            placeholder="addComment" 
+                                            placeholder="Comment ... " 
                                             onChange={e => this.handleChange(e)}>
                                             </textarea> 
                                             <Button onClick={(e) => {
