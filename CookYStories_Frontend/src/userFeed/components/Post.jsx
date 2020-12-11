@@ -92,7 +92,7 @@ class Post extends Component {
     
     
     render() {
-        console.log(this.props.profilePic)
+        console.log(this.state)
         // console.log(this.props.username)
         const sameUser =   (this.props.id === this.props.username )
         const { anchorEl } = this.state
@@ -221,12 +221,12 @@ class Post extends Component {
                     <div className="previousComments">
                         {
                             this.props.comments.map(
-                                comment => <Comment commentText={comment.commentText} byUser={comment.byUser} profilePic={comment.byUser.profileImageUrl}/>
+                                comment => <Comment commentText={comment.commentText} byUser={comment.byUser} profilePic={comment.byUser.profileImageUrl} post_id={this.state.post_id}/>
                             ) 
                         }
                     </div>
                     <div className="newComment">
-                        <AddComment post_id={this.post_id} profilePic={this.state.profilePic}/>
+                        <AddComment post_id={this.state.post_id} profilePic={this.state.profilePic}/>
                     </div>
                 </div>
             </div>

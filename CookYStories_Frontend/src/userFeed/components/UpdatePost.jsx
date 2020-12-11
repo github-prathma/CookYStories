@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Button from '@material-ui/core/Button';
 import {Mutation} from 'react-apollo'
 import { UPDATE_POST} from '../../backend/FeedApis'
+import '../css/UpdatePost.css'
 
 class UpdatePost extends Component {
     constructor(props) {
@@ -55,44 +56,48 @@ class UpdatePost extends Component {
                           }
                         return (
                             <div className = {showHideClassName}>
-                                <form className="GetDescription">
-                                    <div >
-                                        <textarea
-                                            type="text"
-                                            value={this.state.description}
-                                            name="description"
-                                            onChange={e => this.handleChange(e)}
-                                            className="form-control"
-                                            placeholder="Enter your way to cook!"
-                                            style={{height: '200px'}}
-                                        />     
-                                    </div>
-                               
-                                    <Button variant="contained"
-                                    color="secondary"
-                                    className='modal-close'
-                                    onClick={e => {
-                                        updatePostClicked({variables: {
-                                            id: this.state.post_id,
-                                            description: this.state.description, 
-                                            byUsername: this.state.byUsername
-                                          }
-                                        });
-                                        this.setState({show:false})
-                                        }}
-                                    >
-                                        Update
-                                    </Button>
-                                    <Button variant="contained"
-                                    color="secondary"
-                                    className='modal-close'
-                                    onClick=
-                                        {this.props.handleClose}
-                                    >
-                                        Cancel
+                                <div className="modal-container">
+
+                                
+                                    <form className="GetDescription">
+                                        <div >
+                                            <textarea
+                                                type="text"
+                                                value={this.state.description}
+                                                name="description"
+                                                onChange={e => this.handleChange(e)}
+                                                className="form-control"
+                                                placeholder="Enter your way to cook!"
+                                                style={{height: '200px'}}
+                                            />     
+                                        </div>
+                                
+                                        <Button variant="contained"
+                                        color="secondary"
+                                        className='modal-close'
+                                        onClick={e => {
+                                            updatePostClicked({variables: {
+                                                id: this.state.post_id,
+                                                description: this.state.description, 
+                                                byUsername: this.state.byUsername
+                                            }
+                                            });
+                                            this.setState({show:false})
+                                            }}
+                                        >
+                                            Update
                                         </Button>
-                                    
-                                </form>
+                                        <Button variant="contained"
+                                        color="secondary"
+                                        className='modal-close'
+                                        onClick=
+                                            {this.props.handleClose}
+                                        >
+                                            Cancel
+                                            </Button>
+                                        
+                                    </form>
+                                </div>
                             </div>
                         )
                     }

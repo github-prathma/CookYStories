@@ -168,3 +168,15 @@ mutation ($postId:String!, $reportedBy:String!){
 //         }
 //     }
 // }`
+
+// Add comment to a specific post
+
+export const ADD_COMMENT = gql`
+mutation ($postId:String, $description:String!, $byUsername:String){
+    addComment(input:{
+        postId:$postId
+        byUsername:$byUsername
+        description:$description
+    }) 
+}
+`
