@@ -12,7 +12,7 @@
 //public class SeleniumConfiguration {
 //
 //    public static final String AWS_CHROMEDRIVER_PATH = "/home/ec2-user/PROJECT/chromedriver";
-//    public static final String DEV_CHROMEDRIVER_PATH = "/Users/prathma/Documents/OOD_PROJECT/chromedriver";
+//    public static final String DEV_CHROMEDRIVER_PATH = "/Users/maitreyasatavalekar/Downloads/chromedriver";
 //
 //    @PostConstruct
 //    public void postConstruct() {
