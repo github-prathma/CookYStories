@@ -6,7 +6,7 @@ export default class Channels extends Component {
         return (
             <div className='channels'>
                 {/* {this.props.statusImage} */}
-                <h6>{this.props.title}</h6>
+                {/* <h6>{this.props.title}</h6> */}
             </div>
         )
     }

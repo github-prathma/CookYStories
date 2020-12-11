@@ -11,6 +11,7 @@ query($username: String!) {
             username
             firstName
             lastName
+            profileImageUrl
         }
         numLikes
         numComments
@@ -20,6 +21,7 @@ query($username: String!) {
                 username
                 firstName
                 lastName
+                profileImageUrl
             }
         }
         likedByUsers{
@@ -31,23 +33,22 @@ query($username: String!) {
     }
 }`
 
-// // create post
+// create post
 
-// export const CREATE_POST = gql `
-
-//         mutation ($byUsername: String!, $description: String!) {
-//             addPost(input:{
-//                 description: $description
-//                 byUsername: $byUsername
-//             }) 
-//         }`
+export const CREATE_POST = gql `
+mutation ($byUsername: String!, $description: String!) {
+    addPost(input:{
+        description: $description
+        byUsername: $byUsername
+    }) 
+}`
 
 
 // // update post
 export const UPDATE_POST = gql `
-mutation ($post_id:String!, $description:String!, $byUsername:String!){
+mutation ($id:String!, $description:String!, $byUsername:String!){
     updatePost(input: {
-        id:$post_id
+        id:$id
         description:$description
         byUsername:$byUsername
     }) {
@@ -79,10 +80,10 @@ mutation ($post_id:String!, $description:String!, $byUsername:String!){
 `
 
 // // delete post
-// export const DELETE_POST = gql `
-// mutation ($post_id:String!){
-//     deletePost(id:"$post_id)
-// }`
+export const DELETE_POST = gql `
+mutation ($post_id:String!){
+    deletePost(id:$post_id)
+}`
 
 
 // // like unlike post

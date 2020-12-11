@@ -6,22 +6,83 @@ import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
-// import {Mutation} from 'react-apollo'
+import {Mutation} from 'react-apollo'
 import MenuItem from '@material-ui/core/MenuItem';
-// import {UPDATE_POST} from '../../backend/FeedApis'
+import {DELETE_POST, UPDATE_POST} from '../../backend/FeedApis'
+import UpdatePost from './UpdatePost'
+import Comment from './Comment'
 
 class Post extends Component {
     
-        state = {
+    constructor(props) {
+        super(props)
+        this.state = {
             anchorEl: null,
-           
+            profilePic: props.profilePic,
+            createdAt: props.timestamp,
+            post_id : props.post_id,
+            description : props.message,
+            byUsername: props.username,
+            image : props.image,
+            byUser : props.byUser,
+            showModal:false
         }
+
+        this.modalOpen = this.modalOpen.bind(this);
+        this.modalClose = this.modalClose.bind(this);
+        this.menuModalClose = this.menuModalClose.bind(this);
+
+    }
+
+    onFieldChange = (param) => {
     
+        this.setState({
+          
+          description: param.description,
+          byUsername: param.byUsername,
+          post_id:param.post_id,
+    
+        });
+      }
+    
+
+    componentWillReceiveProps(props) {
+        this.setState(
+            {
+               
+                description : props.description,
+                
+            }
+        )
+    }
+
+    modalOpen() {
+        this.setState({ showModal: true });
+    }
+    
+    modalClose() {
+        this.setState({
+            showModal: false
+        });
+    } 
+
+    menuModalClose() {
+        this.setState({
+            anchorEl: null
+        })
+    }
+
 
     handleClick = event => this.setState({
         anchorEl: event.currentTarget
             })
-    handleClose = () => this.setState({ anchorEl: null })
+    
+
+    handleUpdate = (event) => this.setState({ 
+        [event.target.name] : event.target.value
+    })
+
+    
     
     render() {
         // console.log(this.props.id)
@@ -32,30 +93,60 @@ class Post extends Component {
             
             <div className='post'>
                 <div className="post_top">
-                    <Avatar src={this.props.profilePic} className='post_avatar' />
+                <Avatar src={this.state.profilePic} className='post_avatar' />
                     <div className="post_topInfo">
-                        <h3>{this.props.username}<MoreVertIcon style={{ marginLeft: "605px" }} onClick={this.handleClick} /><p>{this.props.createdAt}</p>
+                    <h3>{this.state.byUsername}<MoreVertIcon style={{ marginLeft: "605px" }} onClick={this.handleClick} /><p>{this.state.createdAt}</p>
                         
                             
-                        {/* <Mutation mutation={UPDATE_POST} > {
-                ( updatePost, {data}) => {
-                    return ( */}
+                        
                                 <Menu id="simple-menu"
                                         anchorEl={anchorEl}
                                         keepMounted
                                         open={Boolean(anchorEl)}
-                                    onClose={this.handleClose}>
-                                    {sameUser ?  <MenuItem onClick={(e) => {
-                                            // e.preventDefault();
-                                            this.handleClose();
-                                            // updatePost( {variables :  {id:this.props.id, description: this.props.description, byUsername:this.props.byUsername}})
-                                        }}> Edit Post
-                                        </MenuItem>  : <MenuItem >Report Post</MenuItem>}
-                                    {sameUser ? <MenuItem >Delete Post</MenuItem> : <></> }
+                                        onClose={this.menuModalClose}
+                                        >
+                                    {sameUser ?  
+                                    
+                                    <MenuItem onClick={ (e) => this.modalOpen(e)
+                                    }
+                                    > Edit Post
+                                    </MenuItem>  
+
+                                        
+                                        : <MenuItem >Report Post</MenuItem>}
+                                    {sameUser ? 
+                                    <Mutation mutation={DELETE_POST} variables={{post_id:this.props.post_id}}>
+                                        {
+                                                (deletePostClicked, {loading, error, data}) => {
+                                                    if(loading) {
+                                                      return(
+                                                      <span>Loading ... </span>
+                                                      )}
+                                                    if(error) {
+                                                      return(
+                                                      <span>Error ... </span> 
+                                                      )}
+                                      
+                                                    if (data) {
+                                                      console.log(data)
+                                                      console.log(this.props.post_id)
+                                                      this.setState({refresh:data.deletePost})
+                                                    }
+                                                
+                                                    return (
+                                                        <MenuItem onClick={(e) => {
+                                                            console.log(this.props.post_id)
+                                                            deletePostClicked({variables:{post_id:this.props.post_id}})
+                                                            }} >Delete Post
+                                                        </MenuItem>
+                                                );
+                                            }
+                                        }
+                                    </Mutation>
+                                    : <></> }
                                     
                                 </Menu>
-                                {/* )}}
-                                </Mutation> */}
+                                <UpdatePost show={this.state.showModal} onFieldChange={(e) => this.onFieldChange(e)} handleUpdate={(e) => this.handleUpdate(e)}  handleClose={e => this.modalClose(e)} description={this.state.description} byUsername={this.state.byUsername} post_id={this.state.post_id} />
                                 
                         </h3>
                                
@@ -63,11 +154,11 @@ class Post extends Component {
                 </div>
                 <div className="post_bottom">
                     <p>
-                    {this.props.message}
+                    {this.state.description}
                     </p>
                 </div>
                 <div className="post_image">
-                    <img src={this.props.image} alt='' />
+                    <img src={this.state.image} alt='' />
                 </div>
 
                 <div className="post_options">
@@ -83,6 +174,13 @@ class Post extends Component {
                         <ShareIcon />
                         <p>Try It!</p>
                     </div>
+                </div>
+                <div className="CommentsBox">
+                    {
+                        this.props.comments.map(
+                            comment => <Comment commentText={comment.commentText} byUser={comment.byUser}/>
+                        ) 
+                    }
                 </div>
             </div>
                     
