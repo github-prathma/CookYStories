@@ -98,7 +98,6 @@ export default class Login extends Component {
                           fullWidth
                           onClick={e => {
                             onLogInClick({variables: {username:this.state.username, password:this.state.password}});
-                            // this.logInClicked(e);
                             }}
                         >
                           Log in
