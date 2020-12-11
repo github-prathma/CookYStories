@@ -21,6 +21,7 @@ query($username: String!) {
                 username
                 firstName
                 lastName
+                profileImageUrl
             }
         }
         likedByUsers{
@@ -45,9 +46,9 @@ mutation ($byUsername: String!, $description: String!) {
 
 // // update post
 export const UPDATE_POST = gql `
-mutation ($post_id:String!, $description:String!, $byUsername:String!){
+mutation ($id:String!, $description:String!, $byUsername:String!){
     updatePost(input: {
-        id:$post_id
+        id:$id
         description:$description
         byUsername:$byUsername
     }) {
@@ -57,7 +58,6 @@ mutation ($post_id:String!, $description:String!, $byUsername:String!){
             username 
             firstName
             lastName
-            profileImagUrl
         }
         numLikes
         numComments

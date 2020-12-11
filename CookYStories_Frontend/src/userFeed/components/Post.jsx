@@ -10,6 +10,7 @@ import {Mutation} from 'react-apollo'
 import MenuItem from '@material-ui/core/MenuItem';
 import {DELETE_POST, UPDATE_POST} from '../../backend/FeedApis'
 import UpdatePost from './UpdatePost'
+import Comment from './Comment'
 
 class Post extends Component {
     
@@ -23,11 +24,13 @@ class Post extends Component {
             description : props.message,
             byUsername: props.username,
             image : props.image,
-            byUser : props.byUser
+            byUser : props.byUser,
+            showModal:false
         }
 
         this.modalOpen = this.modalOpen.bind(this);
         this.modalClose = this.modalClose.bind(this);
+        this.menuModalClose = this.menuModalClose.bind(this);
 
     }
 
@@ -59,10 +62,15 @@ class Post extends Component {
     
     modalClose() {
         this.setState({
-            anchorEl: null,
-            showModal: false,
+            showModal: false
         });
     } 
+
+    menuModalClose() {
+        this.setState({
+            anchorEl: null
+        })
+    }
 
 
     handleClick = event => this.setState({
@@ -95,7 +103,8 @@ class Post extends Component {
                                         anchorEl={anchorEl}
                                         keepMounted
                                         open={Boolean(anchorEl)}
-                                        onClose={this.modalClose}>
+                                        onClose={this.menuModalClose}
+                                        >
                                     {sameUser ?  
                                     
                                     <MenuItem onClick={ (e) => this.modalOpen(e)
@@ -165,6 +174,13 @@ class Post extends Component {
                         <ShareIcon />
                         <p>Try It!</p>
                     </div>
+                </div>
+                <div className="CommentsBox">
+                    {
+                        this.props.comments.map(
+                            comment => <Comment commentText={comment.commentText} byUser={comment.byUser}/>
+                        ) 
+                    }
                 </div>
             </div>
                     

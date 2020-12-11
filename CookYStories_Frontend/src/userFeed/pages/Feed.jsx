@@ -56,6 +56,7 @@ function LoadFeed(props) {
                                     userData={post.byUser}
                                     image={post.imageUrl}
                                     createdAt={post.createdAt}
+                                    comments = {post.comments}
                                 />
                                 )
                             }
