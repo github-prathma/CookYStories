@@ -36,6 +36,20 @@ export default class ProfileHeader extends Component {
     };
   }
 
+  componentWillReceiveProps(props) {
+    this.setState({
+      userData: {
+        first_name: props.firstName,
+        last_name: props.lastName,
+        city: props.city,
+        country: props.country,
+        bio: props.bio
+      },
+      profileImageUrl: props.profileImageUrl,
+      user_name: props.username,
+      isFollowed: props.isFollowed
+    })
+  }
 
   onUserChange = (param) => {
     
