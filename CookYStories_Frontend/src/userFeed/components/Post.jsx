@@ -11,6 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import {DELETE_POST, UPDATE_POST} from '../../backend/FeedApis'
 import UpdatePost from './UpdatePost'
 import Comment from './Comment'
+import AddComment from './AddComment';
 
 class Post extends Component {
     
@@ -176,11 +177,16 @@ class Post extends Component {
                     </div>
                 </div>
                 <div className="CommentsBox">
-                    {
-                        this.props.comments.map(
-                            comment => <Comment commentText={comment.commentText} byUser={comment.byUser}/>
-                        ) 
-                    }
+                    <div className="previousComments">
+                        {
+                            this.props.comments.map(
+                                comment => <Comment commentText={comment.commentText} byUser={comment.byUser}/>
+                            ) 
+                        }
+                    </div>
+                    <div className="newComment">
+                        <AddComment post_id={this.post_id} profileImageUrl={this.state.profilePic}/>
+                    </div>
                 </div>
             </div>
                     

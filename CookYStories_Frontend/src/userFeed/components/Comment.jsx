@@ -6,7 +6,8 @@ class Comment extends Component {
         super(props)
         this.state = {
             commentText: props.commentText,
-            user: props.byUser
+            user: props.byUser,
+            profilePic : this.props.profileImageUrl
         }
     }
     render() {
@@ -15,7 +16,7 @@ class Comment extends Component {
         return (
             <div className="main_container">
                 <div className="avatar">
-                    <Avatar src={this.state.user.profileImageUrl} />
+                <Avatar src={this.state.profilePic} className='commenter_avatar' />
                     <h3>
                     <span>{this.state.user.firstName} {this.state.user.lastName}</span>
                     </h3>
