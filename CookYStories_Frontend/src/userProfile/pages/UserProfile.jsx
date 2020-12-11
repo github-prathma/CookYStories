@@ -31,15 +31,22 @@ function LoadProfile(props) {
               }
 
               if(data) {
+
+
                 return (
                   <div>
-                    <div></div>
-                    
                     <div className="profilePage" style = {{height:"100vh"}}>
-                      <ProfileHeader username={profile.username} 
-                        firstName={profile.basicInfo.firstName} lastName={profile.basicInfo.lastName} 
-                        city={profile.basicInfo.city} country={profile.basicInfo.country} bio={profile.basicInfo.bioDescription}
-                        profileImageUrl={profile.profileImageUrl}
+                      <div className="profileMargin">
+                      </div>
+                      <ProfileHeader 
+                            username={profile.username} 
+                            firstName={profile.basicInfo.firstName} 
+                            lastName={profile.basicInfo.lastName} 
+                            city={profile.basicInfo.city} 
+                            country={profile.basicInfo.country} 
+                            bio={profile.basicInfo.bioDescription}
+                            profileImageUrl={profile.profileImageUrl}
+                            isFollowed={profile.isFollowed}
                         />
                       <PostPreview username={profile.username} 
                         firstName={profile.basicInfo.firstName} lastName={profile.basicInfo.lastName}

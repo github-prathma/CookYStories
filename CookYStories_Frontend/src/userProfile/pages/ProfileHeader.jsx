@@ -1,50 +1,62 @@
 import React, { Component } from 'react'
 import CreateIcon from '@material-ui/icons/Create';
-import SaveIcon from '@material-ui/icons/Save';
 import '../css/ProfileHeader.css'
 import EditProfile from '../components/EditProfile'
 import Button from '@material-ui/core/Button';
 import chefAvatar from '../../utils/Images/chefAvatar.jpg'
 import AuthenticationService from '../../backend/AuthenticationService.js'
 
-// import ErrorIcon from '@material-ui/icons/Error';
+import ErrorIcon from '@material-ui/icons/Error';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-import CheckIcon from '@material-ui/icons/Check';
+// import CheckIcon from '@material-ui/icons/Check';
+// import {UPDATE_USER_INFO} from '../../backend/UserProfileApis'
+// import { Mutation } from 'react-apollo'
+
 
 export default class ProfileHeader extends Component {
   constructor(props) {
     super(props)
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
     this.modalOpen = this.modalOpen.bind(this);
     this.modalClose = this.modalClose.bind(this);
 
     this.state = {
-      modal: false,
+      modal: false, //to show modal or not
       name: "",
-      first_name: props.firstName,
-      last_name: props.lastName,
+      userData: {
+        first_name: props.firstName,
+        last_name: props.lastName,
+        city: props.city,
+        country: props.country,
+        bio: props.bio
+      },
+      profileImageUrl: props.profileImageUrl,
       user_name: props.username,
-      city: props.city,
-      country: props.country,
-      bio: props.bio,
-      modalInputName: ""
+      isFollowed: props.isFollowed
     };
   }
 
-  handleChange(e) {
-    // const target = e.target;
-    // const name = target.name;
-    // const value = target.value;
 
+  onUserChange = (param) => {
+    
     this.setState({
-      [e.target.name]: e.target.value
+      userData: {
+        first_name: param.firstName,
+        last_name: param.lastName,
+        city: param.city,
+        country: param.country,
+        bio: param.bioDescription
+      },
+      profileImageUrl: param.profileImageUrl,
+      user_name: param.username,
+      modal: false
+
     });
   }
 
-  handleSubmit(e) {
+  handleUpdate(e) {
     // const { first_name, last_name, user_name, city, country, bio } = this.state;
-    this.setState({ name: this.state.modalInputName });
+    // this.setState({ name: this.state.modalInputName });
     this.modalClose();
   }
 
@@ -54,140 +66,54 @@ export default class ProfileHeader extends Component {
 
   modalClose() {
     this.setState({
-      // modalInputName: "",
       modal: false
     });
   }
 
   
-
   render() {
     let imageUrl
 
-    if (this.props.profileImageUrl != null && this.props.profileImageUrl != "") {
-      imageUrl = this.props.profileImageUrl
+    if (this.state.profileImageUrl != null && this.state.profileImageUrl != "") {
+      imageUrl = this.state.profileImageUrl
     } else {
       imageUrl = {chefAvatar}
     }
+
     return (      
+                  
       <div className='userProfile'>
-        <div className='profileImage'>
-          <img src={imageUrl} alt="Img"/>
-        </div>
-        <div className='profileBio'>
-          <h4>{this.props.firstName} {this.props.lastName}
-          <div className='profileData'>
-            <h5>{this.props.username}</h5>
-            <h5>{this.props.bio}</h5>
-            <h5>{this.props.city}, {this.props.country}</h5>
-          </div>
-          {this.state.user_name != AuthenticationService.getLoggedInUser() && 
-            <>
-            <Button variant="contained" color="primary" endIcon={<TrendingUpIcon />} style={{ marginLeft: '900px' }}>Follow</Button>
-            <CheckIcon />
-            </>
-          }
-
-          { this.state.user_name == AuthenticationService.getLoggedInUser() &&
-                <Button className="editProfile" onClick={e => this.modalOpen(e)} variant="contained"
-                startIcon={<CreateIcon />}>Edit Profile</Button>
-          }
-            </h4>
-          
-            <EditProfile show={this.state.modal} handleClose={e => this.modalClose(e)}>
-              <form className="form-group">
-              <div className='EditImage'>
-               <img src={this.props.profileImageUrl} alt="img"/>
-                </div>
-                <ul>
-                <div className="form-group">
-                  <label >First name:</label>
-                  <input
-                    type="text"
-                    value={this.state.first_name}
-                    name="first_name"
-                    onChange={e => this.handleChange(e)}
-                    className="form-control"
-                    placeholder="Rushang"
-                    style={{ display: 'flex' }} />             
-                </div>
-                <div className="form-group">
-                  <label>Last name:</label>
-                  <input
-                    type="text"
-                    value={this.state.last_name}
-                    name="last_name"
-                    onChange={e => this.handleChange(e)}
-                    className="form-control"
-                    placeholder="Shah"
-                    style={{display: 'flex'}}
-                      />
-                </div>
-                {/* <div className="form-group">
-                  <label>User name:</label>
-                  <input
-                    type="text"
-                    value={this.state.user_name}
-                    name="user_name"
-                    onChange={e => this.handleChange(e)}
-                    className="form-control"
-                    placeholder="rushang2413"
-                    style={{display: 'flex'}}
-                      />
-                </div> */}
-                <div className="form-group">
-                  <label>City:</label>
-                  <input
-                    type="text"
-                    value={this.state.city}
-                    name="city"
-                    onChange={e => this.handleChange(e)}
-                    className="form-control"
-                    placeholder="Syracuse"
-                    style={{display: 'flex'}}
-                        />
-                  <label style={{marginLeft:'10px'}}>Country:</label>
-                  <input
-                    type="text"
-                    value={this.state.country}
-                    name="country"
-                    onChange={e => this.handleChange(e)}
-                    className="form-control"
-                    placeholder="USA"
-                    style={{marginLeft: '5px'}}
-                      />
-                </div>
-                <div className="form-group">
-                <label>Bio:</label>
-                <textarea
-                  type="text"
-                  value={this.state.bio}
-                  name="bio"
-                  onChange={e => this.handleChange(e)}
-                  className="form-control"
-                  placeholder="Hello Everyone!!!!!!!!!"
-                  style={{display: 'flex'}}
-                    />
-                  </div>  
-                </ul>  
-          </form>
-              <form>
-                <div className="button">
-                    <Button
-                      variant="contained"
-                      color="primary"                  
-                      startIcon={<SaveIcon />}
-                      onClick={e => this.handleSubmit(e)} >
-                    Update
-            </Button>
-                  </div>
-          </form>
-            </EditProfile>
-         
-
-        </div>
-        
-        </div> 
+                      <div className='profileImage'>
+                          <img src={imageUrl} alt="Img"/>
+                      </div>
+                      <div className='profileBio'>
+                        <h4>{this.state.userData.first_name} {this.state.userData.last_name}</h4>
+                        <div className='profileData'>
+                            <h5>{this.state.user_name}</h5>
+                            <h5>{this.state.userData.bio}</h5>
+                            <h5>{this.state.userData.city}, {this.state.userData.country}</h5>
+                        </div>
+                        {this.state.user_name !== AuthenticationService.getLoggedInUser() && 
+                            <>
+                            {this.state.isFollowed && 
+                              <Button variant="contained" style={{ color: "green" }} endIcon={<TrendingUpIcon />} style={{ marginLeft: '900px' }}>Unfollow</Button>
+                            }
+                            {!this.state.isFollowed && 
+                              <Button variant="contained" color="primary" endIcon={<TrendingUpIcon />} style={{ marginLeft: '900px' }}>Follow</Button>
+                            }
+                            <ErrorIcon style={{ fill: "red" }}/>
+                                    
+                            </>
+                        }
+                        { this.state.user_name === AuthenticationService.getLoggedInUser() &&
+                            <Button className="editProfile" onClick={e => this.modalOpen(e)} variant="contained"
+                            startIcon={<CreateIcon />}>Edit Profile</Button>
+                        }
+                        <EditProfile show={this.state.modal} onUserChange={(e) => this.onUserChange(e)} handleUpdate={(e) => this.handleUpdate(e)}  handleClose={e => this.modalClose(e)} user={this.state.userData} profileImageUrl={imageUrl} user_name={this.state.user_name}/>         
+                        
+                      </div>
+                </div> 
+            
     )
   }
 }

@@ -12,3 +12,19 @@
   display: block;
   margin-bottom: 5px;
 }
+
+.form-group {
+  display: flex;
+}
+.form-control {
+  display: flex;
+}
+label {
+  width: 40%;
+}
+.EditImage > img {
+  width: 200px;
+  height: 200px;
+  border-radius: 120px;
+  margin-top: 25%;
+}

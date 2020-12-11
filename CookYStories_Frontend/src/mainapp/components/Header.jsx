@@ -13,6 +13,7 @@ import AuthenticationService from '../../backend/AuthenticationService'
 import { withRouter } from 'react-router';
 import {LOG_OUT} from '../../backend/AuthApis'
 import { Mutation } from 'react-apollo'
+import FastfoodIcon from '@material-ui/icons/Fastfood';
 
 // import NotificationActiveIcon from '@material-ui/icons/NotificationsActive'
 // import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
@@ -109,7 +110,8 @@ class Header extends Component {
           avatar = <Avatar src={chefAvatar}/>
 
         }
-                   return ( 
+                   
+        return ( 
                       <div className="header">
                         <div className="header_left">
                             <img src={logo} alt='Logo' />
@@ -123,11 +125,11 @@ class Header extends Component {
       
                         {AuthenticationService.isLoggedIn() &&<div className="header_middle">
                             <div className="header_option header_option--active">
-                                <HomeIcon fontSize='large' onClick={this.onHomeClick} />
+                                <FastfoodIcon fontSize='large' onClick={this.onHomeClick} />
                             </div>
-                            <div className="header_option">
+                            {/* <div className="header_option">
                                 <FlagIcon fontSize='large' />
-                            </div>
+                            </div> */}
                         </div>}
 
                         <div className="header_right">
@@ -157,7 +159,7 @@ class Header extends Component {
                              </div>}
 
                       </div>
-                    )
+          )
               
             
         //       }

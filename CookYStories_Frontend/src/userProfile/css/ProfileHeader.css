@@ -10,15 +10,26 @@
   height: 200px;
   border-radius: 120px;
 }
+
+.profileBio > h4 {
+  font-weight: bold;
+  font-family: cursive;
+
+}
+
 .profileBio {
   padding-left: 50px;
 }
-h4 > .editProfile {
+
+.profileBio > .editProfile {
   background-color: #bdecfa;
   margin-top: 10px;
   margin-left: 900px;
 }
 
+.profileData {
+  font-family: cursive;
+}
 
 .editProfile:hover {
   color: #070707;

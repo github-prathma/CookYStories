@@ -1,11 +1,12 @@
 import {gql} from "apollo-boost"
 
-// //get profile
+// get profile
 export const GET_USER_PROFILE = gql `
 query ($loggedInUser:String!, $toFollowUser:String!) {
     getUserProfile(input:{loggedInUser:$loggedInUser toFollowUser:$toFollowUser}){
         username
         profileImageUrl
+        isFollowed
         basicInfo{
             firstName
             lastName
@@ -74,26 +75,27 @@ query ($loggedInUser:String!, $toFollowUser:String!) {
 //     })
 // }`
 
-// // edit profile
-// export const UPDATE_USER_INFO = gql `mutation {
-//     updateUser(input:{
-//         firstName:"Chintamani"
-//         lastName:"Satavalekar"
-//         username:"maitreyastark"
-//         email:"koibhiemail@de.com"
-//         password:"myPassword"
-//         bioDescription:"Curious to cook"
-//         city:"Mumbai"
-//         country:"India"
-//     }) {
-//         firstName
-//         lastName
-//         bioDescription
-//         username
-//         city
-//         country
-//     }
-// }`
+// edit profile
+export const UPDATE_USER_INFO = gql 
+    `mutation ($username: String, $firstName: String, $lastName: String, $city: String, $country: String, $bio: String, $profileImageUrl: String) {
+                updateUser(input:{
+                    firstName:$firstName
+                    lastName:$lastName
+                    username:$username
+                    bioDescription:$bio
+                    city:$city
+                    country:$country
+                    profileImageUrl:$profileImageUrl
+                }) {
+                    firstName
+                    lastName
+                    bioDescription
+                    username
+                    city
+                    country
+                    profileImageUrl
+                }
+            }`
 
 
 // //get all posts of userprofile
