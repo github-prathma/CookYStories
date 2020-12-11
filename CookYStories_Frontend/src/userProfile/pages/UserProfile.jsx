@@ -26,10 +26,7 @@ function LoadProfile(props) {
               console.log(data)
               const profile = data.getUserProfile
 
-              if (profile.profileImageUrl != null && profile.profileImageUrl != "") {
-                AuthenticationService.setProfileImage(profile.profileImageUrl);
-              }
-
+          
               if(data) {
 
 
