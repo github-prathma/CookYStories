@@ -1,0 +1,13 @@
+/* .modal-container {
+  position: absolute;
+  width: 60%;
+  background: white;
+  left: 25%;
+  top: 30%;
+  padding: 20px;
+  justify-content: center;
+} */
+.button {
+  display: flex;
+  align-items: flex-start;
+}

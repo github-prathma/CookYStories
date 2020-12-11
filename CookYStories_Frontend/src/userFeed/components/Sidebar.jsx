@@ -12,11 +12,6 @@ import { Grid } from '@material-ui/core';
 import Channels from './Channels'
 import NearMe from './NearMe'
 import Button from '@material-ui/core/Button';
-import '../css/SidebarRow.css'
-
-
-// const [modalIsOpen,setIsOpen] = React.useState(false);
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 export default class Sidebar extends Component {
 
@@ -40,31 +35,12 @@ export default class Sidebar extends Component {
     zoom: 15
   };
 
-
-  // handleChange(e) {
-  //   // const target = e.target;
-  //   // const name = target.name;
-  //   // const value = target.value;
-
-  //   this.setState({
-  //     [e.target.name]: e.target.value
-  //   });
-  // }
-
-  // handleSubmit(e) {
-  //   // const { first_name, last_name, user_name, city, country, bio } = this.state;
-  //   this.setState({ name: this.state.modalInputName });
-  //   this.modalClose();
-  // }
-
   modalOpen() {
     this.setState({ modal: true });
   }
 
   modalClose() {
-    this.setState({
-      modal: false
-    });
+    this.setState({modal: false});
   }
 
 
@@ -73,45 +49,24 @@ export default class Sidebar extends Component {
           <div className="sidebar">
            <Grid item xs={12} spacing={3}>
 
-              <div className='sidebarRow' onClick={e => this.modalOpen(e)}>
+              <div className='sidebarRow'>
                 <NearMeIcon />
-                <h6>NEAR ME</h6>
-                <Modal show={this.state.modal} handleClose={e => this.modalClose(e)}>
-                <div style={{ height: '100vh', width: '100%' }}>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: /* YOUR KEY HERE */ }}
-          defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}
-        >
-          <AnyReactComponent
-            lat={59.955413}
-            lng={30.337844}
-            text="My Marker"
-          />
-        </GoogleMapReact>
-      </div>
-                </Modal>
-                
-                <hr />
+                <h6 onClick={e => this.modalOpen(e)}>NEAR ME</h6>
+                <NearMe showModal={this.state.modal} closeModal={e => this.modalClose(e)} />
               </div>
-
+              <hr />
               <div className='sidebarRow'>
                 <RestaurantIcon />
                 <h6>RESTAURANTS</h6>
-                <hr/>
               </div>
-
+              <hr/>
               <div className='sidebarRow'>
                 <FeaturedPlayListIcon />
                 <h6>CHANNELS</h6>
               </div>
-
-              <Channels statusImage={<KitchenIcon />} title="Gordon Ramsay" /> 
-              <Channels statusImage={<KitchenIcon />} title="Chef Ranveer" /> 
-              <Channels statusImage={<KitchenIcon />} title="Your Food Lab" /> 
-              <Channels statusImage={<KitchenIcon />} title="Kabita's Kitchen" /> 
-              <Channels statusImage={<KitchenIcon />} title="Hebbar's Kitchen" /> 
               
+
+
            </Grid>
            
           </div>
