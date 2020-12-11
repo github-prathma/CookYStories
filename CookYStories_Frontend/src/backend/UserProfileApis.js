@@ -77,7 +77,7 @@ query ($loggedInUser:String!, $toFollowUser:String!) {
 
 // edit profile
 export const UPDATE_USER_INFO = gql 
-    `mutation ($username: String, $firstName: String, $lastName: String, $city: String, $country: String, $bio: String) {
+    `mutation ($username: String, $firstName: String, $lastName: String, $city: String, $country: String, $bio: String, $profileImageUrl: String) {
                 updateUser(input:{
                     firstName:$firstName
                     lastName:$lastName
@@ -85,6 +85,7 @@ export const UPDATE_USER_INFO = gql
                     bioDescription:$bio
                     city:$city
                     country:$country
+                    profileImageUrl:$profileImageUrl
                 }) {
                     firstName
                     lastName
@@ -92,6 +93,7 @@ export const UPDATE_USER_INFO = gql
                     username
                     city
                     country
+                    profileImageUrl
                 }
             }`
 
