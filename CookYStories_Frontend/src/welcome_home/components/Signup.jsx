@@ -55,8 +55,11 @@ export default class SignUp extends Component {
     if (input["confirmPassword"] !== input["password"]) {
       isValid = false;
       errors["confirmPasswordError"] = "Passwords are not matched";
-    }
+    } 
 
+    this.setState({
+      errors:errors
+    })
     return isValid;
 
   }
@@ -68,6 +71,9 @@ export default class SignUp extends Component {
         input: {
           ...this.state.input,
           [event.target.name]: event.target.value
+        },
+        errors: {
+          ...this.state.errors
         }
       }
     )      
@@ -83,9 +89,13 @@ export default class SignUp extends Component {
         input: {
           ...this.state.input,
           [e.target.name]: e.target.value
+        },
+        errors: {
+          emailError: "",
+          confirmPasswordError: ""   
         }
       })
-    }
+    } 
   }
 
 
@@ -173,19 +183,19 @@ export default class SignUp extends Component {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
-                  value={this.state.input.confirmPassword || ""}
-                  onChange={(e) => this._handleChange(e)}
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="confirmPassword"
-                  label="Confirm Password"
-                  type="password"
-                  id="confirm-password"
-                  autoComplete="current-password"
-                />
-                <div className="text-danger">{this.state.errors.confirmPassword}</div>
+                    <TextField
+                      value={this.state.input.confirmPassword || ""}
+                      onChange={(e) => this._handleChange(e)}
+                      variant="outlined"
+                      required
+                      fullWidth
+                      name="confirmPassword"
+                      label="Confirm Password"
+                      type="password"
+                      id="confirm-password"
+                      autoComplete="current-password"
+                    />
+                <div className="text-danger">{this.state.errors.confirmPasswordError}</div>
               </Grid>
               <Grid item xs={12}>
                 <TextField
