@@ -19,17 +19,17 @@ class WelcomeHomePage extends Component {
                 img: images.image3
             },
             {
-                img: images.image4
+                img: images.image6
             }
             
         ]
         return (
             
                 <div className="row" style = {{height:"100vh"}}>
-                    <div className="leftColumn">
-                        <Carousel className="welcomeSlider" width="100%" autoPlay={true} interval={3500} animation="slide" navButtonsAlwaysVisible={true} fullHeightHover={true}>
+                    <div className="leftColumn" style = {{height:"100vh"}}>
+                        <Carousel className="welcomeSlider" autoPlay={true} interval={3500} animation="slide" navButtonsAlwaysVisible={true} fullHeightHover={true}>
                             {
-                                items.map( (item, i) => <Item key={i} item={item}/>)
+                                items.map( (item, i) => <Item className="carouselItem" key={i} item={item}/>)
                             }
                         </Carousel>
                     </div>
