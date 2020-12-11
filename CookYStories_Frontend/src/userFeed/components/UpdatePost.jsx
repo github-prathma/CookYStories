@@ -57,7 +57,7 @@ class UpdatePost extends Component {
                                             type="text"
                                             value={this.state.description}
                                             name="description"
-                                            onChange={e => this.handleInputChange(e)}
+                                            onChange={e => this.handleChange(e)}
                                             className="form-control"
                                             placeholder="Enter your way to cook!"
                                             style={{height: '200px'}}

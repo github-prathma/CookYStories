@@ -28,7 +28,6 @@ class Post extends Component {
 
         this.modalOpen = this.modalOpen.bind(this);
         this.modalClose = this.modalClose.bind(this);
-        this.onFieldChange = this.onFieldChange.bind(this);
 
     }
 
@@ -71,9 +70,8 @@ class Post extends Component {
             })
     
 
-    handleUpdate = () => this.setState({ 
-        anchorEl: null,
-        showModal:false 
+    handleUpdate = (event) => this.setState({ 
+        [event.target.name] : event.target.value
     })
 
     
@@ -139,7 +137,7 @@ class Post extends Component {
                                     : <></> }
                                     
                                 </Menu>
-                                <UpdatePost showModal={true} onFieldChange={(e) => this.onFieldChange(e)} handleUpdate={(e) => this.handleUpdate(e)}  handleClose={e => this.modalClose(e)} description={this.state.description} byUsername={this.state.byUsername} post_id={this.state.post_id} />
+                                <UpdatePost show={this.state.showModal} onFieldChange={(e) => this.onFieldChange(e)} handleUpdate={(e) => this.handleUpdate(e)}  handleClose={e => this.modalClose(e)} description={this.state.description} byUsername={this.state.byUsername} post_id={this.state.post_id} />
                                 
                         </h3>
                                
