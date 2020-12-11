@@ -9,7 +9,7 @@ import Menu from '@material-ui/core/Menu';
 import {Mutation} from 'react-apollo'
 import MenuItem from '@material-ui/core/MenuItem';
 import {DELETE_POST, UPDATE_POST} from '../../backend/FeedApis'
-import UpdataPost from './UpdatePost'
+import UpdatePost from './UpdatePost'
 
 class Post extends Component {
     
@@ -37,7 +37,8 @@ class Post extends Component {
         this.setState({
           
           description: param.description,
-          showModal: false
+          byUsername: param.byUsername,
+          post_id:param.post_id,
     
         });
       }
@@ -64,20 +65,15 @@ class Post extends Component {
         });
     } 
 
-    onFieldChange = (e) => {
-        this.setState({
-          [e.target.name]: e.target.value
-        });
-    }
 
     handleClick = event => this.setState({
         anchorEl: event.currentTarget
             })
     
 
-    handleClose = () => this.setState({ 
+    handleUpdate = () => this.setState({ 
         anchorEl: null,
-        showModal:true 
+        showModal:false 
     })
 
     
@@ -143,7 +139,7 @@ class Post extends Component {
                                     : <></> }
                                     
                                 </Menu>
-                                <UpdataPost showModal={this.state.showModal} onFieldChange={(e) => this.onFieldChange(e)} handleUpdate={(e) => this.handleUpdate(e)}  handleClose={e => this.modalClose(e)} description={this.state.description}  />
+                                <UpdatePost showModal={true} onFieldChange={(e) => this.onFieldChange(e)} handleUpdate={(e) => this.handleUpdate(e)}  handleClose={e => this.modalClose(e)} description={this.state.description} byUsername={this.state.byUsername} post_id={this.state.post_id} />
                                 
                         </h3>
                                

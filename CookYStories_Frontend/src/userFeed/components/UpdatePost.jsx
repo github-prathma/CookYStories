@@ -13,17 +13,19 @@ class UpdatePost extends Component {
             // imgUrl: "",
            
             description: props.description,
+            byUsername : props.byUsername,
+            post_id: props.post_id
         };
         
     }
-    handleInputChange(e) {
-      this.setState({
-        [e.target.name]: e.target.value
-      });
-    }
-
     handleChange = event => {
-        this.props.onUserChange(event)
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+      }
+    
+      onDataUpdate = (param) => {
+        this.props.onFieldChange(param)
       }
 
     render() {
@@ -33,15 +35,7 @@ class UpdatePost extends Component {
             <Mutation mutation={UPDATE_POST} variables={{post_id:this.state.post_id, byUsername:this.state.byUsername, description:this.state.byUsername}} >
                 {
                     (updatePostClicked, {loading, error, data}) => {
-                        const onUpdateFunc = () => updatePostClicked(
-                            {
-                                variables:
-                                {
-                                description: this.state.description, 
-                                post_id: this.state.post_id,
-                                byUsername: this.state.byUsername
-                                }
-                            })
+                        
                         if(loading) {
                             return(
                             <span>Loading ... </span>
@@ -50,11 +44,11 @@ class UpdatePost extends Component {
                             return(
                             <span>Error ... </span> 
                         )}
-                        if (data) {
-                        console.log(data)
-                        console.log(this.props.post_id)
-                        this.setState({refresh:data.deletePost})
-                        }
+                        if (data && this.props.showModal) {
+                            console.log(data)
+                            const fields = data
+                            this.onDataUpdate(fields)
+                          }
                         return (
                             <div className = {showHideClassName}>
                                 <form className="GetDescription">
