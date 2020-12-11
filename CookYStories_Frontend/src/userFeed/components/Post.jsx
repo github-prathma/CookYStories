@@ -88,7 +88,7 @@ class Post extends Component {
         // console.log(this.props.id)
         // console.log(this.props.username)
         const sameUser =   (this.props.id === this.props.username )
-        const { anchorEl } = this.state
+        const { anchorEl } = this.state.anchorEl
         return (
 
            <>
