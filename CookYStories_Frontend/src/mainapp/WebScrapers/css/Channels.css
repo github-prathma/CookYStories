@@ -1,20 +1,21 @@
-.videoGallery {
-display: grid;
-grid-gap: 10px;
-grid-template-columns: repeat(6, calc(50% - 40px));
-grid-template-rows: minmax(150px, 1fr);
-padding: 0 20px;
+.channel-title > a {
+  color: #212529;
 }
 
-.channel_outer_container {
-display: grid;
-grid-template-columns: 20px 1fr 20px;
+.outer-background {
+  margin: 20px;
+  background-color: #faf9f1;
+  padding: 20px;
 }
 
-.channel_outer_container > * {
-grid-column: 2 / -2;
+.videocard {
+  padding: 20px;
+  width: 30%;
 }
 
-.videoGallery > .full {
-grid-column: 1 / -1;
+.image > img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
 }

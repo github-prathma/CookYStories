@@ -11,7 +11,9 @@ import SidebarRow from './SidebarRow'
 import { Grid } from '@material-ui/core';
 import Channels from './Channels'
 import NearMe from './NearMe'
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import { Typography } from '@material-ui/core';
 
 export default class Sidebar extends Component {
 
@@ -41,7 +43,15 @@ export default class Sidebar extends Component {
 
   modalClose() {
     this.setState({modal: false});
-  }
+  };
+
+  // channelLink() {
+  //   this.props.history.push('/channels');
+  // }
+
+  // restaurantLink() {
+  //   this.props.history.push('/restaurants');
+  // }
 
 
     render() {
@@ -55,14 +65,14 @@ export default class Sidebar extends Component {
                 <NearMe showModal={this.state.modal} closeModal={e => this.modalClose(e)} />
               </div>
               <hr />
-              <div className='sidebarRow'>
+              <div className='sidebarRow' >
                 <RestaurantIcon />
-                <h6>RESTAURANTS</h6>
+                <Typography component= { Link } to="/restaurants">RESTAURANTS</Typography>
               </div>
               <hr/>
               <div className='sidebarRow'>
                 <FeaturedPlayListIcon />
-                <h6>CHANNELS</h6>
+                <Typography component= { Link } to="/channels">CHANNELS</Typography>
               </div>
               
 
@@ -73,9 +83,7 @@ export default class Sidebar extends Component {
         );
     }
 
-    linkClicked = () => {
-      this.props.history.push('/signup');
-    }
+    
 }
 
 

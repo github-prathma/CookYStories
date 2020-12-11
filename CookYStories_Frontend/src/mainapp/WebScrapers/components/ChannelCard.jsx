@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import VideoCard from './VideoCard';
-
+import Button from '@material-ui/core/Button';
 import '../css/Channels.css'
+import { Link } from 'react-router-dom';
+import { Grid } from '@material-ui/core'
 
 class ChannelCard extends Component {
 
@@ -11,25 +13,29 @@ class ChannelCard extends Component {
     }
     render() {
         return (
-            <div classname="channel_main">
-                <div className="channel_title">
-                    <h3>{this.props.channelName}</h3>
-                    <a href = {this.props.channelLink} >Go to Channel</a>
-                </div>
-                <div className="videoGallery full">
-                    {
-                        this.props.videos.map (
-                            video => 
-                            <VideoCard 
-                                key = {video.id}
-                                views = {video.views}
-                                age = {video.age}
-                                thumbnailUrl = {video.thumbnailUrl}
-                                title = {video.title}
-                            />
-                        )
-                    }
-
+            <div className="outer-background">
+                <div classname="channel-main">
+                    <div className="channel-title">
+                        <a href = {this.props.channelLink}><strong>{this.props.channelName}</strong></a>
+                    </div>
+                    
+                    <div className="videoGallery">
+                        <Grid container direction="row">
+                        {
+                            this.props.videos.map (
+                                video => 
+                                <VideoCard 
+                                    key = {video.id}
+                                    views = {video.views}
+                                    age = {video.age}
+                                    thumbnailUrl = {video.thumbnailUrl}
+                                    title = {video.title}
+                                />
+                            )
+                        }
+                        </Grid>
+                    </div>
+                    
                 </div>
             </div>
         );
