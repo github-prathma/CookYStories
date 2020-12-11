@@ -1,22 +1,19 @@
 class AuthenticationService {
 
-    profileImageUrl = ""
 
 
-    registerSuccessLogin(username, password, token) {
+    registerSuccessLogin(username, password, token, profileImageUrl) {
         sessionStorage.setItem('authenticatedUser', username);
         sessionStorage.setItem('password', password);
         sessionStorage.setItem('token', token);
-    }
-
-    setProfileImage(profileImageUrl) {
-        this.profileImageUrl = profileImageUrl
+        sessionStorage.setItem('profileImageUrl', profileImageUrl)
     }
 
     logout() {
         sessionStorage.removeItem('authenticatedUser')
         sessionStorage.removeItem('password')
         sessionStorage.removeItem('token')
+        sessionStorage.removeItem('profileImageUrl')
     }
 
     isLoggedIn() {
@@ -44,7 +41,7 @@ class AuthenticationService {
     }
 
     getProfileImageUrl() {
-        return this.profileImageUrl;
+        return sessionStorage.getItem('profileImageUrl');
     }
 
 }

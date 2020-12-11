@@ -32,7 +32,7 @@ import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import Button from '@material-ui/core/Button';
 import React, { Component } from 'react';
-import GoogleMapReact from 'google-map-react';
+// import GoogleMapReact from 'google-map-react';
 import '../css/NearMe.css'
  
 const LocationPin = ({ text }) => (
@@ -68,7 +68,7 @@ class NearMe extends Component {
                     startIcon={<ArrowBackIosOutlinedIcon />}>
                 </Button>
             </div>
-            <GoogleMapReact
+            {/* <GoogleMapReact
             bootstrapURLKeys={{ key:'AIzaSyDoxkud2W9Wu0BUct0PW_1lpWeKfHjRdtQ'}}
             defaultCenter={this.props.center}
             defaultZoom={this.props.zoom}
@@ -83,7 +83,7 @@ class NearMe extends Component {
             
                   
             </GoogleMapReact>
-            
+             */}
         
       </div>
       

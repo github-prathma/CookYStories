@@ -12,6 +12,8 @@ public class AuthenticationModel {
     private String password;
     private String username;
     private String token;
+    private String profileImageUrl;
+
 
 
     public AuthenticationModel() {
@@ -25,12 +27,21 @@ public class AuthenticationModel {
         this.token = token;
     }
 
-    public AuthenticationModel(String id, String email, String password, String username, String token) {
+    public AuthenticationModel(String id, String email, String password, String username, String token, String profileImageUrl) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.username = username;
         this.token = token;
+        this.profileImageUrl = profileImageUrl;
+    }
+
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
     }
 
     public String getId() {

@@ -6,10 +6,12 @@ import com.cookystoriesspring.CookYStories.Authentication.MongoRepositories.Auth
 import com.cookystoriesspring.CookYStories.User.Models.User;
 import com.cookystoriesspring.CookYStories.User.MongoRepositories.UserRepository;
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class AuthenticationMutationController implements GraphQLMutationResolver {
 
     @Autowired
@@ -22,15 +24,17 @@ public class AuthenticationMutationController implements GraphQLMutationResolver
         AuthenticationModel existingLogin = authenticationRepository.findByUsername(auth.getUsername());
         if(existingLogin==null) {
             User fetchedUser = userRepository.findByUsername(auth.getUsername());
+            log.info(fetchedUser.toString());
 
             if(fetchedUser.getPassword().equals(auth.getPassword())) {
 
-                SignInPayload payload = new SignInPayload(fetchedUser.getUsername(), fetchedUser.getId(), auth.getPassword());
+                SignInPayload payload = new SignInPayload(fetchedUser.getUsername(), fetchedUser.getId(), auth.getPassword(), fetchedUser.getProfileImageUrl());
                 AuthenticationModel authUser = new AuthenticationModel();
                 authUser.setPassword(auth.getPassword());
                 authUser.setUsername(auth.getUsername());
                 authUser.setToken(payload.getToken());
                 authUser.setEmail(fetchedUser.getEmail());
+                authUser.setProfileImageUrl(fetchedUser.getProfileImageUrl());
 
                 authenticationRepository.save(authUser);
                 return payload;
@@ -39,7 +43,7 @@ public class AuthenticationMutationController implements GraphQLMutationResolver
             }
         } else {
             AuthenticationModel a = authenticationRepository.findByUsername(auth.getUsername());
-            return new SignInPayload(a.getUsername(),a.getId(),a.getPassword());
+            return new SignInPayload(a.getUsername(),a.getId(),a.getPassword(), a.getProfileImageUrl());
         }
 
     }

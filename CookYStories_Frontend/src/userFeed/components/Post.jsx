@@ -86,7 +86,7 @@ class Post extends Component {
     
     
     render() {
-        // console.log(this.props.id)
+        console.log(this.props.profilePic)
         // console.log(this.props.username)
         const sameUser =   (this.props.id === this.props.username )
         const { anchorEl } = this.state
@@ -185,7 +185,7 @@ class Post extends Component {
                         }
                     </div>
                     <div className="newComment">
-                        <AddComment post_id={this.post_id} profileImageUrl={this.state.profilePic}/>
+                        <AddComment post_id={this.post_id} profilePic={this.state.profilePic}/>
                     </div>
                 </div>
             </div>

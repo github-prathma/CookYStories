@@ -3,6 +3,7 @@ input AuthenticationModel{
     password:String
     email:String
     token:String
+    profileImageUrl:String
 }
 
 extend type Mutation {
@@ -14,4 +15,5 @@ type SignInPayload{
     user:String
     token:String
     password:String
+    profileImageUrl:String
 }

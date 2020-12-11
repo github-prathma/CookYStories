@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {useState} from 'react';
-import Modal from 'react-modal';
-import GoogleMapReact from 'google-map-react';
+// import Modal from 'react-modal';
+// import GoogleMapReact from 'google-map-react';
 import '../css/Sidebar.css';
 import NearMeIcon from '@material-ui/icons/NearMe';
 import RestaurantIcon from '@material-ui/icons/Restaurant';

@@ -1,6 +1,7 @@
 import { Button } from '@material-ui/core'
 import React, { Component } from 'react'
 import { Avatar } from '@material-ui/core'
+import AuthenticationService from '../../backend/AuthenticationService'
 
 
 class AddComment extends Component {
@@ -10,7 +11,7 @@ class AddComment extends Component {
         this.state={
             comment:'',
             post_id:props.post_id,
-            profileImageurl:props.profileImageurl
+            profilePic:props.profilePic
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -22,10 +23,12 @@ class AddComment extends Component {
     }
 
     render() {
+        console.log(this.state.profileImageurl)
         return (
             <div className="main_add_comment">
                 <div className="user_image">
-                    <Avatar src={this.state.profileImageurl} />
+                    <Avatar src={`${AuthenticationService.getProfileImageUrl()}`} />
+                    {/* <Avatar src={this.state.profilePic} /> */}
                 </div>
                 <div className="comment_section">
                     <form>
