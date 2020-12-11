@@ -53,6 +53,9 @@ class PostSend extends Component {
     }
     
     render() {
+
+      let showHideClassName = this.props.showModal ? " modal d-block" : 'modal d-none';
+
         return (
            <Mutation mutation={CREATE_POST} variables={{byUsername:AuthenticationService.getLoggedInUser(), description:this.state.description}} >
             {
@@ -72,7 +75,7 @@ class PostSend extends Component {
                 }
 
                 return (
-                  <div className='postSend'>
+                  <div className={this.props.showModal}>
                     <AddPost show={this.state.modal} handleClose={e => this.modalClose(e)}>
                       <form className="form-group">
                         <Grid container spacing={2}>
@@ -144,21 +147,6 @@ class PostSend extends Component {
         )
     }
 
-
-
-//     handleSubmit = (event) => {
-//         event.preventDefault();
-
-//         this.setInput('')
-//         this.setImgUrl('')
-//     }
-
-//     setInput = () => {
-//         this.setState = {
-//             input : "",
-//             imgUrl : ""
-//         }
-//     }
  }
 
 

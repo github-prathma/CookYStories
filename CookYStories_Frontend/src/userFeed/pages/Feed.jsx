@@ -48,11 +48,12 @@ function LoadFeed(props) {
                                     post => <Post
                                     key={post.id}
                                     post_id = {post.id}
-                                    profilePic={rushang}
+                                    profilePic={post.byUser.profileImageUrl}
                                     message={post.description}
                                     timestamp={post.createdAt}
                                     id={props.username}
                                     username={post.byUser.username}
+                                    userData={post.byUser}
                                     image={post.imageUrl}
                                     createdAt={post.createdAt}
                                 />
@@ -72,6 +73,9 @@ export default class Feed extends Component {
 
     constructor(props) {
         super(props)
+        this.modalOpen = this.modalOpen.bind(this);
+        this.modalClose = this.modalClose.bind(this);
+        this.onFieldChange = this.onFieldChange.bind(this);
 
         this.state =
             {
@@ -82,21 +86,36 @@ export default class Feed extends Component {
         
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (this.state.refresh) {
-            return <LoadFeed username={AuthenticationService.getLoggedInUser()} />
-            this.setState({refres:false})
-        }
-        return <LoadFeed username={AuthenticationService.getLoggedInUser()} />
+    modalOpen() {
+        this.setState({ 
+            showModal: true 
+        });
     }
+    
+    modalClose() {
+        this.setState({
+            showModal: false
+        });
+    }
+
+    onFieldChange = (e) => {
+        this.setState({
+          [e.target.name]: e.target.value
+        });
+      }
+
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (this.state.refresh) {
+    //         return <LoadFeed username={AuthenticationService.getLoggedInUser()} />
+    //         this.setState({refres:false})
+    //     }
+    //     return <LoadFeed username={AuthenticationService.getLoggedInUser()} />
+    // }
 
 
 
     render() {
 
-        
-
-        
         return (
             <div className="outer-container">
                 <div className="main">
