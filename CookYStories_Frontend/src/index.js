@@ -8,8 +8,7 @@ import {ApolloProvider} from "react-apollo"
 
 const client = new ApolloClient ({
   link: new HttpLink({
-    uri: "http://10.0.0.249:8080/graphql"
-    // uri: "http://ec2-18-220-62-236.us-east-2.compute.amazonaws.com:8080/graphql"
+    uri: "http://ec2-18-220-62-236.us-east-2.compute.amazonaws.com:8080/graphql"
   }),
   request: (operation) => {
     const token = sessionStorage.getItem('token')
