@@ -125,7 +125,7 @@ class PostSend extends Component {
                       </form>      
                     </AddPost>
                     <div className='postSend_top' onClick={e => this.modalOpen(e)}>
-                      <Avatar src={rushang} className="user_avatar"/>
+                      <Avatar src={AuthenticationService.getProfileImageUrl()} className="user_avatar"/>
                         <form>
                           <input
                             value={this.props.input}

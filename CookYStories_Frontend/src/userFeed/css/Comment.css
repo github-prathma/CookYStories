@@ -1,0 +1,11 @@
+.comment_box {
+    display: flex;
+    position: relative;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .comment_data {
+      padding-left: 10px;
+      vertical-align: middle;
+  }

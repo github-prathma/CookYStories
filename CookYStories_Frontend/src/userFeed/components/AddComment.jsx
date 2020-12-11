@@ -2,7 +2,7 @@ import { Button } from '@material-ui/core'
 import React, { Component } from 'react'
 import { Avatar } from '@material-ui/core'
 import AuthenticationService from '../../backend/AuthenticationService'
-
+import '../css/AddComment.css'
 
 class AddComment extends Component {
 
@@ -26,19 +26,31 @@ class AddComment extends Component {
         console.log(this.state.profileImageurl)
         return (
             <div className="main_add_comment">
-                <div className="user_image">
+                <div className="titleSection">
+                <p>Add a comment on this post!</p>
+                </div>
+                <div className="addComment">
+                
                     <Avatar src={`${AuthenticationService.getProfileImageUrl()}`} />
-                    {/* <Avatar src={this.state.profilePic} /> */}
+                        
+                    <div className="comment_section">
+                        <form>
+
+                            <textarea 
+                            name="comment" 
+                            rows="2"
+                            cols="52"
+                            value={this.state.comment} 
+                            placeholder="addComment" 
+                            onChange={e => this.handleChange(e)}>
+                            </textarea> 
+                            <Button >
+                                Add Comment
+                            </Button>
+                        </form>
+                    </div>
                 </div>
-                <div className="comment_section">
-                    <form>
-                        <input type="text" name="comment" value={this.state.comment} placeholder="addComment" onChange={e => this.handleChange(e)}>
-                        </input> 
-                        <Button >
-                            Add Comment
-                        </Button>
-                    </form>
-                </div>
+                
                 
             </div>
         )
