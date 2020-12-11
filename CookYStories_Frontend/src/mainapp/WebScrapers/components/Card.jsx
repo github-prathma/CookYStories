@@ -1,24 +1,41 @@
-import { Card } from '@material-ui/core';
 import React, {Component} from 'react'
 import '../css/Card.css'
+import BusinessIcon from '@material-ui/icons/Business';
+import WebIcon from '@material-ui/icons/Web';
+import PhoneIcon from '@material-ui/icons/Phone';
+import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 class RestaurantCard extends Component {
 
     render() {
 
         return (
+            <div className="background">
             <div className="card" >
-                <div className="card_top">
-                    <h3>{this.props.name}</h3>
+                <div className="card-top">
+                    <BusinessIcon /> <span><h5><strong>{this.props.address}</strong></h5></span>
+                    {this.props.name}
+                    <hr/>
                 </div>
                 
-                <div className="card_bottom">
-                    <p><h4><strong>Address: </strong>{this.props.address}</h4></p>
-                    <p><h4><strong>Website: </strong>{this.props.website}</h4></p>
-                    <p><h4><strong>Telephone: </strong>{this.props.telephone}</h4></p>
-                    <p><h4><strong>Price: </strong>{this.props.price}</h4></p>
+                <div className="card-bottom">
+                    
+                    <PhoneIcon /> <strong>{this.props.telephone}</strong>
+                    
+                    <h5>Price: {this.props.price}</h5>
+                    
+                    
+                    <Button
+                    variant="contained"
+                    color="primary"
+                    href = {"http://" + this.props.website}
+                    startIcon={<WebIcon />}>
+                        Visit Online
+                    </Button>
                 </div>
                 
+            </div>
             </div>
         );
     }

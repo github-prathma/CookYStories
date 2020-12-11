@@ -4,14 +4,16 @@ import '../css/Channels.css'
 class VideoCard extends Component {
     render() {
         return (
-            <div className="video_card_component">
-                <div className="meta">
-                    <h3>{this.props.title}</h3>
-                </div>
+            <div className="videocard">
                 <div className="image">
-                    <img className="VideoThumbnail" src = {this.props.thumbnailUrl} alt={this.props.title} height="150px" width="200px" />
+                    <img className="VideoThumbnail" src = {this.props.thumbnailUrl} alt={this.props.title} />
                 </div>
-                <div className="overlay_info">
+
+                <div className="meta">
+                    <h6>{this.props.title}</h6>
+                </div>
+                
+                <div className="overlay">
                     <span>{this.props.views} </span>
                     <span>{this.props.age}</span>
                 </div>
