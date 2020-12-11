@@ -39,8 +39,17 @@
   flex-flow: column;
 }
 
-.slideImage {
+/* .slideImage {
   object-fit: contain;
+} */
+
+.welcomeSlider {
+  height:100vh;
+}
+
+.carouselItem {
+  height:100vh;
+
 }
 
 .leftColumn {

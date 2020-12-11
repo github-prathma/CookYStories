@@ -2,10 +2,31 @@
   padding: 30px;
 }
 
-.sidebar > hr {
+.sidebarRow > hr {
   height: 1px;
   border: 0;
   background-color: lightgrey;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.sidebarRow > .MuiSvgIcon-root {
+  font-size: xx-large;
+  color: #9d2929;
+}
+
+.sidebarRow {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sidebarRow > h6 {
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.sidebarRow:hover {
+  background-color: beige;
 }

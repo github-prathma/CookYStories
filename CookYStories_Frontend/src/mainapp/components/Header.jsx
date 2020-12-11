@@ -63,12 +63,6 @@ class Header extends Component {
     });
   }
 
-  userNameClicked = () => {
-    this.props.history.push(`/user/${AuthenticationService.getLoggedInUser()}`)
-  }
-
-  
-
   render() {
 
         // return (
@@ -124,8 +118,8 @@ class Header extends Component {
                         </div>
       
                         {AuthenticationService.isLoggedIn() &&<div className="header_middle">
-                            <div className="header_option header_option--active">
-                                <FastfoodIcon fontSize='large' onClick={this.onHomeClick} />
+                            <div className="header_option header_option--active" onClick={(e) => this.onHomeClick(e)}>
+                                <FastfoodIcon fontSize='large'/>
                             </div>
                             {/* <div className="header_option">
                                 <FlagIcon fontSize='large' />
@@ -179,9 +173,14 @@ class Header extends Component {
       
     }
 
+    userNameClicked = () => {
+      this.props.history.push(`/user/${AuthenticationService.getLoggedInUser()}`)
+    }
+
 
     onHomeClick = (event) => {
-        console.log("home button click")
+      this.props.history.push(`/feed/${AuthenticationService.getLoggedInUser()}`)
+        // console.log("home button click")
     }
 }
 
