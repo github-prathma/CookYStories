@@ -73,7 +73,7 @@ class UpdatePost extends Component {
                                         </div>
                                 
                                         <Button variant="contained"
-                                        color="secondary"
+                                        color="primary"
                                         className='modal-close'
                                         onClick={e => {
                                             updatePostClicked({variables: {

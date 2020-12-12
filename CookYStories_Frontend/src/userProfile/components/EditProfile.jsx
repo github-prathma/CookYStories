@@ -6,6 +6,7 @@ import '../css/EditProfile.css'
 import SaveIcon from '@material-ui/icons/Save';
 import {UPDATE_USER_INFO} from '../../backend/UserProfileApis'
 import { Mutation } from 'react-apollo'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class EditProfile extends Component {
 
@@ -21,7 +22,7 @@ class EditProfile extends Component {
       },
       profileImageUrl: props.profileImageUrl,
       user_name: props.user_name,
-      // openModal:false
+      dataReceived:false
     };
   }
 
@@ -66,13 +67,18 @@ class EditProfile extends Component {
   (onUpdateClick, {loading, error, data}) => {
 
         if (loading) {
-                  
+         
         }
 
         if (error) {
-
+          
         } 
-        if (data && this.props.show) {
+        if (data && !this.state.dataReceived) {
+          this.setState(
+            {
+              dataReceived:true,
+            }
+          )
           console.log(data)
           const updatedUser = data.updateUser
           this.onDataUpdate(updatedUser)
