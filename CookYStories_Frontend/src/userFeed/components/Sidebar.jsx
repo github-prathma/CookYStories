@@ -14,8 +14,9 @@ import NearMe from './NearMe'
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
+import {withRouter} from 'react-router-dom';
 
-export default class Sidebar extends Component {
+class Sidebar extends Component {
 
   constructor(props) {
     super(props)
@@ -23,6 +24,7 @@ export default class Sidebar extends Component {
     // this.handleSubmit = this.handleSubmit.bind(this);
     this.modalOpen = this.modalOpen.bind(this);
     this.modalClose = this.modalClose.bind(this);
+    this.channelLink = this.channelLink.bind(this);
 
     this.state = {
       modal: false,
@@ -45,13 +47,13 @@ export default class Sidebar extends Component {
     this.setState({modal: false});
   };
 
-  // channelLink() {
-  //   this.props.history.push('/channels');
-  // }
+  channelLink() {
+    this.props.history.push('/channels');
+  }
 
-  // restaurantLink() {
-  //   this.props.history.push('/restaurants');
-  // }
+  restaurantLink() {
+    this.props.history.push('/restaurants');
+  }
 
 
     render() {
@@ -67,16 +69,13 @@ export default class Sidebar extends Component {
               <hr />
               <div className='sidebarRow' >
                 <RestaurantIcon />
-                <Typography component= { Link } to="/restaurants">RESTAURANTS</Typography>
+                <Typography onClick={e => this.restaurantLink(e)}>RESTAURANTS</Typography>
               </div>
               <hr/>
               <div className='sidebarRow'>
                 <FeaturedPlayListIcon />
-                <Typography component= { Link } to="/channels">CHANNELS</Typography>
+                <Typography onClick={e => this.channelLink(e)}>CHANNELS</Typography>
               </div>
-              
-
-
            </Grid>
            
           </div>
@@ -86,4 +85,4 @@ export default class Sidebar extends Component {
     
 }
 
-
+export default withRouter(Sidebar);
