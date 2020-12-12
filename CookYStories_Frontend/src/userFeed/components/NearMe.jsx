@@ -40,7 +40,7 @@ class NearMe extends Component {
                 </Button>
             </div>
             <GoogleMapReact
-            bootstrapURLKeys={{ key:'AIzaSyDoxkud2W9Wu0BUct0PW_1lpWeKfHjRdtQ'}}
+            bootstrapURLKeys={{ key:''}}
             defaultCenter={this.props.center}
             defaultZoom={this.props.zoom}
             >
