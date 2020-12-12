@@ -5,6 +5,7 @@ import AuthenticationService from '../../backend/AuthenticationService'
 import '../css/AddComment.css'
 import {Mutation} from 'react-apollo'
 import {ADD_COMMENT} from '../../backend/FeedApis'
+import SendIcon from '@material-ui/icons/Send';
 
 class AddComment extends Component {
 
@@ -55,21 +56,24 @@ class AddComment extends Component {
                                     <Avatar src={`${AuthenticationService.getProfileImageUrl()}`} />
                                         
                                     <div className="comment_section">
-                                        <form>
-                                            <textarea 
-                                            name="description" 
-                                            rows="2"
-                                            cols="52"
-                                            value={this.state.description} 
-                                            placeholder="Comment ... " 
-                                            onChange={e => this.handleChange(e)}>
-                                            </textarea> 
-                                            <Button onClick={(e) => {
+
+                                            <form className="form-group">
+                        
+                                                <textarea 
+                                                name="description" 
+                                                rows="2"
+                                                cols="52"
+                                                value={this.state.description} 
+                                                placeholder="Comment ... " 
+                                                onChange={e => this.handleChange(e)}>
+                                                </textarea> 
+                                                <Button color="primary" onClick={(e) => {
                                                 addCommentClicked({variables:{postId:this.state.postId, byUsername:AuthenticationService.getLoggedInUser(), description:this.state.description}})
-                                            }}>
-                                                Add Comment
-                                            </Button>
-                                        </form>
+                                            }} variant="contained" endIcon={<SendIcon />}>
+                                                Send
+                                                </Button>
+                                            </form>
+                                        
                                     </div>
                                 </div>
                             

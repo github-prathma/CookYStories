@@ -10,10 +10,12 @@
 
  .main_add_comment {
     max-width: 700px;
-    margin-top: 15px;
+    /* margin-top: 15px; */
     border-radius: 15px;
     background-color: #faf9f1;
     box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
+    align-items: center;
+    display: flex;
   }
 
   .titleSection {
@@ -33,6 +35,15 @@
       vertical-align: middle;
   }
 
-  .comment_section > input {
+  .form-group {
+    display: flex;
+  }
+  .form-control {
+    display: flex;
+  }
 
+  
+  .button {
+    text-align: center;
+    display: block;
   }

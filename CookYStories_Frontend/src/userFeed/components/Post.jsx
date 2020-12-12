@@ -44,7 +44,6 @@ class Post extends Component {
         this.setState({liked: !this.state.liked})
         console.log(this.state.liked)
         e.preventDefault()
-        e.target.style.color = (this.state.liked)? "green":"gray";
     }
 
     onFieldChange = (param) => {
@@ -213,10 +212,14 @@ class Post extends Component {
                 </div>
 
                 <div className="post_options">
-                    <div className="post_option" onClick={(e) => this.toggleliked(e)} >
+                    {this.state.liked && <div className="post_option" onClick={(e) => this.toggleliked(e)} >
+                        <ThumbUpIcon style={{ fill: "green" }}/>
+                        <p style={{ color: "green" }}>Yummy!</p>
+                    </div>}
+                    {!this.state.liked && <div className="post_option" onClick={(e) => this.toggleliked(e)} >
                         <ThumbUpIcon />
                         <p>Yummy!</p>
-                    </div>
+                    </div>}
                     <div className="post_option">
                         <ChatBubbleOutlineIcon />
                         <p>Say It!</p>
