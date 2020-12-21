@@ -63,3 +63,7 @@ Web application that provides users to showcase their recipes and connect with o
    - <b>css</b> represents the stylesheets related to the feature
    
    - <b>pages</b> represents the code related to main feature. Example, userFeed has Feed.jsx which represents the main page of userFeed feature.
+
+## Full Project Demonstration Video: 
+
+https://drive.google.com/file/d/1FiqPUjffeC3U7tzhHhAX1rsSrPs_XQuP/view?usp=sharing
