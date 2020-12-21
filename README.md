@@ -29,7 +29,7 @@ Web application that provides users to showcase their recipes and connect with o
 * Now, navigate to folder <i>main</i>, then finally java/com/cookystoriesspring/CookYStories
 * To refer to a code related to particular feature, open the folder related to it.
    
-   Example,
+   For example,
   
    <b>Authentication:</b> This folder contains the code related to signup/login feature
    
@@ -39,10 +39,27 @@ Web application that provides users to showcase their recipes and connect with o
 
     i.e.,
     
-    <b>Models: </b> Database entities with different attributes
+    - <b>Models: </b> Database entities with different attributes
     
-    <b>MongoRepositories: </b> Classes that handles the query to the database
+    - <b>MongoRepositories: </b> Classes that handles the query to the database
     
-    <b>Resolvers:</b> Classes that handles the functionalities for the communication between client and server
+    - <b>Resolvers:</b> Classes that handles the functionalities for the communication between client and server
     
 ### Frontend:
+* Click on CookYStories_Frontend folder to navigate to frontend code
+* Click on <i>src</i> folder to refer to whole code structure
+*  <b>backend</b> folder consists of all the network call implementations corresponding to the feature in application.
+* To refer to a code related to particular feature, open the folder related to it.
+
+   For example,
+  
+   <b>userFeed:</b> This folder contains the code related to feed of the user.
+* Further, each feature folder is divided into 3 categories: components, css and pages.
+
+   i.e.,
+   
+   - <b>components</b> represents views and functionalities code related to corresponding action on the page
+   
+   - <b>css</b> represents the stylesheets related to the feature
+   
+   - <b>pages</b> represents the code related to main feature. Example, userFeed has Feed.jsx which represents the main page of userFeed feature.
