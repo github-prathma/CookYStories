@@ -44,6 +44,8 @@ Web application that provides users to showcase their recipes and connect with o
     - <b>MongoRepositories: </b> Classes that handles the query to the database
     
     - <b>Resolvers:</b> Classes that handles the functionalities for the communication between client and server
+  
+* <i>resources</i> folder under <i>main</i> has folder named as <b><i>graphQL</i></b> which contains all the files related to GraphQL schema and the definitions of queries and mutations related to that feature.
     
 ### Frontend:
 * Click on CookYStories_Frontend folder to navigate to frontend code
