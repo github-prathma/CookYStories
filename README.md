@@ -20,3 +20,29 @@ Web application that provides users to showcase their recipes and connect with o
 * Open CookYStories_Backend folder project in IntelliJ
 * Run the project using IntelliJ (play button)
 * Once the server starts, you can check the website on browser running with backend server.
+
+## Project Navigation:
+
+### Backend:
+* Click on CookYStories_Backend folder to navigate to backend code
+* Click on <i>src</i> folder to refer to whole code structure
+* Now, navigate to folder <i>main</i>, then finally java/com/cookystoriesspring/CookYStories
+* To refer to a code related to particular feature, open the folder related to it.
+   
+   Example,
+  
+   <b>Authentication:</b> This folder contains the code related to signup/login feature
+   
+   <b>Post:</b> This folder contains everything related to Post that user can post in our website
+
+* Each folder categorized into three folders: Models, MongoRepositories and Resolvers
+
+    i.e.,
+    
+    <b>Models: </b> Database entities with different attributes
+    
+    <b>MongoRepositories: </b> Classes that handles the query to the database
+    
+    <b>Resolvers:</b> Classes that handles the functionalities for the communication between client and server
+    
+### Frontend:
