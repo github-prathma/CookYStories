@@ -1,4 +1,6 @@
 # CookYStories App
+
+Demo Video presentation: https://drive.google.com/file/d/1FiqPUjffeC3U7tzhHhAX1rsSrPs_XQuP/view?usp=sharing
 Web application that provides users to showcase their recipes and connect with other users and can share their recipes and ideas among themselves.
 
 ## Project Requirements:
